@@ -1,0 +1,50 @@
+/* NFC Summit 2027 — typographie.
+   Anton pour les titres, capitales uniquement.
+   Space Grotesk Light/Regular pour le texte courant.
+   Space Mono capitales pour labels, dates, prix, numéros de page. */
+:root {
+  --font-display: "Anton", "Arial Narrow", sans-serif;
+  --font-body: "Space Grotesk", system-ui, sans-serif;
+  --font-mono: "Space Mono", ui-monospace, monospace;
+
+  /* Échelle display — cadre 1920 × 1080 */
+  --type-cover: 232px;
+  --type-divider: 168px;
+  --type-statement: 104px;
+  --type-page-title: 88px;
+  --type-ghost: 320px;      /* numéro fantôme des intercalaires */
+  --type-display-min: 40px; /* jamais en dessous */
+
+  /* Échelle texte */
+  --type-quote: 64px;
+  --type-lead: 30px;
+  --type-body: 21px;
+  --type-body-sm: 19px;
+  --type-deck-min: 24px;    /* plancher absolu sur un 1920 */
+
+  /* Échelle mono */
+  --type-label: 15px;
+  --type-label-sm: 13px;
+  --type-price: 22px;
+  --type-date: 28px;
+
+  /* Interlignage */
+  --leading-display-tight: 0.82;
+  --leading-display: 0.86;
+  --leading-display-loose: 0.92;
+  --leading-lead: 1.32;
+  --leading-body: 1.5;
+
+  /* Interlettrage */
+  --tracking-display: -0.02em;
+  --tracking-mono: 0.18em;
+  --tracking-mono-wide: 0.24em;
+
+  /* Graisses */
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-medium: 500;
+
+  /* Mesure maximale du corps de texte */
+  --measure-body: 62ch;
+}

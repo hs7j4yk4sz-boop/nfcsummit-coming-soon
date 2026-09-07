@@ -1,0 +1,5 @@
+/* NFC Summit 2027 — familles de caractères.
+   Les trois familles sont servies par Google Fonts. Si la marque passe un jour
+   sur des fichiers hébergés, remplacer cet import par des @font-face locaux
+   pointant vers assets/fonts/ — les noms de familles ne changent pas. */
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap");

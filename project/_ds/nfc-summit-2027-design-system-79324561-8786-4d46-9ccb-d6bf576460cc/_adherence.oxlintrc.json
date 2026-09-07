@@ -1,0 +1,374 @@
+{
+  "plugins": [
+    "react",
+    "import"
+  ],
+  "rules": {
+    "react/forbid-elements": [
+      "warn",
+      {
+        "forbid": []
+      }
+    ],
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": [
+          {
+            "group": [
+              "components/data/**",
+              "components/dragons/**",
+              "components/layout/**",
+              "components/photo/**",
+              "components/type/**"
+            ],
+            "message": "Import design-system components from 'index.js', not component internals."
+          }
+        ]
+      }
+    ],
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "Literal[value=/#[0-9a-fA-F]{3,8}\\b/]",
+        "message": "Raw hex color — use a design-system color token via var()."
+      },
+      {
+        "selector": "Literal[value=/\\b\\d+px\\b/]",
+        "message": "Raw px value — use a design-system spacing token via var()."
+      },
+      {
+        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:Anton|Space Grotesk|Space Mono))/i]",
+        "message": "Font not provided by the design system. Available: Anton, Space Grotesk, Space Mono."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='AccentBand'] > JSXAttribute > JSXIdentifier[name!=/^(?:color|thickness|top|style|key|ref|className|style|children)$/]",
+        "message": "<AccentBand> doesn't accept that prop. Declared props: color, thickness, top, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='DisplayTitle'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|size|leading|color|glitch|as|style|key|ref|className|style|children)$/]",
+        "message": "<DisplayTitle> doesn't accept that prop. Declared props: children, size, leading, color, glitch, as, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='DisplayTitle'] > JSXAttribute[name.name='leading'] > Literal[value!=/^(?:tight|normal|loose)$/]",
+        "message": "<DisplayTitle> leading must be one of 'tight' | 'normal' | 'loose'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='DisplayTitle'] > JSXAttribute[name.name='as'] > Literal[value!=/^(?:h1|h2|h3|div)$/]",
+        "message": "<DisplayTitle> as must be one of 'h1' | 'h2' | 'h3' | 'div'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='DragonFrame'] > JSXAttribute > JSXIdentifier[name!=/^(?:id|crop|accentLine|base|background|style|children|key|ref|className|style|children)$/]",
+        "message": "<DragonFrame> doesn't accept that prop. Declared props: id, crop, accentLine, base, background, style, children."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='DragonFrame'] > JSXAttribute[name.name='id'] > Literal[value!=/^(?:01|02|03|04|05|06|07|08)$/]",
+        "message": "<DragonFrame> id must be one of '01' | '02' | '03' | '04' | '05' | '06' | '07' | '08'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='DragonFrame'] > JSXAttribute[name.name='crop'] > Literal[value!=/^(?:full|head|offframe|bust)$/]",
+        "message": "<DragonFrame> crop must be one of 'full' | 'head' | 'offframe' | 'bust'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='GhostNumber'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|size|color|style|key|ref|className|style|children)$/]",
+        "message": "<GhostNumber> doesn't accept that prop. Declared props: children, size, color, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='GradedPhoto'] > JSXAttribute > JSXIdentifier[name!=/^(?:src|alt|mode|scanlines|protect|objectPosition|style|children|key|ref|className|style|children)$/]",
+        "message": "<GradedPhoto> doesn't accept that prop. Declared props: src, alt, mode, scanlines, protect, objectPosition, style, children."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='GradedPhoto'] > JSXAttribute[name.name='mode'] > Literal[value!=/^(?:color|bw)$/]",
+        "message": "<GradedPhoto> mode must be one of 'color' | 'bw'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='GradedPhoto'] > JSXAttribute[name.name='protect'] > Literal[value!=/^(?:none|bottom|left)$/]",
+        "message": "<GradedPhoto> protect must be one of 'none' | 'bottom' | 'left'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Lead'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|size|color|measure|style|key|ref|className|style|children)$/]",
+        "message": "<Lead> doesn't accept that prop. Declared props: children, size, color, measure, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Lead'] > JSXAttribute[name.name='size'] > Literal[value!=/^(?:lead|body)$/]",
+        "message": "<Lead> size must be one of 'lead' | 'body'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='MonoLabel'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|size|tracking|color|as|style|key|ref|className|style|children)$/]",
+        "message": "<MonoLabel> doesn't accept that prop. Declared props: children, size, tracking, color, as, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='MonoLabel'] > JSXAttribute[name.name='as'] > Literal[value!=/^(?:span|div|p)$/]",
+        "message": "<MonoLabel> as must be one of 'span' | 'div' | 'p'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='PriceRow'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|value|detail|emphasis|style|key|ref|className|style|children)$/]",
+        "message": "<PriceRow> doesn't accept that prop. Declared props: label, value, detail, emphasis, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='QuoteBlock'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|attribution|accent|color|size|style|key|ref|className|style|children)$/]",
+        "message": "<QuoteBlock> doesn't accept that prop. Declared props: children, attribution, accent, color, size, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='SlideFrame'] > JSXAttribute > JSXIdentifier[name!=/^(?:surface|eyebrow|eyebrowRight|footerLeft|footerRight|bleed|width|height|children|style|key|ref|className|style|children)$/]",
+        "message": "<SlideFrame> doesn't accept that prop. Declared props: surface, eyebrow, eyebrowRight, footerLeft, footerRight, bleed, width, height, children, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='SlideFrame'] > JSXAttribute[name.name='surface'] > Literal[value!=/^(?:ink|concrete)$/]",
+        "message": "<SlideFrame> surface must be one of 'ink' | 'concrete'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='StatBlock'] > JSXAttribute > JSXIdentifier[name!=/^(?:value|label|unit|accent|color|size|style|key|ref|className|style|children)$/]",
+        "message": "<StatBlock> doesn't accept that prop. Declared props: value, label, unit, accent, color, size, style."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='VideoBackdrop'] > JSXAttribute > JSXIdentifier[name!=/^(?:src|poster|protect|scanlines|style|children|key|ref|className|style|children)$/]",
+        "message": "<VideoBackdrop> doesn't accept that prop. Declared props: src, poster, protect, scanlines, style, children."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='VideoBackdrop'] > JSXAttribute[name.name='protect'] > Literal[value!=/^(?:none|bottom|left)$/]",
+        "message": "<VideoBackdrop> protect must be one of 'none' | 'bottom' | 'left'."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/index.js"
+      ],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    }
+  ],
+  "x-omelette": {
+    "components": {
+      "AccentBand": {
+        "replaces": []
+      },
+      "DisplayTitle": {
+        "replaces": []
+      },
+      "DragonFrame": {
+        "replaces": []
+      },
+      "GhostNumber": {
+        "replaces": []
+      },
+      "GradeDefs": {
+        "replaces": []
+      },
+      "GradedPhoto": {
+        "replaces": []
+      },
+      "Lead": {
+        "replaces": []
+      },
+      "MonoLabel": {
+        "replaces": []
+      },
+      "PriceRow": {
+        "replaces": []
+      },
+      "QuoteBlock": {
+        "replaces": []
+      },
+      "SlideFrame": {
+        "replaces": []
+      },
+      "StatBlock": {
+        "replaces": []
+      },
+      "VideoBackdrop": {
+        "replaces": []
+      }
+    },
+    "tokens": [
+      "--accent-data",
+      "--accent-default",
+      "--accent-urgent",
+      "--cols-dense",
+      "--cols-editorial",
+      "--cols-programme",
+      "--font-body",
+      "--font-display",
+      "--font-mono",
+      "--format-deck-h",
+      "--format-deck-w",
+      "--format-gallery-h",
+      "--format-gallery-w",
+      "--format-vertical-h",
+      "--format-vertical-w",
+      "--frame-margin",
+      "--frame-margin-ratio",
+      "--gap-block",
+      "--gap-chapter",
+      "--gap-col",
+      "--gap-section",
+      "--glitch-shadow",
+      "--grade-highlight",
+      "--grade-shadow",
+      "--leading-body",
+      "--leading-display",
+      "--leading-display-loose",
+      "--leading-display-tight",
+      "--leading-lead",
+      "--measure-body",
+      "--nfc-acid",
+      "--nfc-chalk",
+      "--nfc-concrete",
+      "--nfc-concrete-2",
+      "--nfc-dragon-01",
+      "--nfc-dragon-02",
+      "--nfc-dragon-03",
+      "--nfc-dragon-04",
+      "--nfc-dragon-05",
+      "--nfc-dragon-06",
+      "--nfc-dragon-07",
+      "--nfc-dragon-08",
+      "--nfc-graphite",
+      "--nfc-grey",
+      "--nfc-grey-deep",
+      "--nfc-ink",
+      "--nfc-jade",
+      "--nfc-magenta",
+      "--protect-bottom",
+      "--protect-left",
+      "--radius",
+      "--rule",
+      "--rule-accent",
+      "--rule-band",
+      "--rule-hairline",
+      "--rule-on-dense",
+      "--rule-quote",
+      "--scanlines",
+      "--shadow",
+      "--surface-dense",
+      "--surface-dense-alt",
+      "--surface-primary",
+      "--surface-raised",
+      "--text-on-dense",
+      "--text-on-dense-secondary",
+      "--text-primary",
+      "--text-secondary",
+      "--text-tertiary",
+      "--tracking-display",
+      "--tracking-mono",
+      "--tracking-mono-wide",
+      "--type-body",
+      "--type-body-sm",
+      "--type-cover",
+      "--type-date",
+      "--type-deck-min",
+      "--type-display-min",
+      "--type-divider",
+      "--type-ghost",
+      "--type-label",
+      "--type-label-sm",
+      "--type-lead",
+      "--type-page-title",
+      "--type-price",
+      "--type-quote",
+      "--type-statement",
+      "--weight-light",
+      "--weight-medium",
+      "--weight-regular"
+    ],
+    "tokenKinds": {
+      "--nfc-ink": "color",
+      "--nfc-graphite": "color",
+      "--nfc-concrete": "color",
+      "--nfc-concrete-2": "color",
+      "--nfc-chalk": "color",
+      "--nfc-grey": "color",
+      "--nfc-grey-deep": "color",
+      "--nfc-acid": "color",
+      "--nfc-magenta": "color",
+      "--nfc-jade": "color",
+      "--nfc-dragon-01": "color",
+      "--nfc-dragon-02": "color",
+      "--nfc-dragon-03": "color",
+      "--nfc-dragon-04": "color",
+      "--nfc-dragon-05": "color",
+      "--nfc-dragon-06": "color",
+      "--nfc-dragon-07": "color",
+      "--nfc-dragon-08": "color",
+      "--surface-primary": "color",
+      "--surface-raised": "color",
+      "--surface-dense": "color",
+      "--surface-dense-alt": "color",
+      "--text-primary": "font",
+      "--text-secondary": "font",
+      "--text-tertiary": "font",
+      "--text-on-dense": "font",
+      "--text-on-dense-secondary": "font",
+      "--rule": "color",
+      "--rule-on-dense": "color",
+      "--accent-default": "color",
+      "--accent-urgent": "color",
+      "--accent-data": "color",
+      "--grade-shadow": "shadow",
+      "--grade-highlight": "color",
+      "--font-display": "font",
+      "--font-body": "font",
+      "--font-mono": "font",
+      "--type-cover": "font",
+      "--type-divider": "font",
+      "--type-statement": "font",
+      "--type-page-title": "font",
+      "--type-ghost": "font",
+      "--type-display-min": "font",
+      "--type-quote": "font",
+      "--type-lead": "font",
+      "--type-body": "font",
+      "--type-body-sm": "font",
+      "--type-deck-min": "font",
+      "--type-label": "font",
+      "--type-label-sm": "font",
+      "--type-price": "font",
+      "--type-date": "font",
+      "--leading-display-tight": "font",
+      "--leading-display": "font",
+      "--leading-display-loose": "font",
+      "--leading-lead": "font",
+      "--leading-body": "font",
+      "--tracking-display": "font",
+      "--tracking-mono": "font",
+      "--tracking-mono-wide": "font",
+      "--weight-light": "font",
+      "--weight-regular": "font",
+      "--weight-medium": "font",
+      "--measure-body": "spacing",
+      "--frame-margin": "spacing",
+      "--frame-margin-ratio": "spacing",
+      "--gap-col": "spacing",
+      "--gap-block": "spacing",
+      "--gap-section": "spacing",
+      "--gap-chapter": "spacing",
+      "--cols-dense": "other",
+      "--cols-programme": "other",
+      "--cols-editorial": "other",
+      "--rule-hairline": "spacing",
+      "--rule-quote": "spacing",
+      "--rule-accent": "spacing",
+      "--rule-band": "spacing",
+      "--format-deck-w": "spacing",
+      "--format-deck-h": "spacing",
+      "--format-vertical-w": "spacing",
+      "--format-vertical-h": "spacing",
+      "--format-gallery-w": "spacing",
+      "--format-gallery-h": "spacing",
+      "--scanlines": "other",
+      "--protect-bottom": "other",
+      "--protect-left": "other",
+      "--glitch-shadow": "shadow",
+      "--radius": "radius",
+      "--shadow": "shadow"
+    },
+    "fontFamilies": [
+      "Anton",
+      "Space Grotesk",
+      "Space Mono"
+    ]
+  }
+}
