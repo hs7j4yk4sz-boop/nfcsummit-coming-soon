@@ -1,0 +1,403 @@
+.section {
+  background: var(--nfc-concrete);
+  color: var(--nfc-ink);
+}
+
+.stage {
+  display: flex;
+  flex-direction: column;
+  padding: 72px var(--frame-margin-ratio) 64px;
+}
+
+/* ---------------------------------------------------------------- heading */
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+}
+
+.headText {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--nfc-grey-deep);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(56px, 7cqw, 120px);
+  line-height: 0.86;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.stat {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  line-height: 1.6;
+  text-transform: uppercase;
+  color: var(--nfc-grey-deep);
+  text-align: right;
+}
+
+/* Two lines on desktop; one line, joined by a middot, on mobile. */
+.statLine {
+  display: block;
+}
+
+.statSep {
+  display: none;
+}
+
+/* ------------------------------------------------------------------ tiers */
+
+.tiers {
+  display: flex;
+  flex-direction: column;
+  margin-top: 56px;
+  border-top: var(--rule-hairline) solid var(--nfc-ink);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 40px;
+  border-bottom: var(--rule-hairline) solid var(--nfc-concrete-2);
+}
+
+.label {
+  flex: 1 1 200px;
+  min-width: 0;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--nfc-grey-deep);
+}
+
+.content {
+  flex: 3 1 320px;
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+/* The blue is the page's single accent, and it only ever marks what is open. */
+.open {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: 0.18em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: var(--nfc-dragon-07);
+  white-space: nowrap;
+}
+
+.open:hover,
+.open:focus-visible {
+  color: var(--nfc-ink);
+}
+
+/* Type scale falls with the tier — the whole hierarchy is typographic. */
+
+.co {
+  padding: 36px 0;
+}
+.co .label {
+  padding-top: 8px;
+}
+.co .content {
+  gap: 8px 32px;
+  font-size: clamp(48px, 7cqw, 112px);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+}
+
+.platinum {
+  padding: 32px 0;
+}
+.platinum .label {
+  padding-top: 8px;
+}
+.platinum .content {
+  gap: 8px 40px;
+  font-size: clamp(36px, 4.6cqw, 74px);
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+}
+
+.gold {
+  padding: 30px 0;
+}
+.gold .label {
+  padding-top: 6px;
+}
+.gold .content {
+  gap: 8px 36px;
+  font-size: clamp(28px, 3cqw, 48px);
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.community {
+  padding: 30px 0;
+}
+.community .label {
+  padding-top: 4px;
+}
+.community .content {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+}
+.community .open {
+  font-size: 14px;
+}
+
+.wall {
+  padding: 30px 0;
+  border-bottom-color: var(--nfc-ink);
+}
+.wall .label {
+  padding-top: 3px;
+}
+.wall .content {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+}
+.wall .open {
+  font-size: 13px;
+}
+
+/* Community sponsors: square avatars, black and white, no names. */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  gap: 8px;
+  width: 100%;
+}
+
+.tile {
+  aspect-ratio: 1;
+  background: var(--nfc-ink);
+  overflow: hidden;
+}
+
+.tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(1) contrast(1.05);
+}
+
+.wallText {
+  font-family: var(--font-mono);
+  font-size: clamp(12px, 0.95cqw, 14px);
+  line-height: 1.9;
+  color: var(--nfc-graphite);
+  text-transform: none;
+  text-wrap: pretty;
+  word-spacing: 0.05em;
+}
+
+/* ----------------------------------------------------------------- closer */
+
+.closer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px 40px;
+  padding-top: 40px;
+  font-family: var(--font-body);
+  font-size: clamp(15px, 1.25cqw, 19px);
+  line-height: 1.45;
+  color: var(--nfc-graphite);
+}
+
+.closerText {
+  max-width: 62ch;
+}
+
+.closerLink {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--nfc-ink);
+  border-bottom: var(--rule-hairline) solid var(--nfc-ink);
+  padding-bottom: 3px;
+}
+
+.closerLink:hover,
+.closerLink:focus-visible {
+  color: var(--nfc-dragon-07);
+  border-color: var(--nfc-dragon-07);
+}
+
+/*
+  Between the two artboards the heading no longer fits on one line, and a
+  right-aligned counter stranded on its own row reads as a mistake. Stack it
+  under the title instead — the same move the 390 layout makes.
+*/
+@container frame (max-width: 1023px) {
+  .head {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .stat {
+    text-align: left;
+  }
+}
+
+/* ----------------------------------------------------------------- mobile */
+
+@container frame (max-width: 767px) {
+  .stage {
+    padding: 48px var(--frame-margin-ratio) 40px;
+  }
+
+  .head {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+
+  .headText {
+    gap: 14px;
+  }
+
+  .eyebrow,
+  .stat,
+  .label {
+    font-size: 11px;
+  }
+
+  .title {
+    font-size: clamp(48px, 17cqw, 96px);
+  }
+
+  .stat {
+    text-align: left;
+    letter-spacing: 0.18em;
+  }
+
+  .statLine,
+  .statSep {
+    display: inline;
+  }
+
+  .statLive {
+    display: none;
+  }
+
+  .tiers {
+    margin-top: 36px;
+  }
+
+  .row {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .label,
+  .content {
+    flex: none;
+  }
+
+  .label {
+    padding-top: 0;
+  }
+
+  .open {
+    font-size: 12px;
+  }
+
+  .co {
+    padding: 26px 0;
+  }
+  .co .content {
+    gap: 6px 24px;
+    font-size: clamp(48px, 15cqw, 84px);
+  }
+
+  .platinum {
+    padding: 24px 0;
+  }
+  .platinum .content {
+    gap: 8px 24px;
+    font-size: clamp(30px, 10cqw, 56px);
+  }
+
+  .gold {
+    padding: 22px 0;
+  }
+  .gold .content {
+    gap: 8px 22px;
+    font-size: clamp(22px, 7cqw, 40px);
+  }
+
+  .community,
+  .wall {
+    padding: 22px 0;
+  }
+
+  .community .content,
+  .wall .content {
+    gap: 14px;
+  }
+
+  .community .open,
+  .wall .open {
+    font-size: 12px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  .wallText {
+    font-size: 12px;
+    line-height: 1.85;
+  }
+
+  .closer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+    padding-top: 30px;
+    font-size: 15px;
+  }
+
+  .closerText {
+    max-width: none;
+  }
+
+  .closerLink {
+    align-self: flex-start;
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,28 @@
+.footer {
+  background: var(--nfc-ink);
+  color: var(--nfc-grey-deep);
+}
+
+.stage {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 22px var(--frame-margin-ratio);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+@container frame (max-width: 767px) {
+  .stage {
+    flex-wrap: nowrap;
+    padding: 18px var(--frame-margin-ratio);
+    font-size: 10px;
+  }
+
+  .brand {
+    display: none;
+  }
+}

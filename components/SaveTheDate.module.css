@@ -1,0 +1,132 @@
+.section {
+  background: var(--nfc-ink);
+  color: var(--nfc-chalk);
+}
+
+.stage {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+  padding: 96px var(--frame-margin-ratio);
+  /* The 1px ink rule under the hero: the dragon's cut edge. */
+  border-top: var(--rule-hairline) solid var(--nfc-ink);
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--nfc-grey);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(56px, 7cqw, 120px);
+  line-height: 0.86;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  max-width: 14ch;
+}
+
+.date {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  letter-spacing: 0.2em;
+  line-height: 1.7;
+  text-transform: uppercase;
+}
+
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px 48px;
+  padding-top: 40px;
+  border-top: var(--rule-hairline) solid var(--nfc-chalk);
+}
+
+.lead {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: clamp(20px, 1.8cqw, 28px);
+  line-height: 1.35;
+  max-width: 38ch;
+}
+
+.link {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  border-bottom: var(--rule-hairline) solid var(--nfc-chalk);
+  padding-bottom: 4px;
+}
+
+.link:hover,
+.link:focus-visible {
+  color: var(--nfc-dragon-07);
+  border-color: var(--nfc-dragon-07);
+}
+
+@container frame (max-width: 767px) {
+  .stage {
+    gap: 32px;
+    padding: 56px var(--frame-margin-ratio);
+  }
+
+  .head {
+    gap: 16px;
+  }
+
+  .eyebrow,
+  .date {
+    font-size: 11px;
+  }
+
+  .title {
+    font-size: clamp(52px, 15cqw, 84px);
+    max-width: none;
+  }
+
+  /* The venue drops to its own line rather than wrapping mid-address. */
+  .date span {
+    display: block;
+  }
+
+  .date .dateSep {
+    display: none;
+  }
+
+  .foot {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+    padding-top: 28px;
+  }
+
+  .lead {
+    font-size: 18px;
+    line-height: 1.4;
+    max-width: none;
+  }
+
+  .link {
+    align-self: flex-start;
+    font-size: 11px;
+  }
+
+  /* "More info" is what pushes the link onto two lines at 390. */
+  .linkLead {
+    display: none;
+  }
+}

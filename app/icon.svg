@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!--
+    Placeholder mark. The real wordmark lives in the 2027 design system, whose
+    logo files were not part of this handoff bundle — swap this file for
+    `logo-white-transparent.png` (or a transparent SVG) when it is available.
+  -->
+  <rect width="64" height="64" fill="#0B0B0B"/>
+  <text x="32" y="45" fill="#F2F0EB" font-family="Anton, 'Arial Narrow', 'Helvetica Neue Condensed', sans-serif"
+        font-size="34" font-weight="700" text-anchor="middle" letter-spacing="-1">NFC</text>
+</svg>

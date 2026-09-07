@@ -1,0 +1,51 @@
+/* NFC Summit 2027 — couleurs.
+   Sept neutres, trois accents, huit accents de dragons.
+   Règle d'accent : un seul accent par page, jamais plus de 5 % de la surface. */
+:root {
+  /* Neutres */
+  --nfc-ink: #0B0B0B;
+  --nfc-graphite: #1A1A1A;
+  --nfc-concrete: #DEDBD3;
+  --nfc-concrete-2: #C4C0B6;
+  --nfc-chalk: #F2F0EB;
+  --nfc-grey: #B0ACA2;
+  --nfc-grey-deep: #6B685F;
+
+  /* Accents — trois, pas plus */
+  --nfc-acid: #B5FF00;
+  --nfc-magenta: #FF0976;
+  --nfc-jade: #49C1A3;
+
+  /* Accents de dragons — ne vivent que sur les dragons */
+  --nfc-dragon-01: #3ECFBF;
+  --nfc-dragon-02: #2C3A7A;
+  --nfc-dragon-03: #3F9E6E;
+  --nfc-dragon-04: #D63A2A;
+  --nfc-dragon-05: #9B7FC0;
+  --nfc-dragon-06: #7EC8E8;
+  --nfc-dragon-07: #2E7FD6;
+  --nfc-dragon-08: #4FD1B0;
+
+  /* Alias sémantiques */
+  --surface-primary: var(--nfc-ink);
+  --surface-raised: var(--nfc-graphite);
+  --surface-dense: var(--nfc-concrete);
+  --surface-dense-alt: var(--nfc-concrete-2);
+
+  --text-primary: var(--nfc-chalk);
+  --text-secondary: var(--nfc-grey);
+  --text-tertiary: var(--nfc-grey-deep);
+  --text-on-dense: var(--nfc-ink);
+  --text-on-dense-secondary: var(--nfc-grey-deep);
+
+  --rule: var(--nfc-graphite);
+  --rule-on-dense: var(--nfc-concrete-2);
+
+  --accent-default: var(--nfc-acid);
+  --accent-urgent: var(--nfc-magenta);
+  --accent-data: var(--nfc-jade);
+
+  /* Cibles de l'étalonnage photo */
+  --grade-shadow: var(--nfc-jade);
+  --grade-highlight: var(--nfc-acid);
+}

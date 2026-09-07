@@ -1,0 +1,107 @@
+.hero {
+  background: var(--nfc-concrete);
+  color: var(--nfc-ink);
+}
+
+.stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  /* 900px at a 1440 frame — the artboard proportion, held at any width. */
+  height: 62.5cqw;
+  padding-inline: 2%;
+  overflow: hidden;
+}
+
+.bar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 0 22px;
+  border-bottom: var(--rule-hairline) solid var(--nfc-ink);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.barStatus {
+  color: var(--nfc-grey-deep);
+}
+
+.title {
+  position: relative;
+  z-index: 2;
+  margin-top: 30px;
+  font-family: var(--font-display);
+  font-weight: 400;
+  /* Anton is condensed enough that 14.3% of the frame fills it edge to edge. */
+  font-size: 14.3cqw;
+  line-height: 0.84;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.dragon {
+  position: absolute;
+  left: 50%;
+  top: 29%;
+  transform: translateX(-50%);
+  z-index: 1;
+  height: 88cqw;
+  width: auto;
+  max-width: none;
+  /* Kills the pale halo baked into the grey render on the concrete ground. */
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.meta {
+  position: relative;
+  z-index: 2;
+  margin-top: 22px;
+  font-family: var(--font-mono);
+  font-size: 15px;
+  letter-spacing: 0.2em;
+  line-height: 1.7;
+  text-transform: uppercase;
+}
+
+@container frame (max-width: 767px) {
+  .stage {
+    /* 720px at a 390 frame, bounded so the band edges stay sane. */
+    height: clamp(560px, 184.6cqw, 820px);
+    padding-inline: 4%;
+  }
+
+  .bar {
+    padding: 20px 0 14px;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+  }
+
+  .title {
+    margin-top: 22px;
+    font-size: clamp(96px, 30cqw, 168px);
+    white-space: normal;
+  }
+
+  /* Three lines: NFC / SUMMIT / 2027. */
+  .title span {
+    display: block;
+  }
+
+  .dragon {
+    top: 62%;
+    height: clamp(400px, 130cqw, 760px);
+  }
+
+  .meta {
+    margin-top: 18px;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+  }
+}

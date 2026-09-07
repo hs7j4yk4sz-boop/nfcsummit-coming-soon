@@ -1,0 +1,30 @@
+/* NFC Summit 2027 — grille et espacements.
+   La marge vaut 5 % de la largeur du cadre, jamais une valeur absolue
+   reportée d'un format à l'autre : 96 px en 1920, 54 px en 1080, 70 px en 1410. */
+:root {
+  --frame-margin: 96px;
+  --frame-margin-ratio: 5%;
+
+  --gap-col: 24px;
+  --gap-block: 32px;
+  --gap-section: 48px;
+  --gap-chapter: 72px;
+
+  --cols-dense: 4; /* @kind other */
+  --cols-programme: 8; /* @kind other */
+  --cols-editorial: 3; /* @kind other */
+
+  /* Filets */
+  --rule-hairline: 1px;
+  --rule-quote: 4px;
+  --rule-accent: 6px;
+  --rule-band: 10px;
+
+  /* Formats */
+  --format-deck-w: 1920px;
+  --format-deck-h: 1080px;
+  --format-vertical-w: 1080px;
+  --format-vertical-h: 1920px;
+  --format-gallery-w: 1410px;
+  --format-gallery-h: 2250px;
+}
