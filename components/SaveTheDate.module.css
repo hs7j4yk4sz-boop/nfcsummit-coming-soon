@@ -62,6 +62,13 @@
   max-width: 38ch;
 }
 
+.links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 14px;
+}
+
 .link {
   font-family: var(--font-mono);
   font-size: 14px;
@@ -72,10 +79,16 @@
   padding-bottom: 4px;
 }
 
-.link:hover,
-.link:focus-visible {
+a.link:hover,
+a.link:focus-visible {
   color: var(--nfc-dragon-07);
   border-color: var(--nfc-dragon-07);
+}
+
+/* Wall closed: a date, not a dead link — so no underline. */
+.link[data-pending] {
+  border-bottom-color: transparent;
+  color: var(--nfc-grey);
 }
 
 @container frame (max-width: 767px) {
@@ -118,6 +131,11 @@
     font-size: 18px;
     line-height: 1.4;
     max-width: none;
+  }
+
+  .links {
+    align-items: flex-start;
+    gap: 16px;
   }
 
   .link {

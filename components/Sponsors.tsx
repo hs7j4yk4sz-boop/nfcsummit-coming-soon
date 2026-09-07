@@ -1,6 +1,6 @@
-import { ON_THE_WALL_URL } from '@/lib/links'
 import { TIERS, TIER_SPECS, openLabel, type Tier } from '@/lib/tiers'
 import type { Wall, WallPosition } from '@/lib/wall'
+import WallLink, { WALL_PENDING } from './WallLink'
 import styles from './Sponsors.module.css'
 
 /** Per-tier type scale — the only hierarchy this section has. */
@@ -48,9 +48,9 @@ export default function Sponsors({ wall }: { wall: Wall }) {
             <p className={styles.closerText}>
               Every sponsor above bought a piece of the venue — painted for real, recorded on-chain.
             </p>
-            <a className={styles.closerLink} href={ON_THE_WALL_URL}>
+            <WallLink className={styles.closerLink} pending={WALL_PENDING}>
               → Get on the wall
-            </a>
+            </WallLink>
           </div>
         </div>
       </div>
@@ -60,7 +60,11 @@ export default function Sponsors({ wall }: { wall: Wall }) {
 
 function TierRow({ tier, positions }: { tier: Tier; positions: WallPosition[] }) {
   const spec = TIER_SPECS[tier]
+  // Counted on every minted position, named or not: an anonymous buyer still
+  // owns the slot, so it must not be advertised as open.
   const open = openLabel(tier, positions.length)
+  // ...but a text tier can only print the ones that came with a name.
+  const named = positions.filter((p) => p.name)
 
   return (
     <div className={`${styles.row} ${ROW_CLASS[tier]}`}>
@@ -69,18 +73,16 @@ function TierRow({ tier, positions }: { tier: Tier; positions: WallPosition[] })
         {spec.render === 'pfp' ? (
           <PfpGrid positions={positions} />
         ) : tier === 'wall' ? (
-          <NameWall positions={positions} />
+          <NameWall positions={named} />
         ) : (
-          positions.map((p) => (
+          named.map((p) => (
             <span key={p.id} className={styles.name}>
               {p.name}
             </span>
           ))
         )}
         {open && (
-          <a className={styles.open} href={ON_THE_WALL_URL}>
-            {open}
-          </a>
+          <WallLink className={styles.open}>{open}</WallLink>
         )}
       </div>
     </div>

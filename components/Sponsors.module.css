@@ -110,8 +110,8 @@
   white-space: nowrap;
 }
 
-.open:hover,
-.open:focus-visible {
+a.open:hover,
+a.open:focus-visible {
   color: var(--nfc-ink);
 }
 
@@ -250,10 +250,16 @@
   padding-bottom: 3px;
 }
 
-.closerLink:hover,
-.closerLink:focus-visible {
+a.closerLink:hover,
+a.closerLink:focus-visible {
   color: var(--nfc-dragon-07);
   border-color: var(--nfc-dragon-07);
+}
+
+/* Wall closed: a date, not a dead link — so no underline. */
+.closerLink[data-pending] {
+  border-bottom-color: transparent;
+  color: var(--nfc-grey-deep);
 }
 
 /*

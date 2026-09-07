@@ -1,75 +1,101 @@
-import { TIERS, type Tier } from './tiers'
+import type { Tier } from './tiers'
 
 /**
  * One minted position on the ON THE WALL venue map.
  *
- * This is the only shape the page knows about. Wiring the real campaign up is
- * a matter of making `fetchPositions()` return these — nothing above this file
- * needs to change.
+ * This is the only shape the page knows about.
  */
 export interface WallPosition {
-  /** Stable id (token id / position id). Used as the React key. */
+  /** Stable key: the campaign group plus the mint rank. */
   id: string
   tier: Tier
-  /** Display name as it goes on the wall. Empty for anonymous PFP positions. */
+  /** Display name. Empty when the position sold without a public name. */
   name: string
-  /** Square avatar, community tier only. Any absolute or root-relative URL. */
+  /** Square avatar, community tier only. */
   pfp?: string
-  /** ISO timestamp. Drives the display order: first minted, first listed. */
-  mintedAt: string
+  /** Rank of mint. Drives display order: first come, first served. */
+  order: number
 }
 
-/** Where the live positions come from once the endpoint exists. */
-const API_URL = process.env.ONTHEWALL_API_URL
+/** Base URL of the ON THE WALL app, e.g. https://onthewall.nfcsummit.com */
+const API_BASE = process.env.ONTHEWALL_API_URL
+
+/**
+ * The ON THE WALL campaigns, in the order the page shows them.
+ *
+ * The API groups positions by campaign; the page groups them by sponsor tier.
+ * The mapping was validated by John — see lib/tiers.ts.
+ */
+const CAMPAIGN_TIER: Record<string, Tier> = {
+  flag: 'co-organizer', // the flagship
+  mural: 'platinum', // the artist murals
+  house: 'gold', // the community houses
+  pfp: 'community', // the PFP wall
+  name: 'wall', // the 500 names
+}
 
 /**
  * Reads the minted positions.
  *
- * Until `ONTHEWALL_API_URL` is set this returns the fictional line-up from the
- * validated mockup, so the page renders its designed "mixed state". Point the
- * env var at the real endpoint and adjust `parsePositions()` to match its
- * payload — that is the whole integration.
+ * With `ONTHEWALL_API_URL` set this is the live wall. Without it, local dev and
+ * preview fall back to the fictional line-up from the validated mockup so the
+ * page still renders its designed mixed state — but never in production, where
+ * a fictional sponsor would be a lie on a public page. There, no API means the
+ * day-one empty state, which the design handles as a first-class state.
  */
 export async function fetchPositions(): Promise<WallPosition[]> {
-  if (!API_URL) return STUB_POSITIONS
+  if (!API_BASE) {
+    if (process.env.VERCEL_ENV === 'production') {
+      console.warn('[wall] ONTHEWALL_API_URL is not set in production — rendering the empty state')
+      return []
+    }
+    return STUB_POSITIONS
+  }
 
-  const res = await fetch(API_URL, { next: { revalidate: 60 } })
-  if (!res.ok) throw new Error(`ON THE WALL API responded ${res.status}`)
+  const url = `${API_BASE.replace(/\/+$/, '')}/api/sponsors`
+  // Cached server-side for a minute; every page load reads through that cache.
+  const res = await fetch(url, { next: { revalidate: 60 } })
+  if (!res.ok) throw new Error(`ON THE WALL API responded ${res.status} for ${url}`)
   return parsePositions(await res.json())
 }
 
 /**
- * Narrows the API payload down to `WallPosition[]`, dropping anything that is
- * not a minted position in a tier this page shows. Deliberately forgiving: a
- * malformed row must not take the sponsors section down with it.
+ * Narrows `{ sponsors: { name[], pfp[], house[], mural[], flag[] } }` — each
+ * entry `{ tier, name, order, thumb? }` — down to `WallPosition[]`.
+ *
+ * Deliberately forgiving: one malformed row must not take the sponsors section
+ * down with it. Positions that sold without a public name are kept, because
+ * they are minted and must still count against the tier's open slots; the
+ * text tiers drop them at render time, and a PFP tile needs no name anyway.
  */
 function parsePositions(payload: unknown): WallPosition[] {
-  const rows = Array.isArray(payload)
-    ? payload
-    : Array.isArray((payload as { positions?: unknown })?.positions)
-      ? (payload as { positions: unknown[] }).positions
-      : []
+  const root = (payload as { sponsors?: unknown })?.sponsors ?? payload
+  if (typeof root !== 'object' || root === null) return []
 
   const positions: WallPosition[] = []
-  for (const row of rows) {
-    if (typeof row !== 'object' || row === null) continue
-    const { id, tier, name, pfp, mintedAt } = row as Record<string, unknown>
-    if (typeof id !== 'string' && typeof id !== 'number') continue
-    if (typeof tier !== 'string' || !(TIERS as readonly string[]).includes(tier)) continue
-    positions.push({
-      id: String(id),
-      tier: tier as Tier,
-      name: typeof name === 'string' ? name.trim() : '',
-      pfp: typeof pfp === 'string' && pfp ? pfp : undefined,
-      mintedAt: typeof mintedAt === 'string' ? mintedAt : new Date(0).toISOString(),
+  for (const [campaign, tier] of Object.entries(CAMPAIGN_TIER)) {
+    const rows = (root as Record<string, unknown>)[campaign]
+    if (!Array.isArray(rows)) continue
+
+    rows.forEach((row, index) => {
+      if (typeof row !== 'object' || row === null) return
+      const { name, order, thumb } = row as Record<string, unknown>
+      const rank = typeof order === 'number' && Number.isFinite(order) ? order : index
+      positions.push({
+        id: `${campaign}-${rank}-${index}`,
+        tier,
+        name: typeof name === 'string' ? name.trim() : '',
+        pfp: typeof thumb === 'string' && thumb ? thumb : undefined,
+        order: rank,
+      })
     })
   }
   return positions
 }
 
 /* -------------------------------------------------------------------------- */
-/* Stub data — the validated mockup's mixed state.                            */
-/* Neutral fictional names only, per the brief. Delete once the API is wired.  */
+/* Stub data — the validated mockup's mixed state, for local dev and preview.  */
+/* Neutral fictional names only. Never reaches production: see fetchPositions. */
 /* -------------------------------------------------------------------------- */
 
 const COMMUNITY = [
@@ -95,27 +121,24 @@ const WALL_NAMES = [
   'Rafael C.', 'lantern9', 'Maya K.', 'Ola W.',
 ]
 
-/** Mint times, one minute apart, so the stub exercises the real ordering. */
-const MINT_EPOCH = Date.parse('2026-09-01T09:00:00Z')
-let cursor = 0
-const nextMint = () => new Date(MINT_EPOCH + cursor++ * 60_000).toISOString()
+let rank = 0
 
 const STUB_POSITIONS: WallPosition[] = [
-  { id: 'co-1', tier: 'co-organizer', name: 'Meridian Labs', mintedAt: nextMint() },
-  { id: 'pt-1', tier: 'platinum', name: 'Northline Studio', mintedAt: nextMint() },
-  { id: 'gd-1', tier: 'gold', name: 'Harbour Collective', mintedAt: nextMint() },
-  { id: 'gd-2', tier: 'gold', name: 'Fieldnote', mintedAt: nextMint() },
+  { id: 'flag-1', tier: 'co-organizer', name: 'Meridian Labs', order: rank++ },
+  { id: 'mural-1', tier: 'platinum', name: 'Northline Studio', order: rank++ },
+  { id: 'house-1', tier: 'gold', name: 'Harbour Collective', order: rank++ },
+  { id: 'house-2', tier: 'gold', name: 'Fieldnote', order: rank++ },
   ...COMMUNITY.map((name, i) => ({
-    id: `cm-${i + 1}`,
+    id: `pfp-${i + 1}`,
     tier: 'community' as const,
     name,
     pfp: `/pfp/${String(i + 1).padStart(2, '0')}.png`,
-    mintedAt: nextMint(),
+    order: rank++,
   })),
   ...WALL_NAMES.map((name, i) => ({
-    id: `wl-${i + 1}`,
+    id: `name-${i + 1}`,
     tier: 'wall' as const,
     name,
-    mintedAt: nextMint(),
+    order: rank++,
   })),
 ]

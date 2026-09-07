@@ -21,20 +21,58 @@ npm run typecheck
 | `/`              | The page. Reads the wall, revalidates every 60s.                         |
 | `/preview/empty` | Day one, nothing minted yet. `noindex` — kept so the empty state is reviewable. |
 
-## Wiring the ON THE WALL API
+## Environment
 
-Everything the page knows about the wall goes through one function:
-[`fetchPositions()`](./lib/wall-source.ts). Today it returns the fictional line-up from the
-validated mockup, so the page renders its designed mixed state out of the box.
+| Variable                | Value                                                      | Effect                                                                                  |
+| ----------------------- | ---------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `ONTHEWALL_API_URL`     | `https://onthewall.nfcsummit.com`                          | Base URL of the wall. The page reads `{base}/api/sponsors`.                              |
+| `NEXT_PUBLIC_WALL_LIVE` | `1` on launch day, otherwise unset                          | Turns the links to onthewall.nfcsummit.com on. See below.                                |
 
-To go live, set `ONTHEWALL_API_URL` and make `parsePositions()` match the real payload. Each
-minted position needs an `id`, a `tier`, a `name`, a `mintedAt` timestamp, and — for community
-positions — a `pfp` URL. Nothing above that file changes.
+### The wall link switch
 
-[`lib/wall.ts`](./lib/wall.ts) then buckets the positions by tier, orders each tier by mint time
+Until the wall opens, onthewall.nfcsummit.com serves **testnet**, so the public landing must
+neither link to it nor print its URL.
+
+- **Unset or `0`** — every wall destination is inert text with no address. `MORE INFO → …` and
+  `→ GET ON THE WALL` become `ON THE WALL — OPENS SEPT 10` in the same slot, mono, without the
+  underline. The `( open )` tags keep their words and their blue, but are plain spans, not links.
+- **`1`** — the links to `https://onthewall.nfcsummit.com` come back and `OPENS SEPT 10`
+  disappears.
+
+One flag, no code change on the day. It is enforced in one place —
+[`WallLink`](./components/WallLink.tsx) — which is the only component that knows the address, so
+the URL cannot reach the page by another route. **`NEXT_PUBLIC_*` values are inlined at build
+time**, so setting the variable in Vercel needs a redeploy to take effect; setting it alone
+changes nothing.
+
+## Reading the wall
+
+Everything the page knows about the wall goes through
+[`fetchPositions()`](./lib/wall-source.ts), which reads `GET {ONTHEWALL_API_URL}/api/sponsors`.
+The response is `{ sponsors: { name[], pfp[], house[], mural[], flag[] } }`, each entry
+`{ tier, name, order, thumb? }`. The campaign groups map onto the page's tiers:
+
+`flag` → co-organizer · `mural` → platinum · `house` → gold · `pfp` → community · `name` → wall
+
+`order` is the mint rank and drives display order. `thumb` is the community tier's avatar. A
+position that sold **without a public name** (`name: null`) is kept — it is minted, so it must
+still count against the tier's open slots — and simply isn't printed in the text tiers; a PFP
+tile needs no name anyway. Parsing is deliberately forgiving: one malformed row must not take the
+sponsors section down.
+
+[`lib/wall.ts`](./lib/wall.ts) buckets the positions by tier, sorts each tier by mint rank
 (first come, first served — never alphabetical), and truncates to the tier's size. It never
 throws: if the wall can't be read the page falls back to the empty state, which is a designed
-state rather than an error.
+state rather than an error. Responses are cached server-side for 60s, so every page load reads
+through that cache.
+
+### The stub never reaches production
+
+Without `ONTHEWALL_API_URL`, local dev and preview fall back to the fictional line-up from the
+mockup so the page still renders its designed mixed state. In production
+(`VERCEL_ENV === "production"`) the same situation renders the **empty state** instead and logs a
+warning — a fictional sponsor on a public page would be a lie. Proof: a production build with no
+API URL contains zero fictional names and reads `0 positions minted`.
 
 ## The tiers
 
@@ -71,9 +109,8 @@ files, copied verbatim into `styles/tokens/`. The single accent on the page is d
 
 ## Still open
 
-- **Community PFPs** are the grey placeholder squares from the mockup (`public/pfp/`). Real
-  avatars arrive with the API.
 - **`app/icon.svg` is a placeholder.** The design system's logo files were not in the handoff
-  bundle; swap it for the real transparent wordmark when available.
-- **No ticket or newsletter link.** The CTAs were cut from the design; onthewall.nfcsummit.com is
-  the page's only outbound destination.
+  bundle and no logo file was supplied since; swap it for the real transparent wordmark when
+  available.
+- **`public/pfp/` holds the mockup's grey placeholder squares.** They are only used by the stub
+  line-up — the live community tiles come from each position's `thumb` URL.

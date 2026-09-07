@@ -18,7 +18,7 @@ export const EMPTY_WALL: Wall = {
 /**
  * The sponsor line-up as the page needs it.
  *
- * Order within a tier is order of mint — first come, first served, never
+ * Order within a tier is the mint rank — first come, first served, never
  * alphabetical. A tier that somehow holds more positions than it should is
  * truncated rather than allowed to break the layout.
  *
@@ -38,7 +38,7 @@ export async function getWall(): Promise<Wall> {
   for (const tier of TIERS) {
     byTier[tier] = positions
       .filter((p) => p.tier === tier)
-      .sort((a, b) => a.mintedAt.localeCompare(b.mintedAt))
+      .sort((a, b) => a.order - b.order)
       .slice(0, TIER_SPECS[tier].cap)
   }
 
