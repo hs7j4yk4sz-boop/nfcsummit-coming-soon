@@ -91,6 +91,55 @@ a.link:focus-visible {
   color: var(--nfc-grey);
 }
 
+/* The wall CTA — the page's one real call to action. */
+.cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 20px;
+  margin-top: 56px;
+  padding-top: 26px;
+  border-top: var(--rule-accent) solid var(--nfc-dragon-07);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  color: var(--nfc-dragon-07);
+}
+
+.ctaDeadline {
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  color: var(--nfc-grey);
+}
+
+.ctaLabel {
+  font-size: clamp(20px, 2.1cqw, 32px);
+  letter-spacing: 0.08em;
+}
+
+.ctaArrow {
+  font-size: clamp(20px, 2.1cqw, 32px);
+  margin-left: auto;
+}
+
+a.cta:hover,
+a.cta:focus-visible {
+  color: var(--nfc-chalk);
+  border-top-color: var(--nfc-chalk);
+}
+
+a.cta:hover .ctaDeadline,
+a.cta:focus-visible .ctaDeadline {
+  color: var(--nfc-chalk);
+}
+
+/* Wall closed: the CTA is just the date, and nothing to click. */
+.cta[data-pending] {
+  border-top-color: var(--nfc-grey-deep);
+  color: var(--nfc-grey);
+  font-size: 14px;
+  letter-spacing: 0.2em;
+}
+
 @container frame (max-width: 767px) {
   .stage {
     gap: 32px;
@@ -141,6 +190,26 @@ a.link:focus-visible {
   .link {
     align-self: flex-start;
     font-size: 11px;
+  }
+
+  .cta {
+    margin-top: 36px;
+    padding-top: 20px;
+    gap: 6px 16px;
+  }
+
+  .ctaDeadline {
+    font-size: 11px;
+    flex-basis: 100%;
+  }
+
+  .ctaLabel,
+  .ctaArrow {
+    font-size: 19px;
+  }
+
+  .cta[data-pending] {
+    font-size: 12px;
   }
 
   /* "More info" is what pushes the link onto two lines at 390. */

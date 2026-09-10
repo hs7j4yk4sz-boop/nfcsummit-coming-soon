@@ -48,6 +48,19 @@ export default function SaveTheDate() {
               </WallLink>
             </nav>
           </div>
+
+          {/*
+            The one action the page is actually asking for, so it outranks the
+            three mono links above it. Blue is the page's single accent and it
+            only ever marks the wall.
+          */}
+          <WallLink className={styles.cta} pending={WALL_PENDING}>
+            <span className={styles.ctaDeadline}>Until October 30</span>
+            <span className={styles.ctaLabel}>Get your name on the wall</span>
+            <span className={styles.ctaArrow} aria-hidden="true">
+              →
+            </span>
+          </WallLink>
         </div>
       </div>
     </section>

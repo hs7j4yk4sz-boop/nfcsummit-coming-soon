@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { Anton, IBM_Plex_Mono, Inter } from 'next/font/google'
+import { SITE } from '@/lib/site'
 import './globals.css'
 
 const anton = Anton({ subsets: ['latin'], weight: '400', variable: '--font-anton' })
@@ -7,14 +8,15 @@ const plexMono = IBM_Plex_Mono({ subsets: ['latin'], weight: ['400', '500'], var
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://nfcsummit.com'),
-  title: 'NFC Summit 2027 — 27 · 28 · 29 May 2027, Unicorn Factory, Lisbon',
-  description:
-    'NFC Summit is coming back in 2027. Sixth edition, 27–29 May 2027 at the Unicorn Factory, Lisbon. Get your ticket and put your name on the wall of the venue.',
+  metadataBase: new URL(SITE.url),
+  title: SITE.title,
+  description: SITE.description,
+  alternates: { canonical: '/' },
   openGraph: {
     type: 'website',
+    url: SITE.url,
     siteName: 'NFC Summit',
-    title: 'NFC Summit 2027',
+    title: SITE.title,
     description: '27 · 28 · 29 May 2027 — Unicorn Factory, Lisbon.',
   },
 }

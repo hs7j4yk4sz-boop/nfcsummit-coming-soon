@@ -5,21 +5,59 @@
 
 .stage {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 22px var(--frame-margin-ratio);
+  flex-direction: column;
+  gap: 22px;
+  padding: 40px var(--frame-margin-ratio) 22px;
   font-family: var(--font-mono);
   font-size: 12px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
 
+.nav,
+.social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 36px;
+}
+
+.nav {
+  color: var(--nfc-grey);
+}
+
+.navLink:hover,
+.navLink:focus-visible {
+  color: var(--nfc-dragon-07);
+}
+
+.social {
+  gap: 14px 28px;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 20px;
+  border-top: var(--rule-hairline) solid var(--nfc-graphite);
+}
+
 @container frame (max-width: 767px) {
   .stage {
-    flex-wrap: nowrap;
-    padding: 18px var(--frame-margin-ratio);
+    gap: 18px;
+    padding: 32px var(--frame-margin-ratio) 18px;
     font-size: 10px;
+  }
+
+  .nav,
+  .social {
+    gap: 12px 22px;
+  }
+
+  .meta {
+    flex-wrap: nowrap;
+    padding-top: 16px;
   }
 
   .brand {
