@@ -54,6 +54,33 @@ export interface SiteConfig {
   social: NavLink[]
 }
 
+/**
+ * The pages that keep existing on the historic domain. Both sites carry them:
+ * the two landings are deliberate twins, and these are the only real pages
+ * either of them can point a visitor to.
+ */
+const NAV: NavLink[] = [
+  { label: 'Manifesto', href: 'https://www.nonfungibleconference.com/about' },
+  { label: 'Line-up 2026', href: 'https://www.nonfungibleconference.com/line-up' },
+  { label: 'FAQ 2026', href: 'https://www.nonfungibleconference.com/faqs' },
+  // Deliberate for now, per John: this is the Webflow staging URL, which sends
+  // `X-Robots-Tag: noindex` and changes on republish. Point it at a real URL on
+  // the domain when the 2026 archive gets one.
+  {
+    label: 'Previous edition',
+    href: 'https://nonfungibleconference24-6cf9592edaaa237.webflow.io/',
+    external: true,
+  },
+]
+
+/** `rel="me"` is what ties the accounts back to the domain as one entity. */
+const SOCIAL: NavLink[] = [
+  { label: 'X', href: 'https://x.com/NFCsummit' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/78683125/' },
+  { label: 'Instagram', href: 'https://www.instagram.com/nonfungibleconference/' },
+  { label: 'YouTube', href: 'https://www.youtube.com/@nfcsummit' },
+]
+
 const NFC_SUMMIT: SiteConfig = {
   url: 'https://nfcsummit.com',
   dragon: '/dragon-street-artist.gif', // 08 — the street artist
@@ -62,8 +89,8 @@ const NFC_SUMMIT: SiteConfig = {
   title: 'NFC Summit 2027 — 27 · 28 · 29 May 2027, Unicorn Factory, Lisbon',
   description:
     'NFC Summit is coming back in 2027. Sixth edition, 27–29 May 2027 at the Unicorn Factory, Lisbon. Get your ticket and put your name on the wall of the venue.',
-  nav: [],
-  social: [],
+  nav: NAV,
+  social: SOCIAL,
 }
 
 const NON_FUNGIBLE_CONFERENCE: SiteConfig = {
@@ -77,25 +104,8 @@ const NON_FUNGIBLE_CONFERENCE: SiteConfig = {
   title: 'NFC Summit 2027 — Non Fungible Conference · 27–29 May 2027, Lisbon',
   description:
     'Non Fungible Conference is now NFC Summit. Sixth edition, 27–29 May 2027 at the Unicorn Factory, Lisbon. Get your name on the wall of the venue until October 30.',
-  nav: [
-    { label: 'Manifesto', href: 'https://www.nonfungibleconference.com/about' },
-    { label: 'Line-up 2026', href: 'https://www.nonfungibleconference.com/line-up' },
-    { label: 'FAQ 2026', href: 'https://www.nonfungibleconference.com/faqs' },
-    // Deliberate for now, per John: this is the Webflow staging URL, which
-    // sends `X-Robots-Tag: noindex` and changes on republish. Point it at a
-    // real URL on the domain when the 2026 archive gets one.
-    {
-      label: 'Previous edition',
-      href: 'https://nonfungibleconference24-6cf9592edaaa237.webflow.io/',
-      external: true,
-    },
-  ],
-  social: [
-    { label: 'X', href: 'https://x.com/NFCsummit' },
-    { label: 'LinkedIn', href: 'https://www.linkedin.com/company/78683125/' },
-    { label: 'Instagram', href: 'https://www.instagram.com/nonfungibleconference/' },
-    { label: 'YouTube', href: 'https://www.youtube.com/@nfcsummit' },
-  ],
+  nav: NAV,
+  social: SOCIAL,
 }
 
 const SITES = {
