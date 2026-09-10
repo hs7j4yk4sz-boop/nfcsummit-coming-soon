@@ -57,15 +57,21 @@ const NON_FUNGIBLE_CONFERENCE: SiteConfig = {
     { label: 'Manifesto', href: 'https://www.nonfungibleconference.com/about' },
     { label: 'Line-up 2026', href: 'https://www.nonfungibleconference.com/line-up' },
     { label: 'FAQ 2026', href: 'https://www.nonfungibleconference.com/faqs' },
-    // TODO: staging URL — Webflow's *.webflow.io sends `X-Robots-Tag: noindex`
-    // and changes on republish. Replace with a real URL on the domain.
+    // Deliberate for now, per John: this is the Webflow staging URL, which
+    // sends `X-Robots-Tag: noindex` and changes on republish. Point it at a
+    // real URL on the domain when the 2026 archive gets one.
     {
       label: 'Previous edition',
       href: 'https://nonfungibleconference24-6cf9592edaaa237.webflow.io/',
       external: true,
     },
   ],
-  social: [],
+  social: [
+    { label: 'X', href: 'https://x.com/NFCsummit' },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/company/78683125/' },
+    { label: 'Instagram', href: 'https://www.instagram.com/nonfungibleconference/' },
+    { label: 'YouTube', href: 'https://www.youtube.com/@nfcsummit' },
+  ],
 }
 
 const SITES = {
