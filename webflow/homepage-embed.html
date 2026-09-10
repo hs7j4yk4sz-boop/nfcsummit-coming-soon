@@ -111,14 +111,21 @@
   white-space: nowrap;
 }
 
-/* multiply kills the pale halo baked into the grey render on concrete */
+/*
+  The host (dragon 07), cropped by the bottom edge. multiply kills the pale
+  halo baked into the grey render on the concrete ground.
+
+  This crop is specific to this render: 07 is a full standing body, so it needs
+  a smaller height and a lower top than the street artist on nfcsummit.com, or
+  the frame fills with head and loses the suit entirely.
+*/
 .nfc-dragon {
   position: absolute;
   left: 50%;
-  top: 29%;
+  top: 32%;
   transform: translateX(-50%);
   z-index: 1;
-  height: 88cqw;
+  height: 64cqw;
   width: auto;
   max-width: none;
   mix-blend-mode: multiply;
@@ -433,7 +440,7 @@ a.nfc-closer-link:hover { color: var(--accent); border-color: var(--accent); }
   .nfc-bar { padding: 20px 0 14px; font-size: 11px; letter-spacing: 0.18em; }
   .nfc-title { margin-top: 22px; font-size: clamp(96px, 30cqw, 168px); white-space: normal; }
   .nfc-title span { display: block; }
-  .nfc-dragon { top: 62%; height: clamp(400px, 130cqw, 760px); }
+  .nfc-dragon { top: 57%; height: clamp(340px, 108cqw, 640px); }
   .nfc-meta { margin-top: 18px; font-size: 11px; letter-spacing: 0.18em; }
 
   .nfc-intro-stage { gap: 32px; padding: 56px 5%; }
@@ -584,8 +591,11 @@ a.nfc-closer-link:hover { color: var(--accent); border-color: var(--accent); }
 
   /* ===================== SETTINGS — fill these in ===================== */
 
-  /* 1. The dragon. Upload 08-street-artist-glitch.gif to Webflow assets
-        (3.81 MB — just under Webflow's 4 MB image limit) and paste its URL. */
+  /* 1. The dragon. This domain runs dragon 07, the host — nfcsummit.com runs
+        08, the street artist, and the two pages are otherwise identical twins,
+        so the mascot is what tells them apart. Upload dragon-07-grey.png
+        (0.96 MB) to Webflow assets and paste its URL here. The crop in the CSS
+        above is tuned to this render; a different one will need retuning. */
   var DRAGON_SRC = '';
 
   /* 2. Base URL of the ON THE WALL app. The page reads {BASE}/api/sponsors. */

@@ -1,3 +1,4 @@
+import { SITE } from '@/lib/site'
 import styles from './Hero.module.css'
 
 /**
@@ -9,7 +10,17 @@ export default function Hero() {
   return (
     <section className={styles.hero}>
       <div className="frame">
-        <div className={styles.stage}>
+        <div
+          className={styles.stage}
+          style={
+            {
+              '--dragon-h': SITE.dragonCrop.height,
+              '--dragon-top': SITE.dragonCrop.top,
+              '--dragon-h-mobile': SITE.dragonCrop.mobileHeight,
+              '--dragon-top-mobile': SITE.dragonCrop.mobileTop,
+            } as React.CSSProperties
+          }
+        >
           <header className={styles.bar}>
             <span>NFC Summit</span>
             <span className={styles.barStatus}>Coming soon</span>
@@ -25,7 +36,7 @@ export default function Hero() {
             box. It is decorative — the page says nothing it does not say in
             text — hence the empty alt.
           */}
-          <img className={styles.dragon} src="/dragon-street-artist.gif" alt="" aria-hidden="true" />
+          <img className={styles.dragon} src={SITE.dragon} alt="" aria-hidden="true" />
 
           <p className={styles.meta}>
             27 · 28 · 29 May 2027

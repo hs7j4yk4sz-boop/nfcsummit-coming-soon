@@ -12,9 +12,17 @@ this working.
 
 ## Before you paste
 
-**1. Upload the dragon.** `public/dragon-street-artist.gif` in this repo, into
-Webflow assets. It is 3.81 MB, just under Webflow's 4 MB image limit. Copy the
-asset URL.
+**1. Upload the dragon.** `public/dragon-host.png` in this repo (0.96 MB) —
+dragon 07, the host. Upload it to Webflow assets and copy the URL.
+
+This domain deliberately runs a *different* dragon from nfcsummit.com, which
+runs 08, the street artist. The two pages are otherwise identical twins on two
+well-ranked domains, and the mascot is what tells them apart at a glance. The
+crop in the embed's CSS (`.nfc-dragon`, `top` and `height`, desktop and mobile)
+is tuned to this particular render — 07 is a full standing body, so it needs a
+smaller height and lower top than the street artist, or the frame fills with
+head and the suit is lost. Swapping in a different render means retuning those
+four values.
 
 **2. Add the fonts.** Webflow Site Settings → Fonts → add **Anton**, **IBM Plex
 Mono** (400, 500) and **Inter** (300, 400, 500) from Google Fonts. The embed

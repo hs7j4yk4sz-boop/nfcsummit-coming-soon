@@ -18,6 +18,26 @@ export interface NavLink {
 export interface SiteConfig {
   /** Canonical origin. Drives `metadataBase`, so OG and canonical URLs resolve. */
   url: string
+  /**
+   * The hero mascot. The two domains run deliberately different dragons — the
+   * pages are otherwise identical twins, and this is what tells them apart at
+   * a glance. Grey renders only: on the concrete ground they are multiplied in,
+   * and a coloured one would both muddy and break the one-accent rule.
+   */
+  dragon: string
+  /**
+   * How the dragon is cropped by the hero. Each render frames its character
+   * differently — the street artist has headroom baked in, the host is a full
+   * standing body — so the crop that reads as "head and shoulders, cut by the
+   * bottom edge" is per-dragon. `height` is relative to the frame, `top` to
+   * the hero.
+   */
+  dragonCrop: {
+    height: string
+    top: string
+    mobileHeight: string
+    mobileTop: string
+  }
   /** What the footer prints on the right. */
   wordmark: string
   title: string
@@ -36,6 +56,8 @@ export interface SiteConfig {
 
 const NFC_SUMMIT: SiteConfig = {
   url: 'https://nfcsummit.com',
+  dragon: '/dragon-street-artist.gif', // 08 — the street artist
+  dragonCrop: { height: '88cqw', top: '29%', mobileHeight: '130cqw', mobileTop: '62%' },
   wordmark: 'nfcsummit.com',
   title: 'NFC Summit 2027 — 27 · 28 · 29 May 2027, Unicorn Factory, Lisbon',
   description:
@@ -46,6 +68,8 @@ const NFC_SUMMIT: SiteConfig = {
 
 const NON_FUNGIBLE_CONFERENCE: SiteConfig = {
   url: 'https://www.nonfungibleconference.com',
+  dragon: '/dragon-host.png', // 07 — the host
+  dragonCrop: { height: '64cqw', top: '32%', mobileHeight: '108cqw', mobileTop: '57%' },
   wordmark: 'nonfungibleconference.com',
   // Keeps the name the domain actually ranks for. Dropping "Non Fungible
   // Conference" from the strongest page of the site would throw away the brand
