@@ -162,8 +162,11 @@ a.open:focus-visible {
 .community .label {
   padding-top: 4px;
 }
+/* nowrap is load-bearing: a column flex container that may wrap can throw the
+   open-positions link into a second column, off the side of the page. */
 .community .content {
   flex-direction: column;
+  flex-wrap: nowrap;
   align-items: flex-start;
   gap: 18px;
 }
@@ -180,6 +183,7 @@ a.open:focus-visible {
 }
 .wall .content {
   flex-direction: column;
+  flex-wrap: nowrap;
   align-items: flex-start;
   gap: 18px;
 }

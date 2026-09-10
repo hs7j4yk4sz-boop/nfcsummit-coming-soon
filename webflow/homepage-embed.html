@@ -1,0 +1,738 @@
+<!--
+  NFC SUMMIT 2027 — coming-soon homepage, as a single Webflow HTML Embed.
+
+  Paste this whole block into one full-width HTML Embed on the Webflow page.
+  Everything is scoped under .nfc so Webflow's styles cannot bleed in and these
+  cannot bleed out. Read webflow/README.md before pasting — there are three
+  settings at the top of the <script> you must fill in.
+-->
+
+<style>
+/* ------------------------------------------------------------- foundations */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500&display=swap');
+
+/*
+  Metric-matched stand-in for Anton, used while it loads and if Google Fonts
+  is unreachable. The full-width headline is `nowrap` at 14.3cqw, a size
+  calibrated to Anton's condensed metrics: an unadjusted fallback runs ~26%
+  wider and the title renders visibly clipped. size-adjust pulls a normal
+  grotesque back to roughly Anton's width. Erring narrow is deliberate — a
+  title that briefly under-fills reads as fine, a cut one reads as broken.
+*/
+@font-face {
+  font-family: 'Anton Fallback';
+  src: local('Arial'), local('Liberation Sans'), local('Helvetica'), local('Roboto');
+  size-adjust: 79%;
+  ascent-override: 105%;
+  descent-override: 25%;
+  line-gap-override: 0%;
+}
+
+.nfc {
+  /* NFC Summit 2027 design system — neutrals, and the one accent. */
+  --ink: #0B0B0B;
+  --graphite: #1A1A1A;
+  --concrete: #DEDBD3;
+  --concrete-2: #C4C0B6;
+  --chalk: #F2F0EB;
+  --grey: #B0ACA2;
+  --grey-deep: #6B685F;
+  --accent: #2E7FD6;
+
+  --display: Anton, 'Anton Fallback', 'Arial Narrow', sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --body: Inter, system-ui, sans-serif;
+
+  background: var(--ink);
+  color: var(--chalk);
+  font-family: var(--body);
+  -webkit-font-smoothing: antialiased;
+  text-align: left;
+}
+
+.nfc *,
+.nfc *::before,
+.nfc *::after { box-sizing: border-box; }
+
+.nfc h1, .nfc h2, .nfc p { margin: 0; font-weight: 400; }
+.nfc a { color: inherit; text-decoration: none; }
+.nfc img { max-width: 100%; }
+
+/*
+  Each section bleeds its background edge to edge and holds its content in a
+  frame. The frame is the query container: every cqw size below is the value
+  from the validated artboards, so this is pixel-identical to the 1440 desktop
+  mockup at a 1440 frame and to the 390 mockup at 390.
+*/
+.nfc-frame {
+  max-width: 1760px;
+  margin-inline: auto;
+  container-type: inline-size;
+  container-name: frame;
+}
+
+/* -------------------------------------------------------------------- hero */
+.nfc-hero { background: var(--concrete); color: var(--ink); }
+
+.nfc-hero-stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 62.5cqw;
+  padding-inline: 2%;
+  overflow: hidden;
+}
+
+.nfc-bar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 0 22px;
+  border-bottom: 1px solid var(--ink);
+  font-family: var(--mono);
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.nfc-bar-status { color: var(--grey-deep); }
+
+.nfc-title {
+  position: relative;
+  z-index: 2;
+  margin-top: 30px;
+  font-family: var(--display);
+  font-size: 14.3cqw;
+  line-height: 0.84;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* multiply kills the pale halo baked into the grey render on concrete */
+.nfc-dragon {
+  position: absolute;
+  left: 50%;
+  top: 29%;
+  transform: translateX(-50%);
+  z-index: 1;
+  height: 88cqw;
+  width: auto;
+  max-width: none;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.nfc-meta {
+  position: relative;
+  z-index: 2;
+  margin-top: 22px;
+  font-family: var(--mono);
+  font-size: 15px;
+  letter-spacing: 0.2em;
+  line-height: 1.7;
+  text-transform: uppercase;
+}
+
+/* ----------------------------------------------------------- save the date */
+.nfc-intro { background: var(--ink); color: var(--chalk); }
+
+.nfc-intro-stage {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+  padding: 96px 5%;
+  border-top: 1px solid var(--ink);
+}
+
+.nfc-intro-head { display: flex; flex-direction: column; gap: 24px; }
+
+.nfc-eyebrow {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--grey);
+}
+
+.nfc-h2 {
+  font-family: var(--display);
+  font-size: clamp(56px, 7cqw, 120px);
+  line-height: 0.86;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.nfc-intro .nfc-h2 { max-width: 14ch; }
+
+.nfc-date {
+  font-family: var(--mono);
+  font-size: 15px;
+  letter-spacing: 0.2em;
+  line-height: 1.7;
+  text-transform: uppercase;
+}
+
+.nfc-intro-foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px 48px;
+  padding-top: 40px;
+  border-top: 1px solid var(--chalk);
+}
+
+.nfc-lead {
+  font-weight: 300;
+  font-size: clamp(20px, 1.8cqw, 28px);
+  line-height: 1.35;
+  max-width: 38ch;
+}
+
+.nfc-links { display: flex; flex-direction: column; align-items: flex-end; gap: 14px; }
+
+.nfc-link {
+  font-family: var(--mono);
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  border-bottom: 1px solid var(--chalk);
+  padding-bottom: 4px;
+}
+
+a.nfc-link:hover { color: var(--accent); border-color: var(--accent); }
+
+/* wall closed: a date, not a dead link — so no underline */
+.nfc-link[data-pending] { border-bottom-color: transparent; color: var(--grey); }
+
+/* ---------------------------------------------------------------- wall CTA */
+.nfc-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 20px;
+  margin-top: 56px;
+  padding-top: 26px;
+  border-top: 6px solid var(--accent);
+  font-family: var(--mono);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.nfc-cta-deadline { font-size: 13px; letter-spacing: 0.22em; color: var(--grey); }
+.nfc-cta-label { font-size: clamp(20px, 2.1cqw, 32px); letter-spacing: 0.08em; }
+.nfc-cta-arrow { font-size: clamp(20px, 2.1cqw, 32px); margin-left: auto; }
+
+a.nfc-cta:hover { color: var(--chalk); border-top-color: var(--chalk); }
+a.nfc-cta:hover .nfc-cta-deadline { color: var(--chalk); }
+
+.nfc-cta[data-pending] {
+  border-top-color: var(--grey-deep);
+  color: var(--grey);
+  font-size: 14px;
+  letter-spacing: 0.2em;
+}
+
+/* ---------------------------------------------------------------- sponsors */
+.nfc-sponsors { background: var(--concrete); color: var(--ink); }
+
+.nfc-sponsors-stage { display: flex; flex-direction: column; padding: 72px 5% 64px; }
+
+.nfc-sponsors-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+}
+
+.nfc-sponsors-headtext { display: flex; flex-direction: column; gap: 18px; }
+
+.nfc-sponsors .nfc-eyebrow { color: var(--grey-deep); letter-spacing: 0.22em; }
+
+.nfc-stat {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  line-height: 1.6;
+  text-transform: uppercase;
+  color: var(--grey-deep);
+  text-align: right;
+}
+
+.nfc-stat span { display: block; }
+
+.nfc-tiers {
+  display: flex;
+  flex-direction: column;
+  margin-top: 56px;
+  border-top: 1px solid var(--ink);
+}
+
+.nfc-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 40px;
+  border-bottom: 1px solid var(--concrete-2);
+}
+
+.nfc-label {
+  flex: 1 1 200px;
+  min-width: 0;
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--grey-deep);
+}
+
+.nfc-names {
+  flex: 3 1 320px;
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  font-family: var(--display);
+  text-transform: uppercase;
+}
+
+/* the accent only ever marks what is still open */
+.nfc-open {
+  font-family: var(--mono);
+  font-size: 15px;
+  letter-spacing: 0.18em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+a.nfc-open:hover { color: var(--ink); }
+
+/* type scale falls with the tier — the whole hierarchy is typographic */
+.nfc-t-co { padding: 36px 0; }
+.nfc-t-co .nfc-label { padding-top: 8px; }
+.nfc-t-co .nfc-names { gap: 8px 32px; font-size: clamp(48px, 7cqw, 112px); line-height: 0.9; letter-spacing: -0.02em; }
+
+.nfc-t-platinum { padding: 32px 0; }
+.nfc-t-platinum .nfc-label { padding-top: 8px; }
+.nfc-t-platinum .nfc-names { gap: 8px 40px; font-size: clamp(36px, 4.6cqw, 74px); line-height: 0.92; letter-spacing: -0.02em; }
+
+.nfc-t-gold { padding: 30px 0; }
+.nfc-t-gold .nfc-label { padding-top: 6px; }
+.nfc-t-gold .nfc-names { gap: 8px 36px; font-size: clamp(28px, 3cqw, 48px); line-height: 1; letter-spacing: -0.01em; }
+
+.nfc-t-community { padding: 30px 0; }
+.nfc-t-community .nfc-label { padding-top: 4px; }
+/* nowrap is load-bearing: a column flex container that may wrap can throw the
+   open-positions link into a second column, off the side of the page. */
+.nfc-t-community .nfc-names { flex-direction: column; flex-wrap: nowrap; align-items: flex-start; gap: 18px; }
+.nfc-t-community .nfc-open { font-size: 14px; }
+
+.nfc-t-wall { padding: 30px 0; border-bottom-color: var(--ink); }
+.nfc-t-wall .nfc-label { padding-top: 3px; }
+.nfc-t-wall .nfc-names { flex-direction: column; flex-wrap: nowrap; align-items: flex-start; gap: 18px; }
+.nfc-t-wall .nfc-open { font-size: 13px; }
+
+.nfc-grid {
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  gap: 8px;
+  width: 100%;
+}
+
+.nfc-tile { aspect-ratio: 1; background: var(--ink); overflow: hidden; }
+
+.nfc-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(1) contrast(1.05);
+}
+
+.nfc-wall-text {
+  font-family: var(--mono);
+  font-size: clamp(12px, 0.95cqw, 14px);
+  line-height: 1.9;
+  color: var(--graphite);
+  text-transform: none;
+  text-wrap: pretty;
+  word-spacing: 0.05em;
+}
+
+.nfc-closer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px 40px;
+  padding-top: 40px;
+  font-size: clamp(15px, 1.25cqw, 19px);
+  line-height: 1.45;
+  color: var(--graphite);
+}
+
+.nfc-closer-text { max-width: 62ch; }
+
+.nfc-closer-link {
+  font-family: var(--mono);
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--ink);
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 3px;
+}
+
+a.nfc-closer-link:hover { color: var(--accent); border-color: var(--accent); }
+.nfc-closer-link[data-pending] { border-bottom-color: transparent; color: var(--grey-deep); }
+
+/* ------------------------------------------------------------------ footer */
+.nfc-footer { background: var(--ink); color: var(--grey-deep); }
+
+.nfc-footer-stage {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: 40px 5% 22px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.nfc-nav, .nfc-social { display: flex; flex-wrap: wrap; gap: 14px 36px; }
+.nfc-nav { color: var(--grey); }
+.nfc-social { gap: 14px 28px; }
+.nfc-nav a:hover, .nfc-social a:hover { color: var(--accent); }
+
+.nfc-footer-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 20px;
+  border-top: 1px solid var(--graphite);
+}
+
+/* ------------------------------------------------------ 768–1023: heading */
+@container frame (max-width: 1023px) {
+  .nfc-sponsors-head { flex-direction: column; align-items: stretch; }
+  .nfc-stat { text-align: left; }
+}
+
+/* ------------------------------------------------------------ mobile (390) */
+@container frame (max-width: 767px) {
+  .nfc-hero-stage { height: clamp(560px, 184.6cqw, 820px); padding-inline: 4%; }
+  .nfc-bar { padding: 20px 0 14px; font-size: 11px; letter-spacing: 0.18em; }
+  .nfc-title { margin-top: 22px; font-size: clamp(96px, 30cqw, 168px); white-space: normal; }
+  .nfc-title span { display: block; }
+  .nfc-dragon { top: 62%; height: clamp(400px, 130cqw, 760px); }
+  .nfc-meta { margin-top: 18px; font-size: 11px; letter-spacing: 0.18em; }
+
+  .nfc-intro-stage { gap: 32px; padding: 56px 5%; }
+  .nfc-intro-head { gap: 16px; }
+  .nfc-eyebrow, .nfc-date { font-size: 11px; }
+  .nfc-intro .nfc-h2 { font-size: clamp(52px, 15cqw, 84px); max-width: none; }
+  .nfc-date span { display: block; }
+  .nfc-date .nfc-sep { display: none; }
+  .nfc-intro-foot { flex-direction: column; align-items: stretch; gap: 20px; padding-top: 28px; }
+  .nfc-lead { font-size: 18px; line-height: 1.4; max-width: none; }
+  .nfc-links { align-items: flex-start; gap: 16px; }
+  .nfc-link { font-size: 11px; }
+  .nfc-link-lead { display: none; }
+
+  .nfc-cta { margin-top: 36px; padding-top: 20px; gap: 6px 16px; }
+  .nfc-cta-deadline { font-size: 11px; flex-basis: 100%; }
+  .nfc-cta-label, .nfc-cta-arrow { font-size: 19px; }
+  .nfc-cta[data-pending] { font-size: 12px; }
+
+  .nfc-sponsors-stage { padding: 48px 5% 40px; }
+  .nfc-sponsors-head { gap: 14px; }
+  .nfc-sponsors-headtext { gap: 14px; }
+  .nfc-stat, .nfc-label { font-size: 11px; }
+  .nfc-sponsors .nfc-h2 { font-size: clamp(48px, 17cqw, 96px); }
+  .nfc-stat { letter-spacing: 0.18em; }
+  .nfc-stat span { display: inline; }
+  .nfc-stat .nfc-live { display: none; }
+  .nfc-tiers { margin-top: 36px; }
+  .nfc-row { flex-direction: column; gap: 12px; }
+  .nfc-label, .nfc-names { flex: none; }
+  .nfc-label { padding-top: 0; }
+  .nfc-open { font-size: 12px; }
+  .nfc-t-co { padding: 26px 0; }
+  .nfc-t-co .nfc-names { gap: 6px 24px; font-size: clamp(48px, 15cqw, 84px); }
+  .nfc-t-platinum { padding: 24px 0; }
+  .nfc-t-platinum .nfc-names { gap: 8px 24px; font-size: clamp(30px, 10cqw, 56px); }
+  .nfc-t-gold { padding: 22px 0; }
+  .nfc-t-gold .nfc-names { gap: 8px 22px; font-size: clamp(22px, 7cqw, 40px); }
+  .nfc-t-community, .nfc-t-wall { padding: 22px 0; }
+  .nfc-t-community .nfc-names, .nfc-t-wall .nfc-names { gap: 14px; }
+  .nfc-t-community .nfc-open, .nfc-t-wall .nfc-open { font-size: 12px; }
+  .nfc-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; }
+  .nfc-wall-text { font-size: 12px; line-height: 1.85; }
+  .nfc-closer { flex-direction: column; align-items: stretch; gap: 18px; padding-top: 30px; font-size: 15px; }
+  .nfc-closer-text { max-width: none; }
+  .nfc-closer-link { align-self: flex-start; font-size: 12px; }
+
+  .nfc-footer-stage { gap: 18px; padding: 32px 5% 18px; font-size: 10px; }
+  .nfc-nav, .nfc-social { gap: 12px 22px; }
+  .nfc-footer-meta { flex-wrap: nowrap; padding-top: 16px; }
+  .nfc-brand { display: none; }
+}
+</style>
+
+<div class="nfc">
+  <section class="nfc-hero">
+    <div class="nfc-frame">
+      <div class="nfc-hero-stage">
+        <header class="nfc-bar">
+          <span>NFC Summit</span>
+          <span class="nfc-bar-status">Coming soon</span>
+        </header>
+
+        <h1 class="nfc-title"><span>NFC</span> <span>Summit</span> <span>2027</span></h1>
+
+        <img class="nfc-dragon" id="nfc-dragon" src="" alt="" aria-hidden="true">
+
+        <p class="nfc-meta">27 · 28 · 29 May 2027<br>Unicorn Factory, Lisbon</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="nfc-intro">
+    <div class="nfc-frame">
+      <div class="nfc-intro-stage">
+        <div class="nfc-intro-head">
+          <p class="nfc-eyebrow">Save the date</p>
+          <h2 class="nfc-h2">NFC is coming back in 2027</h2>
+          <p class="nfc-date">
+            <span>27 · 28 · 29 May 2027</span><span class="nfc-sep"> · </span><span>Unicorn Factory, Lisbon</span>
+          </p>
+        </div>
+
+        <div class="nfc-intro-foot">
+          <p class="nfc-lead">In the meantime, you can already get your ticket — and put your name on the wall of the venue.</p>
+          <nav class="nfc-links">
+            <a class="nfc-link" href="https://form.typeform.com/to/pCm4CZor" target="_blank" rel="noopener noreferrer">Become a sponsor</a>
+            <a class="nfc-link" href="https://avantgarde.nonfungibleconference.com/" target="_blank" rel="noopener noreferrer">Newsletter &amp; news</a>
+            <span class="nfc-link" id="nfc-moreinfo"></span>
+          </nav>
+        </div>
+
+        <span class="nfc-cta" id="nfc-cta"></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="nfc-sponsors">
+    <div class="nfc-frame">
+      <div class="nfc-sponsors-stage">
+        <div class="nfc-sponsors-head">
+          <div class="nfc-sponsors-headtext">
+            <p class="nfc-eyebrow">Already sponsors for 2027 · live from the wall</p>
+            <h2 class="nfc-h2">Sponsors 2027</h2>
+          </div>
+          <p class="nfc-stat">
+            <span><span id="nfc-minted">0</span> positions minted</span><span class="nfc-sep"> · </span><span>Order of mint<span class="nfc-live"> · updates live</span></span>
+          </p>
+        </div>
+
+        <div class="nfc-tiers" id="nfc-tiers"></div>
+
+        <div class="nfc-closer">
+          <p class="nfc-closer-text">Every sponsor above bought a piece of the venue — painted for real, recorded on-chain.</p>
+          <span class="nfc-closer-link" id="nfc-closer-link"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="nfc-footer">
+    <div class="nfc-frame">
+      <div class="nfc-footer-stage">
+        <nav class="nfc-nav" aria-label="Site">
+          <a href="https://www.nonfungibleconference.com/about">Manifesto</a>
+          <a href="https://www.nonfungibleconference.com/line-up">Line-up 2026</a>
+          <a href="https://www.nonfungibleconference.com/faqs">FAQ 2026</a>
+          <a href="https://nonfungibleconference24-6cf9592edaaa237.webflow.io/" target="_blank" rel="noopener noreferrer">Previous edition</a>
+        </nav>
+        <nav class="nfc-social" aria-label="Social">
+          <a href="https://x.com/NFCsummit" target="_blank" rel="noopener noreferrer me">X</a>
+          <a href="https://www.linkedin.com/company/78683125/" target="_blank" rel="noopener noreferrer me">LinkedIn</a>
+          <a href="https://www.instagram.com/nonfungibleconference/" target="_blank" rel="noopener noreferrer me">Instagram</a>
+          <a href="https://www.youtube.com/@nfcsummit" target="_blank" rel="noopener noreferrer me">YouTube</a>
+        </nav>
+        <div class="nfc-footer-meta">
+          <span><span class="nfc-brand">NFC Summit · </span>Sixth edition</span>
+          <span>nonfungibleconference.com</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ===================== SETTINGS — fill these in ===================== */
+
+  /* 1. The dragon. Upload 08-street-artist-glitch.gif to Webflow assets
+        (3.81 MB — just under Webflow's 4 MB image limit) and paste its URL. */
+  var DRAGON_SRC = '';
+
+  /* 2. Base URL of the ON THE WALL app. The page reads {BASE}/api/sponsors. */
+  var API_BASE = 'https://onthewall.nfcsummit.com';
+
+  /* 3. Until the wall opens it serves testnet, so this page must neither link
+        to it nor print its URL. Set to true on launch day — that is the only
+        edit needed. */
+  var WALL_LIVE = true;
+
+  /* =================================================================== */
+
+  var WALL_URL = 'https://onthewall.nfcsummit.com';
+  var PENDING = 'On the wall — opens Sept 10';
+
+  /*
+    Tier ← campaign, validated by John. Order is display order, top to bottom.
+    `cap` is how many positions the tier holds in total.
+  */
+  var TIERS = [
+    { key: 'flag',  cls: 'nfc-t-co',        label: 'Co-organizer',       cap: 1,   pfp: false },
+    { key: 'mural', cls: 'nfc-t-platinum',  label: 'Platinum sponsors',  cap: 2,   pfp: false },
+    { key: 'house', cls: 'nfc-t-gold',      label: 'Gold sponsors',      cap: 4,   pfp: false },
+    { key: 'pfp',   cls: 'nfc-t-community', label: 'Community sponsors', cap: 50,  pfp: true  },
+    { key: 'name',  cls: 'nfc-t-wall',      label: 'Names on the wall',  cap: 500, pfp: false }
+  ];
+
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  /*
+    A full tier says nothing. Everything else states how many positions are
+    still open, in parentheses, so an empty tier reads as deliberately empty
+    rather than broken. The names wall is the exception once it starts filling:
+    "( 460 open )" reads like a shortfall, "+ 460 more to come" like momentum.
+  */
+  function openLabel(tier, filled) {
+    var left = Math.max(0, tier.cap - filled);
+    if (left === 0) return null;
+    if (tier.key === 'name' && filled > 0) return '+ ' + left + ' more to come';
+    return left === 1 ? '( open )' : '( ' + left + ' open )';
+  }
+
+  /* Every route to the wall goes through here, so the testnet URL cannot leak
+     onto the page while it is closed. */
+  function wallHtml(cls, inner, pending) {
+    if (!WALL_LIVE) {
+      return '<span class="' + cls + '" data-pending>' + esc(pending || inner) + '</span>';
+    }
+    return '<a class="' + cls + '" href="' + WALL_URL + '">' + inner + '</a>';
+  }
+
+  function renderStaticBits() {
+    if (DRAGON_SRC) document.getElementById('nfc-dragon').src = DRAGON_SRC;
+
+    var moreInfo = document.getElementById('nfc-moreinfo');
+    moreInfo.outerHTML = wallHtml(
+      'nfc-link',
+      '<span class="nfc-link-lead">More info </span>→ onthewall.nfcsummit.com',
+      PENDING
+    );
+
+    document.getElementById('nfc-closer-link').outerHTML = wallHtml(
+      'nfc-closer-link', '→ Get on the wall', PENDING
+    );
+
+    document.getElementById('nfc-cta').outerHTML = wallHtml(
+      'nfc-cta',
+      '<span class="nfc-cta-deadline">Until October 30</span>' +
+      '<span class="nfc-cta-label">Get your name on the wall</span>' +
+      '<span class="nfc-cta-arrow" aria-hidden="true">→</span>',
+      PENDING
+    );
+  }
+
+  /* Renders every tier. Called with {} when the wall cannot be read, which
+     yields the day-one empty state — a designed state, not an error page. */
+  function renderTiers(groups) {
+    var html = '';
+    var minted = 0;
+
+    TIERS.forEach(function (tier) {
+      var rows = Array.isArray(groups[tier.key]) ? groups[tier.key].slice() : [];
+
+      /* Display order is the mint rank: first come, first served. */
+      rows.sort(function (a, b) { return (a.order || 0) - (b.order || 0); });
+      rows = rows.slice(0, tier.cap);
+      minted += rows.length;
+
+      /* A position sold without a public name still holds its slot, so it
+         counts above — it just cannot be printed in a text tier. */
+      var named = rows.filter(function (r) { return r.name; });
+      var body = '';
+
+      if (tier.pfp) {
+        if (rows.length) {
+          body = '<div class="nfc-grid">' + rows.map(function (r) {
+            return '<div class="nfc-tile">' +
+              (r.thumb ? '<img src="' + esc(r.thumb) + '" alt="' + esc(r.name || '') + '" loading="lazy">' : '') +
+              '</div>';
+          }).join('') + '</div>';
+        }
+      } else if (tier.key === 'name') {
+        if (named.length) {
+          body = '<p class="nfc-wall-text">' + named.map(function (r) { return esc(r.name); }).join(' · ') + '</p>';
+        }
+      } else {
+        body = named.map(function (r) { return '<span>' + esc(r.name) + '</span>'; }).join('');
+      }
+
+      var open = openLabel(tier, rows.length);
+      if (open) body += wallHtml('nfc-open', esc(open));
+
+      html += '<div class="nfc-row ' + tier.cls + '">' +
+        '<p class="nfc-label">' + esc(tier.label) + '</p>' +
+        '<div class="nfc-names">' + body + '</div>' +
+        '</div>';
+    });
+
+    document.getElementById('nfc-tiers').innerHTML = html;
+    document.getElementById('nfc-minted').textContent = String(minted);
+  }
+
+  function load() {
+    renderStaticBits();
+    renderTiers({});
+
+    fetch(API_BASE.replace(/\/+$/, '') + '/api/sponsors', { cache: 'no-store' })
+      .then(function (res) {
+        if (!res.ok) throw new Error('ON THE WALL API responded ' + res.status);
+        return res.json();
+      })
+      .then(function (data) { renderTiers((data && data.sponsors) || data || {}); })
+      .catch(function (err) {
+        /* Most likely cause: the API does not send Access-Control-Allow-Origin
+           for this domain. The empty state stays on screen either way. */
+        console.error('[wall] could not read the ON THE WALL positions', err);
+      });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', load);
+  } else {
+    load();
+  }
+})();
+</script>

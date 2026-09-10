@@ -1,0 +1,129 @@
+# The coming-soon homepage, as a Webflow embed
+
+`homepage-embed.html` is the whole page — styles, markup and the live sponsor
+list — as a single block you paste into Webflow. It is the alternative to
+running the Next.js app behind a Cloudflare Worker: nothing sits in front of
+the domain, the other ~400 Webflow pages are untouched, and your team can edit
+the page in Webflow afterwards.
+
+The trade-off is that the sponsor list is fetched in the browser rather than
+rendered on the server. See **CORS** below — it is the one thing that can stop
+this working.
+
+## Before you paste
+
+**1. Upload the dragon.** `public/dragon-street-artist.gif` in this repo, into
+Webflow assets. It is 3.81 MB, just under Webflow's 4 MB image limit. Copy the
+asset URL.
+
+**2. Add the fonts.** Webflow Site Settings → Fonts → add **Anton**, **IBM Plex
+Mono** (400, 500) and **Inter** (300, 400, 500) from Google Fonts. The embed
+also `@import`s them so it works if you skip this, but loading them from
+Webflow puts them in the `<head>`, where they arrive far sooner and the page
+does not flash a fallback face.
+
+**3. Make the page blank.** The embed is a complete page including its own
+footer. Hide the Webflow nav and footer on this page, and set the body to zero
+padding, or you will get the site chrome wrapped around it.
+
+## Paste it
+
+Drop one full-width **HTML Embed** on the page and paste the entire contents of
+`homepage-embed.html`. It is 23 KB, well under Webflow's 50,000-character
+embed limit.
+
+Then fill in the three settings at the top of the `<script>`:
+
+```js
+var DRAGON_SRC = '';                                  // the asset URL from step 1
+var API_BASE   = 'https://onthewall.nfcsummit.com';   // the ON THE WALL app
+var WALL_LIVE  = true;                                // see below
+```
+
+`WALL_LIVE` is the switch: while it is `false` the page neither links to
+onthewall.nfcsummit.com nor prints its URL anywhere — every wall destination
+becomes inert text reading "ON THE WALL — OPENS SEPT 10", and the `( open )`
+tags keep their words but stop being links. Set it to `true` on launch day.
+That is the only edit needed.
+
+## Page settings in Webflow
+
+The embed cannot set the page's `<title>` or meta description — those are
+Webflow page settings, and on an established domain they matter. Use:
+
+- **Title** — `NFC Summit 2027 — Non Fungible Conference · 27–29 May 2027, Lisbon`
+- **Description** — `Non Fungible Conference is now NFC Summit. Sixth edition, 27–29 May 2027 at the Unicorn Factory, Lisbon. Get your name on the wall of the venue until October 30.`
+
+Keeping "Non Fungible Conference" in the title is deliberate: it is the name
+this domain ranks for, and the page never says it otherwise.
+
+Then paste this into the page's **custom code, before `</body>`**, so the event
+can surface as an event result:
+
+```html
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Event","name":"NFC Summit 2027",
+"alternateName":"Non Fungible Conference",
+"startDate":"2027-05-27","endDate":"2027-05-29",
+"eventStatus":"https://schema.org/EventScheduled",
+"eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode",
+"url":"https://www.nonfungibleconference.com",
+"location":{"@type":"Place","name":"Unicorn Factory",
+"address":{"@type":"PostalAddress","addressLocality":"Lisbon","addressCountry":"PT"}},
+"organizer":{"@type":"Organization","name":"NFC Summit","url":"https://www.nonfungibleconference.com"}}
+</script>
+```
+
+## CORS — the one thing that can block this
+
+The page reads `{API_BASE}/api/sponsors` from the visitor's browser, on a
+different origin. That only works if the ON THE WALL app returns
+
+```
+Access-Control-Allow-Origin: https://www.nonfungibleconference.com
+```
+
+(or `*`) on that route. If it does not, the browser blocks the response and
+**the sponsor names never appear** — the section falls back to the day-one
+empty state, which is a designed state, so the page still looks right, but it
+will never fill in. This was not needed by the Next.js version, which reads the
+API server-side.
+
+Ask whoever runs ON THE WALL to add the header, then confirm: open the page,
+open the console, and check there is no `[wall]` error.
+
+## What it renders
+
+The tier mapping, the mint ordering and the open-position labels are the same
+rules as the Next.js app:
+
+| Tier | Campaign group | Size |
+| --- | --- | ---: |
+| Co-organizer | `flag` | 1 |
+| Platinum sponsors | `mural` | 2 |
+| Gold sponsors | `house` | 4 |
+| Community sponsors | `pfp` | 50 |
+| Names on the wall | `name` | 500 |
+
+Entries are ordered by `order`, the mint rank — first come, first served, never
+alphabetical. A position sold without a public name still counts against its
+tier's open slots; it just is not printed in the text tiers. A full tier shows
+nothing after it; anything else shows `( N open )`, except the names wall once
+it starts filling, which shows `+ N more to come`.
+
+## Verified
+
+Tested in Chromium inside a host page carrying deliberately hostile Webflow-ish
+globals (serif body font, centred text, underlined blue links) to confirm
+nothing bleeds in or out, at 1440 and 390:
+
+- 77 minted, 12 PFP tiles, 59 of 61 names (two anonymous, correctly skipped),
+  mint order respected, correct open labels — against a fixture matching the
+  documented API contract.
+- With the API unreachable, the page degrades cleanly to the empty state.
+- No horizontal overflow and no clipped headline, with fonts loaded **and**
+  with Google Fonts blocked entirely.
+
+Not tested: the real ON THE WALL API. This environment's egress policy blocks
+onthewall.nfcsummit.com, so the adapter is validated against the contract, not
+against live Sepolia data. Check that on the real page.
