@@ -38,6 +38,7 @@
   --grey: #B0ACA2;
   --grey-deep: #6B685F;
   --accent: #2E7FD6;
+  --magenta: #FF0976; /* the system's urgency accent — the wall CTA only */
 
   --display: Anton, 'Anton Fallback', 'Arial Narrow', sans-serif;
   --mono: 'IBM Plex Mono', ui-monospace, monospace;
@@ -55,7 +56,12 @@
 .nfc *::after { box-sizing: border-box; }
 
 .nfc h1, .nfc h2, .nfc p { margin: 0; font-weight: 400; }
-.nfc a { color: inherit; text-decoration: none; }
+/*
+  :where() keeps this reset at zero specificity for the `a` part, so a plain
+  class like .nfc-open or .nfc-cta can still colour a link. Written as `.nfc a`
+  it would be more specific than those classes and silently win.
+*/
+.nfc :where(a) { color: inherit; text-decoration: none; }
 .nfc img { max-width: 100%; }
 
 /*
@@ -217,22 +223,41 @@ a.nfc-link:hover { color: var(--accent); border-color: var(--accent); }
 .nfc-link[data-pending] { border-bottom-color: transparent; color: var(--grey); }
 
 /* ---------------------------------------------------------------- wall CTA */
+/*
+  The one thing the page is actually asking for, built to be read second after
+  the headline. Magenta is the design system's urgency accent, which is what a
+  deadline is; the 10px band rule is its heaviest. Display type does the
+  ranking, the colour only confirms it.
+*/
 .nfc-cta {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  gap: 8px 20px;
-  margin-top: 56px;
-  padding-top: 26px;
-  border-top: 6px solid var(--accent);
-  font-family: var(--mono);
+  gap: 10px 28px;
+  margin-top: 64px;
+  padding-top: 28px;
+  border-top: 10px solid var(--magenta);
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--magenta);
 }
 
-.nfc-cta-deadline { font-size: 13px; letter-spacing: 0.22em; color: var(--grey); }
-.nfc-cta-label { font-size: clamp(20px, 2.1cqw, 32px); letter-spacing: 0.08em; }
-.nfc-cta-arrow { font-size: clamp(20px, 2.1cqw, 32px); margin-left: auto; }
+.nfc-cta-deadline {
+  flex-basis: 100%;
+  font-family: var(--mono);
+  font-size: 14px;
+  letter-spacing: 0.22em;
+  color: var(--grey);
+}
+
+.nfc-cta-label,
+.nfc-cta-arrow {
+  font-family: var(--display);
+  font-size: clamp(34px, 4.6cqw, 68px);
+  line-height: 0.92;
+  letter-spacing: -0.01em;
+}
+
+.nfc-cta-arrow { margin-left: auto; }
 
 a.nfc-cta:hover { color: var(--chalk); border-top-color: var(--chalk); }
 a.nfc-cta:hover .nfc-cta-deadline { color: var(--chalk); }
@@ -240,6 +265,7 @@ a.nfc-cta:hover .nfc-cta-deadline { color: var(--chalk); }
 .nfc-cta[data-pending] {
   border-top-color: var(--grey-deep);
   color: var(--grey);
+  font-family: var(--mono);
   font-size: 14px;
   letter-spacing: 0.2em;
 }
@@ -455,9 +481,9 @@ a.nfc-closer-link:hover { color: var(--accent); border-color: var(--accent); }
   .nfc-link { font-size: 11px; }
   .nfc-link-lead { display: none; }
 
-  .nfc-cta { margin-top: 36px; padding-top: 20px; gap: 6px 16px; }
-  .nfc-cta-deadline { font-size: 11px; flex-basis: 100%; }
-  .nfc-cta-label, .nfc-cta-arrow { font-size: 19px; }
+  .nfc-cta { margin-top: 40px; padding-top: 20px; gap: 8px 16px; }
+  .nfc-cta-deadline { font-size: 11px; }
+  .nfc-cta-label, .nfc-cta-arrow { font-size: clamp(30px, 9cqw, 52px); }
   .nfc-cta[data-pending] { font-size: 12px; }
 
   .nfc-sponsors-stage { padding: 48px 5% 40px; }
