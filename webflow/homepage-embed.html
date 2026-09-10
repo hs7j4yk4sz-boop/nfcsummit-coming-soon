@@ -118,20 +118,22 @@
 }
 
 /*
-  The host (dragon 07), cropped by the bottom edge. multiply kills the pale
-  halo baked into the grey render on the concrete ground.
+  The host, cropped by the bottom edge. multiply kills the pale halo baked into
+  the grey render on the concrete ground; it also deepens the magenta mic to
+  about #DE0862, which still reads as the same accent as the CTA below.
 
-  This crop is specific to this render: 07 is a full standing body, so it needs
-  a smaller height and a lower top than the street artist on nfcsummit.com, or
-  the frame fills with head and loses the suit entirely.
+  The crop is specific to this render. It shows the top ~80% of the figure,
+  lower than a head-and-shoulders framing, because the microphone is what
+  identifies the character and sits at 52–78% of its height. Cutting at the
+  shoulders would lose it.
 */
 .nfc-dragon {
   position: absolute;
   left: 50%;
-  top: 32%;
+  top: 28%;
   transform: translateX(-50%);
   z-index: 1;
-  height: 64cqw;
+  height: 56cqw;
   width: auto;
   max-width: none;
   mix-blend-mode: multiply;
@@ -466,7 +468,7 @@ a.nfc-closer-link:hover { color: var(--accent); border-color: var(--accent); }
   .nfc-bar { padding: 20px 0 14px; font-size: 11px; letter-spacing: 0.18em; }
   .nfc-title { margin-top: 22px; font-size: clamp(96px, 30cqw, 168px); white-space: normal; }
   .nfc-title span { display: block; }
-  .nfc-dragon { top: 57%; height: clamp(340px, 108cqw, 640px); }
+  .nfc-dragon { top: 57%; height: clamp(320px, 100cqw, 600px); }
   .nfc-meta { margin-top: 18px; font-size: 11px; letter-spacing: 0.18em; }
 
   .nfc-intro-stage { gap: 32px; padding: 56px 5%; }
@@ -617,11 +619,14 @@ a.nfc-closer-link:hover { color: var(--accent); border-color: var(--accent); }
 
   /* ===================== SETTINGS — fill these in ===================== */
 
-  /* 1. The dragon. This domain runs dragon 07, the host — nfcsummit.com runs
-        08, the street artist, and the two pages are otherwise identical twins,
-        so the mascot is what tells them apart. Upload dragon-07-grey.png
-        (0.96 MB) to Webflow assets and paste its URL here. The crop in the CSS
-        above is tuned to this render; a different one will need retuning. */
+  /* 1. The dragon. This domain runs the host — the one in glasses holding the
+        magenta microphone. nfcsummit.com runs the street artist, and the two
+        pages are otherwise identical twins, so the mascot is what tells them
+        apart. Upload that PNG to Webflow assets and paste its URL here.
+        Resize it to about 1400px wide before uploading: the page never draws
+        it larger than ~700px, so anything bigger is download weight for
+        nothing. The crop in the CSS above is tuned to this render's
+        proportions; a different one will need retuning. */
   var DRAGON_SRC = '';
 
   /* 2. Base URL of the ON THE WALL app. The page reads {BASE}/api/sponsors. */

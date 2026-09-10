@@ -95,8 +95,11 @@ const NFC_SUMMIT: SiteConfig = {
 
 const NON_FUNGIBLE_CONFERENCE: SiteConfig = {
   url: 'https://www.nonfungibleconference.com',
-  dragon: '/dragon-host.png', // 07 — the host
-  dragonCrop: { height: '64cqw', top: '32%', mobileHeight: '108cqw', mobileTop: '57%' },
+  dragon: '/dragon-host.png', // the host — glasses, three-piece suit, magenta mic
+  // Shows the top ~80% of the figure. Lower than a head-and-shoulders framing
+  // on purpose: the microphone identifies the character and sits at 52–78% of
+  // its height, so cutting at the shoulders would lose it.
+  dragonCrop: { height: '56cqw', top: '28%', mobileHeight: '100cqw', mobileTop: '57%' },
   wordmark: 'nonfungibleconference.com',
   // Keeps the name the domain actually ranks for. Dropping "Non Fungible
   // Conference" from the strongest page of the site would throw away the brand
