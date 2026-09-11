@@ -640,8 +640,18 @@ a.nfc-closer-link:hover { color: var(--accent); border-color: var(--accent); }
         proportions; a different one will need retuning. */
   var DRAGON_SRC = '';
 
-  /* 2. Base URL of the ON THE WALL app. The page reads {BASE}/api/sponsors. */
-  var API_BASE = 'https://onthewall.nfcsummit.com';
+  /* 2. Where the sponsor list is read from. The page reads {BASE}/api/sponsors.
+
+        Use 'https://nfcsummit.com' while ON THE WALL does not send an
+        Access-Control-Allow-Origin header: browsers block a cross-site read
+        without it, so the list silently stays empty. nfcsummit.com reads the
+        same feed server-side, where that rule does not apply, and relays it
+        with the header attached.
+
+        Once ON THE WALL sends the header, switch this back to
+        'https://onthewall.nfcsummit.com' and drop the relay. Add ?walldebug=1
+        to the page URL to see which of the two is happening. */
+  var API_BASE = 'https://nfcsummit.com';
 
   /* 3. Until the wall opens it serves testnet, so this page must neither link
         to it nor print its URL. Set to true on launch day — that is the only
@@ -764,20 +774,64 @@ a.nfc-closer-link:hover { color: var(--accent); border-color: var(--accent); }
     document.getElementById('nfc-minted').textContent = String(minted);
   }
 
+  /*
+    Why the sponsor list is or isn't loading, shown on the page itself.
+
+    Reached by adding ?walldebug=1 to the URL, so visitors never see it. A
+    failed browser fetch reports almost nothing to JavaScript — a CORS block and
+    a dead host both surface as the same bare TypeError — so this probes again
+    with mode:'no-cors'. That request is sent but its response is opaque: if it
+    succeeds while the normal one failed, the server is reachable and the
+    browser is withholding the response, which is CORS and nothing else.
+  */
+  function diagnose(url, err) {
+    fetch(url, { mode: 'no-cors', cache: 'no-store' }).then(
+      function () { report(url, 'CORS', err); },
+      function () { report(url, 'unreachable', err); },
+    );
+  }
+
+  function report(url, kind, err) {
+    var lines = kind === 'CORS'
+      ? ['The server is reachable, but your browser is refusing to hand the',
+         'response to this page. That is CORS, and it can only be fixed by',
+         'whoever runs the API:',
+         '',
+         '    Access-Control-Allow-Origin: *',
+         '',
+         'on ' + url,
+         '',
+         'Workaround meanwhile: point API_BASE at https://nfcsummit.com,',
+         'which relays the same feed with that header attached.']
+      : ['The request never reached the server. Check the URL is exactly right',
+         'and that the host is up:', '', '    ' + url];
+
+    var box = document.createElement('pre');
+    box.style.cssText = 'margin:0;padding:20px;background:#0B0B0B;color:#FF0976;'
+      + "font:13px/1.6 'IBM Plex Mono',monospace;white-space:pre-wrap;word-break:break-word";
+    box.textContent = '[wall] the sponsor list did not load — ' + kind + '\n\n'
+      + lines.join('\n') + '\n\nBrowser said: ' + (err && err.message ? err.message : String(err));
+    document.querySelector('.nfc').prepend(box);
+  }
+
   function load() {
     renderStaticBits();
     renderTiers({});
 
-    fetch(API_BASE.replace(/\/+$/, '') + '/api/sponsors', { cache: 'no-store' })
+    var url = API_BASE.replace(/\/+$/, '') + '/api/sponsors';
+    var debug = /[?&]walldebug=1/.test(window.location.search);
+
+    fetch(url, { cache: 'no-store' })
       .then(function (res) {
-        if (!res.ok) throw new Error('ON THE WALL API responded ' + res.status);
+        if (!res.ok) throw new Error('the wall answered ' + res.status);
         return res.json();
       })
       .then(function (data) { renderTiers((data && data.sponsors) || data || {}); })
       .catch(function (err) {
-        /* Most likely cause: the API does not send Access-Control-Allow-Origin
-           for this domain. The empty state stays on screen either way. */
+        /* The empty state stays on screen either way — it is a designed state,
+           so a visitor sees a coherent page rather than a broken one. */
         console.error('[wall] could not read the ON THE WALL positions', err);
+        if (debug) diagnose(url, err);
       });
   }
 

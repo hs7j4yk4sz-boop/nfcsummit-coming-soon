@@ -82,7 +82,27 @@ can surface as an event result:
 </script>
 ```
 
-## CORS — the one thing that can block this
+## CORS — confirmed, and worked around
+
+This did happen. The ON THE WALL endpoint does not send the header, so the
+browser blocks the response and the list stays empty. `API_BASE` therefore
+points at `https://nfcsummit.com`, which reads the same feed server-side — where
+the rule does not apply — and relays it with the header attached
+(`app/api/sponsors/route.ts`).
+
+That relay makes this homepage depend on nfcsummit.com staying up. It is a
+workaround, not the destination: once ON THE WALL sends
+`Access-Control-Allow-Origin: *`, point `API_BASE` back at
+`https://onthewall.nfcsummit.com` and delete the route.
+
+**To check which is happening**, add `?walldebug=1` to the page URL. If the list
+fails to load, a panel appears at the top naming the cause. It distinguishes a
+CORS block from an unreachable host by re-requesting with `mode: 'no-cors'`: if
+that succeeds where the normal request failed, the server is reachable and the
+browser is withholding the response, which can only be CORS. Visitors never see
+the panel — it needs the query string.
+
+## The original CORS note
 
 The page reads `{API_BASE}/api/sponsors` from the visitor's browser, on a
 different origin. That only works if the ON THE WALL app returns
