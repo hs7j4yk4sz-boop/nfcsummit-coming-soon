@@ -20,6 +20,11 @@ export interface WallPosition {
 /** Base URL of the ON THE WALL app, e.g. https://onthewall.nfcsummit.com */
 const API_BASE = process.env.ONTHEWALL_API_URL
 
+/** The exact endpoint the page reads, or null when none is configured. */
+export function wallApiUrl(): string | null {
+  return API_BASE ? `${API_BASE.replace(/\/+$/, '')}/api/sponsors` : null
+}
+
 /**
  * The ON THE WALL campaigns, in the order the page shows them.
  *
@@ -52,7 +57,7 @@ export async function fetchPositions(): Promise<WallPosition[]> {
     return STUB_POSITIONS
   }
 
-  const url = `${API_BASE.replace(/\/+$/, '')}/api/sponsors`
+  const url = wallApiUrl() as string
   // Cached server-side for a minute; every page load reads through that cache.
   const res = await fetch(url, { next: { revalidate: 60 } })
   if (!res.ok) throw new Error(`ON THE WALL API responded ${res.status} for ${url}`)
@@ -63,14 +68,19 @@ export async function fetchPositions(): Promise<WallPosition[]> {
  * Narrows `{ sponsors: { name[], pfp[], house[], mural[], flag[] } }` — each
  * entry `{ tier, name, order, thumb? }` — down to `WallPosition[]`.
  *
- * Deliberately forgiving: one malformed row must not take the sponsors section
- * down with it. Positions that sold without a public name are kept, because
- * they are minted and must still count against the tier's open slots; the
- * text tiers drop them at render time, and a PFP tile needs no name anyway.
+ * Forgiving about rows — one malformed entry must not take the section down —
+ * but loud about shape. A payload that yields nothing is far more likely to be
+ * a contract mismatch than an empty wall, and silently rendering the day-one
+ * state would hide that completely. Positions sold without a public name are
+ * kept, because they are minted and must still count against the tier's open
+ * slots; the text tiers drop them at render time, and a PFP tile needs no name.
  */
-function parsePositions(payload: unknown): WallPosition[] {
+export function parsePositions(payload: unknown): WallPosition[] {
   const root = (payload as { sponsors?: unknown })?.sponsors ?? payload
-  if (typeof root !== 'object' || root === null) return []
+  if (typeof root !== 'object' || root === null) {
+    console.error('[wall] payload is not an object — got', typeof payload)
+    return []
+  }
 
   const positions: WallPosition[] = []
   for (const [campaign, tier] of Object.entries(CAMPAIGN_TIER)) {
@@ -89,6 +99,15 @@ function parsePositions(payload: unknown): WallPosition[] {
         order: rank,
       })
     })
+  }
+
+  if (positions.length === 0) {
+    console.error(
+      '[wall] read the API but recognised no positions. Expected campaign keys ' +
+        `[${Object.keys(CAMPAIGN_TIER).join(', ')}], got [${Object.keys(
+          root as Record<string, unknown>,
+        ).join(', ')}] — the payload shape has probably changed. See /api/wall-debug.`,
+    )
   }
   return positions
 }
