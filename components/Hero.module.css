@@ -37,8 +37,9 @@
   margin-top: 30px;
   font-family: var(--font-display);
   font-weight: 400;
-  /* Anton is condensed enough that 14.3% of the frame fills it edge to edge. */
-  font-size: 14.3cqw;
+  /* Tuned per wordmark so it fills the frame edge to edge without clipping —
+     see SiteConfig.heroSize. */
+  font-size: var(--hero-size, 14.3cqw);
   line-height: 0.84;
   letter-spacing: -0.02em;
   text-transform: uppercase;
@@ -55,8 +56,9 @@
   height: var(--dragon-h, 88cqw);
   width: auto;
   max-width: none;
-  /* Kills the pale halo baked into the grey render on the concrete ground. */
-  mix-blend-mode: multiply;
+  /* multiply for the grey renders, whose pale halo would otherwise read as a
+     white box; normal for renders with real alpha. See SiteConfig.dragonBlend. */
+  mix-blend-mode: var(--dragon-blend, multiply);
   pointer-events: none;
 }
 

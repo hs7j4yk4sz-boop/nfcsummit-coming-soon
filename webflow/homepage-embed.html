@@ -13,16 +13,17 @@
 
 /*
   Metric-matched stand-in for Anton, used while it loads and if Google Fonts
-  is unreachable. The full-width headline is `nowrap` at 14.3cqw, a size
-  calibrated to Anton's condensed metrics: an unadjusted fallback runs ~26%
+  is unreachable. The full-width headline is `nowrap` at 14.1cqw, a size
+  calibrated to Anton's condensed metrics: an unadjusted fallback runs far
   wider and the title renders visibly clipped. size-adjust pulls a normal
-  grotesque back to roughly Anton's width. Erring narrow is deliberate — a
-  title that briefly under-fills reads as fine, a cut one reads as broken.
+  grotesque back to roughly Anton's width, measured against this wordmark.
+  Erring narrow is deliberate — a title that briefly under-fills reads as fine,
+  a cut one reads as broken. Re-measure if the wordmark changes.
 */
 @font-face {
   font-family: 'Anton Fallback';
   src: local('Arial'), local('Liberation Sans'), local('Helvetica'), local('Roboto');
-  size-adjust: 79%;
+  size-adjust: 73%;
   ascent-override: 105%;
   descent-override: 25%;
   line-gap-override: 0%;
@@ -110,7 +111,10 @@
   z-index: 2;
   margin-top: 30px;
   font-family: var(--display);
-  font-size: 14.3cqw;
+  /* Fills the frame edge to edge on one line. Tuned to these exact letters:
+     "NFC SUMMIT TALKS" runs wider than "NFC SUMMIT 2027" and clips at 14.3cqw.
+     Re-measure if the wordmark changes. */
+  font-size: 14.1cqw;
   line-height: 0.84;
   letter-spacing: -0.02em;
   text-transform: uppercase;
@@ -118,14 +122,19 @@
 }
 
 /*
-  The host, cropped by the bottom edge. multiply kills the pale halo baked into
-  the grey render on the concrete ground; it also deepens the magenta mic to
-  about #DE0862, which still reads as the same accent as the CTA below.
+  The host, cropped by the bottom edge.
 
-  The crop is specific to this render. It shows the top ~80% of the figure,
-  lower than a head-and-shoulders framing, because the microphone is what
-  identifies the character and sits at 52–78% of its height. Cutting at the
-  shoulders would lose it.
+  mix-blend-mode is `normal`, not `multiply`: this render has real alpha, so it
+  drops onto the concrete ground by itself. Multiply is only needed for the
+  older grey renders, whose baked-in pale halo reads as a white box without it
+  — and on this one it would just dull the figure and the magenta mic.
+  If the dragon ever shows a visible pale rectangle behind it, the uploaded
+  file has lost its transparency; re-export it as a PNG with alpha rather than
+  switching this back to multiply.
+
+  The crop shows the top ~80% of the figure, lower than a head-and-shoulders
+  framing, because the microphone is what identifies the character and sits at
+  52–78% of its height. Cutting at the shoulders would lose it.
 */
 .nfc-dragon {
   position: absolute;
@@ -136,7 +145,7 @@
   height: 56cqw;
   width: auto;
   max-width: none;
-  mix-blend-mode: multiply;
+  mix-blend-mode: normal;
   pointer-events: none;
 }
 
@@ -532,7 +541,9 @@ a.nfc-closer-link:hover { color: var(--accent); border-color: var(--accent); }
           <span class="nfc-bar-status">Coming soon</span>
         </header>
 
-        <h1 class="nfc-title"><span>NFC</span> <span>Summit</span> <span>2027</span></h1>
+        <!-- This domain is being rebranded to NFC Summit Talks. One word per
+             line on mobile, so keep it to three words. -->
+        <h1 class="nfc-title"><span>NFC</span> <span>Summit</span> <span>Talks</span></h1>
 
         <img class="nfc-dragon" id="nfc-dragon" src="" alt="" aria-hidden="true">
 

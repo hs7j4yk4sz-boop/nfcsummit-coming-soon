@@ -21,10 +21,18 @@ export interface SiteConfig {
   /**
    * The hero mascot. The two domains run deliberately different dragons — the
    * pages are otherwise identical twins, and this is what tells them apart at
-   * a glance. Grey renders only: on the concrete ground they are multiplied in,
-   * and a coloured one would both muddy and break the one-accent rule.
+   * a glance.
    */
   dragon: string
+  /** The wordmark, one word per line on mobile. */
+  heroWords: readonly string[]
+  /**
+   * Desktop size of the wordmark, which sets on one line edge to edge. It is
+   * tuned to the exact letters: "NFC SUMMIT TALKS" runs wider than
+   * "NFC SUMMIT 2027" at the same size and would be clipped. Re-measure if the
+   * words change.
+   */
+  heroSize: string
   /**
    * How the dragon is cropped by the hero. Each render frames its character
    * differently — the street artist has headroom baked in, the host is a full
@@ -38,6 +46,15 @@ export interface SiteConfig {
     mobileHeight: string
     mobileTop: string
   }
+  /**
+   * How the dragon sits on the concrete ground.
+   *
+   * `multiply` is for the older grey renders, which carry a pale halo baked
+   * into the image — on a light ground it reads as a white box unless it is
+   * multiplied away. A render with real alpha needs `normal`: multiply would
+   * only darken it and dull any colour it carries.
+   */
+  dragonBlend: 'multiply' | 'normal'
   /** What the footer prints on the right. */
   wordmark: string
   title: string
@@ -84,7 +101,10 @@ const SOCIAL: NavLink[] = [
 const NFC_SUMMIT: SiteConfig = {
   url: 'https://nfcsummit.com',
   dragon: '/dragon-street-artist.gif', // 08 — the street artist
+  heroWords: ['NFC', 'Summit', '2027'],
+  heroSize: '14.3cqw',
   dragonCrop: { height: '88cqw', top: '29%', mobileHeight: '130cqw', mobileTop: '62%' },
+  dragonBlend: 'multiply', // grey render, halo baked in
   wordmark: 'nfcsummit.com',
   title: 'NFC Summit 2027 — 27 · 28 · 29 May 2027, Unicorn Factory, Lisbon',
   description:
@@ -96,10 +116,16 @@ const NFC_SUMMIT: SiteConfig = {
 const NON_FUNGIBLE_CONFERENCE: SiteConfig = {
   url: 'https://www.nonfungibleconference.com',
   dragon: '/dragon-host.png', // the host — glasses, three-piece suit, magenta mic
+  // This domain is being rebranded to NFC Summit Talks. The em dash John wrote
+  // is dropped: the wordmark sets one word per line on mobile, and three clean
+  // words hold the full-bleed lock-up better than a floating rule would.
+  heroWords: ['NFC', 'Summit', 'Talks'],
+  heroSize: '14.1cqw', // measured: "TALKS" needs ~1% less than "2027" to fit
   // Shows the top ~80% of the figure. Lower than a head-and-shoulders framing
   // on purpose: the microphone identifies the character and sits at 52–78% of
   // its height, so cutting at the shoulders would lose it.
   dragonCrop: { height: '56cqw', top: '28%', mobileHeight: '100cqw', mobileTop: '57%' },
+  dragonBlend: 'normal', // real alpha — multiply would only dull it and the mic
   wordmark: 'nonfungibleconference.com',
   // Keeps the name the domain actually ranks for. Dropping "Non Fungible
   // Conference" from the strongest page of the site would throw away the brand

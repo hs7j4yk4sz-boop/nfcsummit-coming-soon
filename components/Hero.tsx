@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import { SITE } from '@/lib/site'
 import styles from './Hero.module.css'
 
@@ -18,6 +19,8 @@ export default function Hero() {
               '--dragon-top': SITE.dragonCrop.top,
               '--dragon-h-mobile': SITE.dragonCrop.mobileHeight,
               '--dragon-top-mobile': SITE.dragonCrop.mobileTop,
+              '--dragon-blend': SITE.dragonBlend,
+              '--hero-size': SITE.heroSize,
             } as React.CSSProperties
           }
         >
@@ -27,7 +30,12 @@ export default function Hero() {
           </header>
 
           <h1 className={styles.title}>
-            <span>NFC</span> <span>Summit</span> <span>2027</span>
+            {SITE.heroWords.map((word, i) => (
+              <Fragment key={word}>
+                {i > 0 && ' '}
+                <span>{word}</span>
+              </Fragment>
+            ))}
           </h1>
 
           {/*
