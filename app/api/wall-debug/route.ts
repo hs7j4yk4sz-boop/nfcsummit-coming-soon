@@ -14,16 +14,41 @@ import { parsePositions, wallApiUrl } from '@/lib/wall-source'
  */
 export const dynamic = 'force-dynamic'
 
+/**
+ * Which deployment answered. Without this, two runs of this endpoint are
+ * indistinguishable, so "I changed the setting and still get the same reply"
+ * cannot be told apart from "I have not redeployed yet".
+ */
+function deployment() {
+  return {
+    answeredAt: new Date().toISOString(),
+    vercelEnv: process.env.VERCEL_ENV ?? null,
+    commit: process.env.VERCEL_GIT_COMMIT_SHA?.slice(0, 7) ?? null,
+    branch: process.env.VERCEL_GIT_COMMIT_REF ?? null,
+    deploymentId: process.env.VERCEL_DEPLOYMENT_ID ?? null,
+  }
+}
+
 export async function GET() {
   const url = wallApiUrl()
   const startedAt = Date.now()
 
   if (!url) {
+    // A typo in the variable name looks identical to a missing variable, and
+    // Vercel's list truncates long names. Show which wall-ish keys do exist.
+    const named = Object.keys(process.env)
+      .filter((key) => /wall|onthe/i.test(key))
+      .sort()
+
     return json({
-      verdict: 'ONTHEWALL_API_URL is not set — the page cannot reach the wall at all',
-      fix: 'Set ONTHEWALL_API_URL to https://onthewall.nfcsummit.com in the Vercel project, then redeploy.',
-      endpoint: null,
-      vercelEnv: process.env.VERCEL_ENV ?? null,
+      verdict: 'ONTHEWALL_API_URL is not set in this deployment',
+      fix:
+        named.length > 0
+          ? `Variables that look related are present under: ${named.join(', ')}. If the name is not exactly ONTHEWALL_API_URL, rename it.`
+          : 'Add ONTHEWALL_API_URL = https://onthewall.nfcsummit.com, scoped to Production, then redeploy. Changing a variable does not rebuild an existing deployment.',
+      lookingFor: 'ONTHEWALL_API_URL',
+      similarKeysPresent: named,
+      deployment: deployment(),
     })
   }
 
@@ -37,6 +62,7 @@ export async function GET() {
       endpoint: url,
       error: error instanceof Error ? error.message : String(error),
       ms: Date.now() - startedAt,
+      deployment: deployment(),
     })
   }
 
@@ -52,6 +78,7 @@ export async function GET() {
       contentType: res.headers.get('content-type'),
       bodyStart: body.slice(0, 400),
       ms,
+      deployment: deployment(),
     })
   }
 
@@ -66,6 +93,7 @@ export async function GET() {
       contentType: res.headers.get('content-type'),
       bodyStart: body.slice(0, 400),
       ms,
+      deployment: deployment(),
     })
   }
 
@@ -114,6 +142,7 @@ export async function GET() {
     receivedShape: shape,
     recognised: { total: positions.length, perTier },
     sample: positions.slice(0, 3),
+    deployment: deployment(),
   })
 }
 
