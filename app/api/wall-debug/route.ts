@@ -98,19 +98,18 @@ export async function GET() {
   }
 
   // What the parser is actually looking at, so a contract change is obvious.
+  //
+  // Reports the union of keys across every entry, not just the first: a field
+  // that only appears on some rows — a status marking a panel reserved rather
+  // than minted, say — is invisible if you sample one. Low-cardinality values
+  // are listed, which is what makes such a field readable at a glance.
   const root = (payload as { sponsors?: unknown })?.sponsors ?? payload
   const shape =
     typeof root === 'object' && root !== null
       ? Object.fromEntries(
           Object.entries(root as Record<string, unknown>).map(([key, value]) => [
             key,
-            Array.isArray(value)
-              ? `array(${value.length}) first entry keys: ${
-                  typeof value[0] === 'object' && value[0] !== null
-                    ? Object.keys(value[0]).join(', ')
-                    : typeof value[0]
-                }`
-              : typeof value,
+            Array.isArray(value) ? describeEntries(value) : typeof value,
           ]),
         )
       : `not an object: ${typeof root}`
@@ -144,6 +143,40 @@ export async function GET() {
     sample: positions.slice(0, 3),
     deployment: deployment(),
   })
+}
+
+/**
+ * Everything one campaign array actually contains: how many rows, every key
+ * that appears on any of them, and — for keys with few enough distinct values
+ * to be a state rather than a label — what those values are.
+ *
+ * The point is to surface fields the page ignores. A panel marked reserved
+ * rather than minted would be counted as sold today, and nothing in the page
+ * or in a first-row sample would show it.
+ */
+function describeEntries(rows: unknown[]) {
+  const objects = rows.filter((row): row is Record<string, unknown> => typeof row === 'object' && row !== null)
+  if (objects.length === 0) return `array(${rows.length}), no object entries`
+
+  const keys = [...new Set(objects.flatMap((row) => Object.keys(row)))].sort()
+  const described = keys.map((key) => {
+    const values = new Set<string>()
+    let listable = true
+    for (const row of objects) {
+      const value = row[key]
+      if (value === undefined) continue
+      if (value !== null && typeof value === 'object') return `${key}: object`
+      values.add(String(value))
+      if (values.size > 8) {
+        listable = false
+        break
+      }
+    }
+    const presence = objects.some((row) => row[key] === undefined) ? ' (on some rows only)' : ''
+    return listable ? `${key} = ${[...values].join(' | ')}${presence}` : `${key}: varied${presence}`
+  })
+
+  return `array(${rows.length}) — ${described.join('; ')}`
 }
 
 function json(data: unknown) {
