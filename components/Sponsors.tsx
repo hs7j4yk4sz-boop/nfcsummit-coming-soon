@@ -1,4 +1,4 @@
-import { TIERS, TIER_SPECS, openLabel, type Tier } from '@/lib/tiers'
+import { TIERS, TIER_SPECS, type Tier } from '@/lib/tiers'
 import type { Wall, WallPosition } from '@/lib/wall'
 import WallLink, { WALL_PENDING } from './WallLink'
 import styles from './Sponsors.module.css'
@@ -33,13 +33,13 @@ export default function Sponsors({ wall }: { wall: Wall }) {
               <span className={styles.statLine}>{wall.minted} positions minted</span>
               <span className={styles.statSep}> · </span>
               <span className={styles.statLine}>
-                Order of mint<span className={styles.statLive}> · updates live</span>
+                Order of mint
               </span>
             </p>
           </div>
 
           <div className={styles.tiers}>
-            {TIERS.map((tier) => (
+            {TIERS.filter((tier) => hasEntries(tier, wall.byTier[tier])).map((tier) => (
               <TierRow key={tier} tier={tier} positions={wall.byTier[tier]} />
             ))}
           </div>
@@ -58,12 +58,19 @@ export default function Sponsors({ wall }: { wall: Wall }) {
   )
 }
 
+/**
+ * The campaign is closed (30 October 2026): no tier advertises open slots any
+ * more, and a tier with nothing to print is left out rather than shown empty.
+ */
+function hasEntries(tier: Tier, positions: WallPosition[]): boolean {
+  return TIER_SPECS[tier].render === 'pfp'
+    ? positions.some((p) => p.pfp)
+    : positions.some((p) => p.name)
+}
+
 function TierRow({ tier, positions }: { tier: Tier; positions: WallPosition[] }) {
   const spec = TIER_SPECS[tier]
-  // Counted on every minted position, named or not: an anonymous buyer still
-  // owns the slot, so it must not be advertised as open.
-  const open = openLabel(tier, positions.length)
-  // ...but a text tier can only print the ones that came with a name.
+  // A text tier can only print the positions that came with a name.
   const named = positions.filter((p) => p.name)
 
   return (
@@ -80,9 +87,6 @@ function TierRow({ tier, positions }: { tier: Tier; positions: WallPosition[] })
               {p.name}
             </span>
           ))
-        )}
-        {open && (
-          <WallLink className={styles.open}>{open}</WallLink>
         )}
       </div>
     </div>
