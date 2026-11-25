@@ -1,0 +1,839 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>NFC Summit 2027 Portugal</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Cormorant+Garamond:ital,wght@0,400;1,400;1,500&family=Space+Grotesk:wght@400;500;600&display=swap">
+<style>
+:root{
+  --paper:#FFFFFF; --paper2:#F3F6FF; --red:#F6B800; --blue:#1442B2; --ink:#0E2A6E; --white:#FFFFFF; --emc:var(--blue); --onred:var(--ink);
+  --display:'Anton','Impact','Arial Narrow',sans-serif;
+  --serif:'Cormorant Garamond','Times New Roman',serif;
+  --text:'Space Grotesk','Helvetica Neue',Arial,sans-serif;
+  --gut:max(20px, env(safe-area-inset-left, 0px));
+  --gutr:max(20px, env(safe-area-inset-right, 0px));
+  color-scheme:light;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--text);font-size:17px;line-height:1.45}
+img,video{max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1440px;margin:0 auto;padding-left:var(--gut);padding-right:var(--gutr)}
+.display{font-family:var(--display);font-weight:400;text-transform:uppercase;line-height:.9;letter-spacing:-.01em;text-wrap:balance}
+.serif{font-family:var(--serif);font-style:italic;font-weight:400;line-height:1}
+.label{font-weight:600;font-size:13px;letter-spacing:.2em;text-transform:uppercase}
+.pill{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:40px;padding:16px 28px;font-weight:600;font-size:15px;text-transform:uppercase;letter-spacing:.04em;border:1.5px solid transparent;transition:transform .15s ease, box-shadow .15s ease;cursor:pointer;font-family:var(--text)}
+.pill:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 rgba(0,0,0,.4)}
+.pill:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.pill.dark{background:var(--ink);color:var(--paper)}
+.pill.line{background:var(--paper);color:var(--ink);border-color:var(--ink)}
+.pill.white{background:#fff;color:var(--ink)}
+.pill.red{background:var(--red);color:var(--onred)}
+.dots{background-image:radial-gradient(currentColor 1.3px,transparent 1.8px);background-size:10px 10px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.rv{opacity:0;transform:translateY(34px);transition:opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.08s}.rv.d2{transition-delay:.16s}.rv.d3{transition-delay:.24s}
+
+/* nav */
+.nav{position:absolute;left:0;right:0;top:0;z-index:20}
+.nav .in{display:flex;justify-content:space-between;align-items:center;height:74px;border-bottom:1.5px solid currentColor}
+.nav .star{font-size:40px;line-height:1;display:inline-block;transition:transform .6s ease}
+.nav .star:hover{transform:rotate(180deg)}
+.nav nav{display:flex;gap:26px;align-items:center;font-weight:500;font-size:16px}
+.nav nav a:not(.pill):hover{text-decoration:underline;text-underline-offset:4px}
+.nav .pill{padding:10px 20px;font-size:13px}
+@media(max-width:860px){.nav nav a:not(.pill){display:none}}
+
+.burger{width:44px;height:44px;border:0;background:none;color:inherit;cursor:pointer;display:flex;flex-direction:column;justify-content:center;gap:7px;padding:8px}
+.burger i{display:block;height:2px;background:currentColor;transition:transform .3s ease}
+.burger:focus-visible{outline:3px solid var(--red)}
+.menu{position:fixed;inset:0;z-index:100;background:var(--ink);color:var(--paper);display:flex;flex-direction:column;padding:22px var(--gutr) calc(28px + env(safe-area-inset-bottom, 0px)) var(--gut);transform:translateY(-102%);transition:transform .5s cubic-bezier(.2,.8,.2,1);overflow-y:auto;visibility:hidden}
+.menu.on{transform:none;visibility:visible}
+.menu .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:clamp(14px,3vh,34px)}
+.menu .x{font:600 13px var(--text);letter-spacing:.14em;text-transform:uppercase;background:none;border:1.5px solid var(--paper);color:var(--paper);border-radius:30px;padding:10px 18px;cursor:pointer}
+.menu ol{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;flex:1}
+.menu ol a{display:flex;align-items:baseline;gap:18px;padding:clamp(6px,1.2vh,12px) 0;border-bottom:1.5px solid rgba(249,233,204,.25);font-family:var(--display);text-transform:uppercase;font-size:clamp(34px,7.2vh,76px);line-height:1;transition:color .2s ease, padding .2s ease}
+.menu ol a small{font:600 13px var(--text);letter-spacing:.18em;opacity:.7;min-width:40px}
+.menu ol a:hover,.menu ol a:focus-visible{color:var(--emc);padding-left:14px;outline:none}
+.menu .more{display:flex;gap:10px 26px;flex-wrap:wrap;align-items:center;margin-top:22px;font-weight:600;font-size:14px;letter-spacing:.08em;text-transform:uppercase}
+.menu .more a:not(.pill):hover{text-decoration:underline;text-underline-offset:4px}
+
+/* sprites */
+.sp{position:absolute;width:48px;height:48px;background-image:url(img/sprites.png);background-size:4000% 3600%;background-repeat:no-repeat;image-rendering:pixelated;pointer-events:none}
+.parade{position:relative;height:0;z-index:8;pointer-events:none}
+.parade .lane{position:absolute;left:0;right:0;bottom:-6px;height:96px;overflow:hidden}
+.parade .who{position:absolute;bottom:0;width:72px;display:flex;flex-direction:column;align-items:center}
+.parade .who .sp{position:relative;width:72px;height:72px}
+.parade .who b{font:600 9px var(--text);letter-spacing:.08em;background:var(--ink);color:var(--paper);padding:2px 6px;border-radius:8px;white-space:nowrap;margin-bottom:-2px}
+
+/* sticky ticket: the card that follows you down the page */
+.tix{position:fixed;right:max(18px, env(safe-area-inset-right, 0px));bottom:calc(18px + env(safe-area-inset-bottom, 0px));z-index:60;display:flex;flex-direction:column;align-items:center;gap:8px;perspective:700px;transition:opacity .3s ease, transform .3s ease}
+.tix.off{opacity:0;pointer-events:none;transform:translateY(30px)}
+.tix .c{position:relative;width:118px;height:160px;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.3,1.4,.4,1);transform:rotateZ(var(--tz,4deg)) rotateY(var(--ty,0deg))}
+.tix:hover .c{transform:rotateZ(0deg) rotateY(var(--ty,0deg)) translateY(-6px) scale(1.05)}
+.tix .f{position:absolute;inset:0;border-radius:12px;border:2px solid var(--ink);background:var(--paper2);box-shadow:5px 6px 0 var(--ink);backface-visibility:hidden;overflow:hidden;display:flex;flex-direction:column}
+.tix .f::before{content:"";position:absolute;inset:0;color:var(--blue);background-image:radial-gradient(currentColor 1.2px,transparent 1.7px);background-size:9px 9px;opacity:.35}
+.tix .f small{position:relative;font:600 8px var(--text);letter-spacing:.16em;text-transform:uppercase;padding:7px 8px 0;display:flex;justify-content:space-between}
+.tix .f img{position:relative;flex:1;min-height:0;object-fit:contain;padding:2px 6px}
+.tix .f strong{position:relative;font-family:var(--display);font-weight:400;font-size:15px;text-transform:uppercase;text-align:center;line-height:1;padding:0 4px 8px}
+.tix .bk{transform:rotateY(180deg);background:var(--red);color:var(--onred);align-items:center;justify-content:center;text-align:center;gap:6px}
+.tix .bk::before{color:var(--onred);opacity:.2}
+.tix .bk b{position:relative;font-family:var(--display);font-weight:400;font-size:26px;line-height:.9;text-transform:uppercase}
+.tix .bk i{position:relative;font-style:normal;font-size:26px;line-height:1}
+.tix .go{background:var(--red);color:var(--onred);border:2px solid var(--ink);border-radius:30px;padding:9px 14px;font:600 12px var(--text);letter-spacing:.06em;text-transform:uppercase;box-shadow:3px 4px 0 var(--ink);white-space:nowrap}
+@media(max-width:860px){
+  .tix{right:0;left:0;bottom:0;padding:10px var(--gutr) calc(10px + env(safe-area-inset-bottom, 0px)) var(--gut);flex-direction:row;justify-content:space-between;background:var(--paper);border-top:2px solid var(--ink)}
+  .tix .c{width:44px;height:60px}.tix .f{border-radius:6px;box-shadow:2px 3px 0 var(--ink)}.tix .f small,.tix .f strong{display:none}.tix .bk b{font-size:11px}.tix .bk i{display:none}
+  .tix .go{flex:1;margin-left:14px;text-align:center;padding:14px;font-size:14px}
+  body{padding-bottom:84px}
+}
+
+/* footer */
+footer{background:var(--ink);color:var(--paper);padding-block:26px 34px;font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+.menu,.strip,.film,.rib,.dark,footer,.tix .bk{--emc:var(--red)}
+.sky{position:absolute;inset:0;background:url(img/clouds.webp) 0 0/max(1200px,100%) auto;animation:drift 160s linear infinite}
+.sky.soft{opacity:.38}
+.sky.mask{background-image:url(img/cloudmask.webp);opacity:.22}
+@keyframes drift{to{background-position:max(1200px,100vw) 0}}
+/* hero */
+.hero{position:relative;height:min(100svh,900px);min-height:620px;overflow:hidden;background:var(--paper)}
+.hero .lis{position:absolute;left:0;right:0;bottom:0;width:100%;max-width:none;z-index:1;opacity:.95}
+.hero h1{position:absolute;left:0;right:0;top:86px;text-align:center;font-size:min(20.2vw,300px);white-space:nowrap;z-index:2;will-change:transform}
+.hero h1 span{display:inline-block;animation:drop 1.1s cubic-bezier(.22,.61,.36,1) backwards;animation-delay:calc(var(--i) * 40ms)}
+@keyframes drop{from{transform:translateY(-28%);opacity:0}}
+.hero .dragon{position:absolute;left:50%;bottom:-1%;height:76%;max-width:none;transform:translateX(-50%);z-index:3;will-change:transform;animation:rise 1.8s .25s cubic-bezier(.22,.61,.36,1) backwards}
+@keyframes rise{from{transform:translateX(-50%) translateY(7%);opacity:0}}
+.hero .meta{position:absolute;left:0;bottom:104px;z-index:5;background:var(--paper);padding:14px 20px 14px var(--gut);border-radius:0 14px 14px 0;font-weight:600;font-size:15px;line-height:1.25;text-transform:uppercase;max-width:min(420px,80%)}
+.hero .meta .serif{display:block;font-size:40px;text-transform:none;font-weight:500;margin-bottom:8px;color:var(--emc)}
+.hero .btns{position:absolute;left:var(--gut);bottom:30px;z-index:5;display:flex;gap:10px;flex-wrap:wrap}
+.hero .year{position:absolute;right:var(--gutr);bottom:10px;font-size:min(15vw,190px);color:var(--red);z-index:5;-webkit-text-stroke:3px var(--ink);paint-order:stroke fill}
+@keyframes float{50%{transform:translateY(-18px) rotate(20deg)}}
+@media(max-width:760px){
+  .hero{height:auto;min-height:0;padding-bottom:190px}
+  .hero h1{position:relative;top:auto;padding-top:96px;font-size:20vw}
+  .hero .dragon{position:relative;left:auto;bottom:auto;transform:none!important;animation:none;display:block;height:auto;width:112%;margin:-6vw -6% 0}
+  .hero .meta{bottom:86px}.hero .meta .serif{font-size:30px}
+  .hero .btns{bottom:22px}.hero .btns .pill{padding:13px 18px;font-size:13px}
+  .hero .year{bottom:200px;font-size:21vw;-webkit-text-stroke-width:2px}
+}
+/* marquee */
+.strip{background:var(--ink);color:var(--paper);overflow:hidden;white-space:nowrap;padding:18px 0;position:relative;z-index:6}
+.strip .run{display:inline-block;animation:run 38s linear infinite;font-family:var(--display);font-size:clamp(26px,3.2vw,44px);text-transform:uppercase}
+.strip span{margin:0 22px}.strip i{font-style:normal;color:var(--emc)}
+@keyframes run{to{transform:translateX(-50%)}}
+
+/* film: grows to full screen, then steps aside */
+.film{position:relative;height:300vh;background:var(--ink);color:var(--paper)}
+.film .st{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+.film .kick{position:absolute;left:0;right:0;top:11%;text-align:center;z-index:1;padding:0 20px}
+.film .kick h2{font-size:clamp(44px,7vw,110px)}.film .kick h2 em{font-style:normal;color:var(--emc)}
+.film .box{position:absolute;left:0;top:0;border-radius:18px;overflow:hidden;border:2px solid var(--paper);background:#000;z-index:3;will-change:transform,width,height;box-shadow:12px 14px 0 var(--red)}
+.film video{display:block;width:100%;height:100%;object-fit:cover}
+.film .snd{position:absolute;right:14px;bottom:14px;z-index:4;background:var(--paper);color:var(--ink);border:2px solid var(--ink);border-radius:30px;padding:9px 14px;font:600 12px var(--text);letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+.film .tag{position:absolute;left:14px;top:14px;z-index:4;background:var(--red);color:var(--onred);border-radius:30px;padding:6px 12px}
+.film .say{position:absolute;right:var(--gutr);top:50%;width:min(40vw,560px);transform:translateY(-50%);z-index:2;opacity:0;display:flex;flex-direction:column;gap:18px}
+.film .say h2{font-size:clamp(40px,5.4vw,84px)}.film .say h2 em{font-style:normal;color:var(--emc)}
+.film .say .serif{font-size:clamp(26px,2.6vw,38px);color:var(--paper)}
+.film .say p{font-size:19px;max-width:44ch}
+@media(max-width:860px){.film .say{right:auto;left:var(--gut);width:calc(100% - 40px);top:auto;bottom:11%;transform:none;gap:10px}.film .say h2{font-size:38px}.film .say p{font-size:16px}.film .kick{top:14%}}
+
+/* ribbons of 2026 photos */
+.rib{background:var(--ink);padding-block:10px clamp(60px,8vw,110px);overflow:hidden}
+.rib .row{display:flex;gap:14px;margin-bottom:14px;will-change:transform;width:max-content}
+.rib figure{margin:0;flex:0 0 auto;height:clamp(150px,22vw,300px);border-radius:14px;overflow:hidden;border:2px solid var(--paper);position:relative}
+.rib figure img{height:100%;width:auto;display:block;max-width:none}
+.rib figure:nth-child(3n+1){transform:rotate(-1.2deg)}.rib figure:nth-child(3n+2){transform:rotate(1deg)}
+.rib .cap{color:var(--paper);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:22px}
+
+/* idea + machines */
+.idea{position:relative;overflow:hidden;padding-block:clamp(70px,9vw,130px)}
+.idea .wrap{position:relative}
+.idea h2{font-size:clamp(50px,9vw,140px);max-width:11ch}
+.idea h2 em{font-style:normal;color:var(--emc)}
+.idea .lead{font-size:20px;max-width:52ch;margin:26px 0 22px}
+.idea .tagline{display:inline-block;background:var(--ink);color:var(--paper);border-radius:10px;padding:10px 16px;font-family:var(--display);text-transform:uppercase;font-size:clamp(18px,2.2vw,30px);line-height:1.05;margin-bottom:clamp(34px,5vw,60px);transform:rotate(-1deg)}
+.idea .tagline em{font-style:normal;color:#B5FF00}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-bottom:34px}
+.ticket{position:relative;background:var(--paper2);border:2px solid var(--ink);border-radius:18px;padding:0 26px 28px;box-shadow:8px 9px 0 var(--ink);display:flex;flex-direction:column;transition:transform .25s ease}
+.ticket:hover{transform:translateY(-8px) rotate(-1deg)}
+.ticket .draw{position:relative;height:clamp(400px,40vw,540px);margin:0 -26px 18px;border-bottom:2px dashed var(--ink);border-radius:16px 16px 0 0;overflow:hidden;background:var(--ink)}
+.ticket .draw::before{content:"";position:absolute;left:7%;right:7%;top:15%;bottom:0;background:var(--paper);border:2px solid var(--ink);border-bottom:0;box-shadow:inset 0 0 0 6px var(--paper),inset 0 0 0 8px var(--blue);background-image:radial-gradient(var(--blue) 1.3px,transparent 1.8px);background-size:13px 13px}
+.ticket .draw::after{content:"";position:absolute;left:3%;right:3%;top:0;height:17%;background:repeating-linear-gradient(90deg,var(--red) 0 22px,var(--paper) 22px 44px);border:2px solid var(--ink);border-radius:0 0 14px 14px;box-shadow:0 5px 0 rgba(0,0,0,.25)}
+.ticket .sign{position:absolute;left:8%;right:8%;top:19%;z-index:1;text-align:center;font-family:var(--display);text-transform:uppercase;line-height:.86;font-size:clamp(38px,4.5vw,64px);letter-spacing:.02em;color:transparent;background-image:radial-gradient(circle,var(--ink) 0 2.5px,transparent 2.9px);background-size:6px 6px;-webkit-background-clip:text;background-clip:text;filter:drop-shadow(2px 2px 0 rgba(232,69,44,.55))}
+.ticket .sign em{display:block;font-style:normal}
+@media(max-width:860px){.ticket .sign{font-size:clamp(40px,13vw,62px)}}
+.ticket .draw img{position:absolute;bottom:0;height:45%;max-width:none;z-index:2;transition:transform .4s cubic-bezier(.2,1.3,.4,1);transform-origin:50% 100%}
+.ticket .draw img:nth-of-type(1){left:50%;transform:translateX(-50%)}
+.ticket.two .draw img:nth-of-type(1){left:31%;transform:translateX(-50%) rotate(-3deg)}
+.ticket.two .draw img:nth-of-type(2){left:69%;transform:translateX(-50%) rotate(3deg)}
+.ticket:hover .draw img:nth-of-type(1){transform:translateX(-50%) rotate(-3deg) scale(1.06)}
+.ticket.two:hover .draw img:nth-of-type(1){transform:translateX(-50%) rotate(-7deg) scale(1.06)}
+.ticket.two:hover .draw img:nth-of-type(2){transform:translateX(-50%) rotate(7deg) scale(1.06)}
+.ticket b{display:block;font-family:var(--display);font-weight:400;font-size:clamp(50px,6vw,88px);line-height:.95;text-transform:uppercase}
+.ticket:nth-child(1) b{color:var(--emc)}.ticket:nth-child(2) b{color:var(--blue)}
+.ticket span{display:block;font-weight:600;font-size:13px;letter-spacing:.2em;margin-bottom:6px}
+.ticket .serif{font-size:26px;margin:8px 0 8px}
+.ticket p{max-width:32ch}
+@media(max-width:860px){.steps{grid-template-columns:1fr}}
+
+/* worlds: each card slides over the previous one */
+.world{position:relative;background:var(--sb);color:var(--sf);border-radius:36px 36px 0 0;margin-top:-36px;padding-block:clamp(56px,7vw,90px) clamp(76px,8vw,110px)}
+.worlds .world:first-child{margin-top:0}
+.world .wrap{display:grid;grid-template-columns:minmax(0,480px) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:stretch;width:100%}
+.card{position:relative;aspect-ratio:500/660;width:100%;max-width:480px;border-radius:22px;background:var(--paper);color:var(--ink);box-shadow:10px 12px 0 rgba(0,0,0,.24);transition:transform .25s ease;will-change:transform}
+.card::before{content:"";position:absolute;inset:0;border-radius:22px;color:var(--blue);background-image:radial-gradient(currentColor 1.5px,transparent 2px);background-size:14px 14px;opacity:.45}
+.card::after{content:"";position:absolute;inset:14px;border:2px solid var(--ink);border-radius:12px;box-shadow:inset 0 0 0 5px var(--paper),inset 0 0 0 6.5px var(--ink);pointer-events:none}
+.card h3{position:absolute;left:8%;top:5.5%;right:8%;font-size:clamp(22px,2.9vw,40px);z-index:2}
+.card small{position:absolute;right:9%;bottom:6%;font-weight:600;font-size:12px;letter-spacing:.18em;z-index:2}
+.card img{position:absolute;left:50%;bottom:8%;transform:translateX(-50%);max-width:88%;max-height:74%;z-index:1}
+.world .info{display:flex;flex-direction:column;justify-content:space-between;gap:36px;min-width:0}
+.world .info h2{font-size:clamp(50px,8.6vw,128px);margin-top:14px}
+.world .info .serif{font-size:clamp(34px,4.2vw,58px);margin-bottom:18px}
+.world .info p{max-width:46ch;font-size:19px;margin-bottom:24px}
+.world ul{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+.world li{border:1.5px solid currentColor;border-radius:30px;padding:6px 14px;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.world .pill{background:var(--sf);color:var(--sb)}
+@media(max-width:860px){.world .wrap{grid-template-columns:1fr}.card{max-width:400px}}
+@media(min-width:1000px) and (min-height:720px){.world{position:sticky;top:0;min-height:100svh;display:flex;align-items:center}}
+
+/* venue map */
+.venue{background:var(--paper);padding-block:clamp(70px,9vw,130px);position:relative;z-index:2;border-radius:36px 36px 0 0;margin-top:-36px;overflow:hidden}
+.venue .wrap{position:relative}
+.venue .top{display:flex;justify-content:space-between;align-items:end;gap:28px;flex-wrap:wrap;margin-bottom:clamp(24px,4vw,44px)}
+.venue h2{font-size:clamp(46px,7.4vw,112px)}.venue h2 em{font-style:normal;color:var(--emc)}
+.venue .top p{max-width:42ch;font-size:19px}
+.mapbox{overflow-x:auto;border:2px solid var(--ink);border-radius:22px;background:var(--paper);box-shadow:10px 12px 0 var(--ink)}
+.vmap{position:relative;min-width:820px;overflow:hidden;border-radius:20px}
+.vmap>img{display:block;width:100%}
+.vmap .sp{left:0;top:0;transform-origin:50% 100%}
+.vflag{position:absolute;transform:translate(-50%,-100%);z-index:3000;display:flex;flex-direction:column;align-items:center;animation:bob 3.2s ease-in-out infinite;animation-delay:calc(var(--i) * -.45s)}
+.vflag b{background:var(--ink);color:var(--paper);font-family:var(--display);font-weight:400;font-size:clamp(13px,1.5vw,21px);text-transform:uppercase;padding:6px 11px 5px;border-radius:8px;white-space:nowrap;box-shadow:3px 4px 0 var(--red);transition:background .2s ease,color .2s ease}
+.vflag small{font:600 10px var(--text);letter-spacing:.1em;text-transform:uppercase;background:var(--paper);border:1.5px solid var(--ink);border-radius:20px;padding:2px 8px;margin-top:4px;white-space:nowrap}
+.vflag i{width:2px;height:20px;background:var(--ink);display:block}
+.vflag::after{content:"";width:12px;height:12px;border-radius:50%;background:var(--red);border:2px solid var(--ink);animation:ping 2s ease-out infinite;animation-delay:calc(var(--i) * -.3s)}
+a.vflag:hover b,a.vflag:focus-visible b{background:var(--red);color:var(--onred)}
+.vflag.star b{background:var(--red);color:var(--onred);box-shadow:3px 4px 0 var(--ink)}
+@keyframes bob{50%{transform:translate(-50%,calc(-100% - 7px))}}
+@keyframes ping{0%{box-shadow:0 0 0 0 var(--red)}100%{box-shadow:0 0 0 16px transparent}}
+
+/* sponsors */
+.spons{background:var(--paper);padding-block:clamp(70px,9vw,130px);position:relative;z-index:2;border-radius:36px 36px 0 0;margin-top:-36px}
+.spons h2{font-size:clamp(46px,7.4vw,112px)}.spons h2 em{font-style:normal;color:var(--emc)}
+.spons .sub{font-size:clamp(26px,3vw,40px);color:var(--blue);margin:12px 0 clamp(34px,5vw,60px)}
+.spons h3{display:flex;align-items:center;gap:14px;margin-bottom:18px}.spons h3::after{content:"";flex:1;height:1.5px;background:var(--ink)}
+.gold{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-bottom:clamp(36px,5vw,60px)}
+.gold div{border:2px solid var(--ink);border-radius:18px;background:var(--paper2);box-shadow:8px 9px 0 var(--ink);padding:clamp(30px,5vw,64px) 20px;text-align:center;font-family:var(--display);font-size:clamp(34px,5vw,72px);text-transform:uppercase;line-height:1;transition:transform .25s ease}
+.gold div:hover{transform:translateY(-6px) rotate(-1deg)}
+.gold div:nth-child(1){color:var(--emc)}.gold div:nth-child(2){color:var(--blue)}
+.comm{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:14px;margin-bottom:clamp(30px,4vw,50px)}
+.comm img,.comm span{display:block;width:100%;aspect-ratio:1;border-radius:14px;border:2px solid var(--ink);object-fit:cover;transition:transform .2s ease}
+.comm img:hover{transform:scale(1.08) rotate(-3deg)}
+.comm span{border-style:dashed;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:34px;color:var(--emc)}
+.wallnames{display:flex;flex-wrap:wrap;gap:6px 8px;margin-bottom:clamp(30px,4vw,50px);max-height:340px;overflow-y:auto;padding:4px 4px 4px 0}
+.wallnames span{border:1.5px solid var(--ink);border-radius:30px;padding:4px 10px;font:600 11px var(--text);letter-spacing:.08em;white-space:nowrap;background:var(--paper2)}
+.wallnames span:nth-child(7n+2){background:var(--red);color:var(--onred)}.wallnames span:nth-child(11n+5){background:var(--blue);color:#fff}.wallnames span:nth-child(13n+9){background:var(--ink);color:#B5FF00}
+.spons .foot{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;border-top:1.5px solid var(--ink);padding-top:24px}
+.spons .foot p{max-width:46ch}
+
+/* days */
+.prog{background:var(--blue);color:#fff;padding-block:clamp(70px,9vw,130px);position:relative;z-index:2}
+.prog h2{font-size:clamp(46px,7.4vw,112px);margin-bottom:clamp(30px,4vw,56px)}
+.days{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.day{background:var(--paper);color:var(--ink);border-radius:18px;padding:28px 26px 30px;display:flex;flex-direction:column;gap:14px;transition:transform .25s ease}
+.day:hover{transform:translateY(-8px) rotate(-1deg)}
+.day b{font-family:var(--display);font-weight:400;font-size:clamp(54px,6vw,92px);line-height:.9;text-transform:uppercase}
+.day:nth-child(1) b{color:var(--blue)}.day:nth-child(2) b{color:var(--emc)}
+.day .serif{font-size:32px}
+.day ul{padding-left:18px;display:flex;flex-direction:column;gap:6px}
+@media(max-width:860px){.days{grid-template-columns:1fr}}
+
+/* doors */
+.doors{padding-block:clamp(70px,9vw,130px)}
+.doors h2{font-size:clamp(46px,7.4vw,112px);margin-bottom:clamp(30px,4vw,56px)}.doors h2 em{font-style:normal;color:var(--emc)}
+.dgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.door{border:2px solid var(--ink);border-radius:20px;padding:28px 26px;display:flex;flex-direction:column;gap:14px;background:var(--db);color:var(--df);box-shadow:8px 9px 0 var(--ink);min-height:340px;transition:transform .25s ease}
+.door:hover{transform:translate(-4px,-6px)}
+.door h3{font-size:clamp(38px,4vw,58px)}
+.door .serif{font-size:28px}
+.door p{flex:1}
+.door .tagl{align-self:flex-start;border:1.5px solid currentColor;border-radius:30px;padding:5px 12px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+@media(max-width:860px){.dgrid{grid-template-columns:1fr}.door{min-height:0}}
+
+/* final */
+.final{background:var(--red);color:var(--onred);position:relative;overflow:hidden;border-radius:36px 36px 0 0;padding-block:clamp(70px,9vw,130px) 0;text-align:center}
+.final .lis{position:absolute;left:0;right:0;bottom:0;width:100%;max-width:none;filter:brightness(0) invert(1);opacity:.28}
+.final .wrap{position:relative}
+.count{display:flex;justify-content:center;gap:clamp(14px,3vw,44px);margin-bottom:26px}
+.count b{display:block;font-family:var(--display);font-weight:400;font-size:clamp(64px,13vw,200px);line-height:.9}
+.final h2{font-size:clamp(36px,5vw,72px)}
+.final .serif{font-size:clamp(26px,3vw,42px);margin:14px 0 30px}
+.final .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.final>.wrap>img{position:relative;display:block;width:min(520px,84%);margin:40px auto -4px}
+.nav nav a:not(.pill){background:var(--paper);padding:3px 9px;border-radius:14px}.nav nav{gap:10px}.nav .star{background:var(--paper);border-radius:50%;width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;font-size:32px}
+
+/* worlds as a deck: the stage locks, each card slides over the previous one */
+.worlds.deck{position:relative}
+.worlds.deck .wstage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:var(--ink)}
+.worlds.deck .world{position:absolute!important;inset:0;margin:0;min-height:0;display:flex;align-items:center;padding-block:clamp(20px,4vh,56px);will-change:transform;transform-origin:50% 0;box-shadow:0 -18px 40px rgba(0,0,0,.28)}
+.worlds.deck .world:first-child{border-radius:0;box-shadow:none}
+.worlds.deck .world .wrap{grid-template-columns:auto minmax(0,1fr);align-items:center}
+.worlds.deck .card{height:min(660px,calc(100svh - 150px));width:auto;max-width:none}
+.worlds.deck .world .info{gap:clamp(14px,3vh,36px);justify-content:center}
+.worlds.deck .world .info h2{font-size:clamp(44px,min(8.6vw,14vh),128px)}
+.worlds.deck .world .info .serif{font-size:clamp(28px,min(4.2vw,6vh),58px)}
+.wdots{position:absolute;right:max(14px,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);z-index:20;display:flex;flex-direction:column;gap:8px}
+.wdots i{width:10px;height:10px;border-radius:50%;border:2px solid #fff;background:transparent;transition:background .2s ease,transform .2s ease;mix-blend-mode:difference}
+.wdots i.on{background:#fff;transform:scale(1.3)}
+@media(max-width:860px){
+  .worlds.deck .world{align-items:flex-start;padding-block:16px 100px}
+  .worlds.deck .world .wrap{grid-template-columns:1fr;gap:14px}
+  .worlds.deck .card{height:36svh;margin:0 auto}
+  .worlds.deck .card h3{font-size:18px}
+  .worlds.deck .world .info{gap:8px}
+  .worlds.deck .world .info h2{font-size:clamp(34px,10.5vw,52px);margin-top:4px}
+  .worlds.deck .world .info .serif{font-size:26px;margin-bottom:8px}
+  .worlds.deck .world .info p{font-size:15px;margin-bottom:12px}
+  .worlds.deck .world ul{display:none}
+  .worlds.deck .world .pill{padding:12px 20px;font-size:13px}
+}
+
+/* livelier entrances */
+.idea h2 .w{display:inline-block;transform:translateY(90%) rotate(5deg);opacity:0;transition:transform .7s cubic-bezier(.2,1.3,.4,1),opacity .4s ease;transition-delay:calc(var(--k) * 70ms)}
+.idea h2.in .w{transform:none;opacity:1}
+.idea .tagline.rv{transform:translateX(-60px) rotate(-6deg)}
+.idea .tagline.rv.in{transform:rotate(-1deg)}
+.ticket.rv{transform:translateY(90px) rotate(var(--tr,-5deg));transition:opacity .5s ease,transform .9s cubic-bezier(.2,1.4,.4,1)}
+.ticket.rv:nth-child(2){--tr:4deg}.ticket.rv:nth-child(3){--tr:-3deg}
+.ticket.rv.in{transform:none}
+.ticket .draw::after{transform-origin:50% 0;transform:scaleY(0);transition:transform .5s cubic-bezier(.2,1.5,.4,1) .35s}
+.ticket.in .draw::after{transform:none}
+.ticket .sign{clip-path:inset(0 100% 0 0);transition:clip-path 1s steps(14) .6s}
+.ticket.in .sign{clip-path:inset(0 0 0 0)}
+.ticket .draw img{opacity:0;translate:0 70%;transition:transform .4s cubic-bezier(.2,1.3,.4,1),translate .7s cubic-bezier(.2,1.5,.4,1) .9s,opacity .2s ease .9s}
+.ticket .draw img:nth-of-type(2){transition-delay:0s,1.05s,1.05s}
+.ticket.in .draw img{opacity:1;translate:0 0;animation:wob 3.6s ease-in-out 2s infinite}
+.ticket.in .draw img:nth-of-type(2){animation-delay:2.6s}
+@keyframes wob{0%,100%{rotate:0deg}25%{rotate:-2.5deg}75%{rotate:2.5deg}}
+.ticket b{display:inline-block;transform:scale(.4);opacity:0;transition:transform .5s cubic-bezier(.2,1.8,.4,1) 1.1s,opacity .2s ease 1.1s;transform-origin:0 100%}
+.ticket.in b{transform:none;opacity:1}
+.day.rv{transform:translateY(70px) rotate(-4deg)}.day.rv:nth-child(2){transform:translateY(70px) rotate(3deg)}.day.rv.in{transform:none}
+.door.rv{transform:translateY(70px) scale(.92)}.door.rv.in{transform:none}
+.gold.rv div{transform:scale(.8);opacity:0;transition:transform .6s cubic-bezier(.2,1.5,.4,1),opacity .3s ease}.gold.rv div:nth-child(2){transition-delay:.12s}.gold.rv.in div{transform:none;opacity:1}
+.comm.rv img,.comm.rv span{transform:scale(0) rotate(-20deg);transition:transform .5s cubic-bezier(.2,1.6,.4,1);transition-delay:calc(var(--k,0) * 45ms)}.comm.rv.in img,.comm.rv.in span{transform:none}
+.vflag{opacity:0;transition:opacity .4s ease;transition-delay:calc(var(--i) * 120ms + .3s)}.mapbox.in .vflag{opacity:1}
+@media(prefers-reduced-motion:reduce){.idea h2 .w,.ticket .draw img,.ticket b,.gold.rv div,.comm.rv img,.comm.rv span,.vflag{opacity:1;transform:none;translate:0 0;transition:none}.ticket .sign{clip-path:none}.ticket .draw::after{transform:none}}
+
+/* scroll-linked motion */
+.strip .run{animation:none;will-change:transform}
+.steps,.days,.dgrid,.gold{transform:skewY(var(--sk,0deg));transition:transform .12s linear}
+.worlds.deck .card{rotate:calc((1 - var(--t,1)) * -14deg);translate:calc((1 - var(--t,1)) * -90px) calc((1 - var(--t,1)) * 60px)}
+.worlds.deck .world .info{translate:calc((1 - var(--t,1)) * 160px) 0;opacity:calc(.15 + var(--t,1) * .85)}
+.worlds.deck .world .info h2{translate:calc((1 - var(--t,1)) * 120px) 0}
+.worlds.deck .card img{scale:calc(.8 + var(--t,1) * .2);transform-origin:50% 100%}
+.sbar{position:fixed;left:0;top:0;height:5px;width:100%;background:var(--red);transform-origin:0 50%;transform:scaleX(0);z-index:90;pointer-events:none}
+@media(prefers-reduced-motion:reduce){.steps,.days,.dgrid,.gold{transform:none}.worlds.deck .card,.worlds.deck .world .info,.worlds.deck .world .info h2{rotate:none;translate:none;opacity:1}}
+
+.ticket.rv,.ticket.rv.in,.day.rv,.day.rv.in,.day.rv:nth-child(2),.door.rv,.door.rv.in{transform:none}
+.mapbox.rv,.idea h2.rv,.idea .lead.rv,.prog h2.rv,.venue h2.rv,.spons h2.rv,.doors h2.rv,.wallnames.rv{transform:none}
+.idea .tagline.rv,.idea .tagline.rv.in{transform:none}
+.hero,.idea,.prog,.venue,.spons,.doors{overflow-x:clip}
+
+/* venue props */
+.vmap .prop{position:absolute;pointer-events:none}
+.vmap .prop svg{display:block;overflow:visible}
+.vmap .mat{border-radius:4px}
+.vmap .mat.fair{background:color-mix(in srgb,var(--red) 26%,transparent);border:1.5px dashed color-mix(in srgb,var(--red) 80%,var(--ink))}
+.vmap .mat.fair img{position:absolute;bottom:34%;width:30%;height:auto;transform-origin:50% 100%;animation:mbob 2.4s ease-in-out infinite}
+@keyframes mbob{50%{transform:translateY(-2px) rotate(-1.5deg)}}
+.vmap .mat.cards{background:color-mix(in srgb,var(--blue) 14%,transparent);border:1.5px dashed var(--blue)}
+.vmap .tbl{position:absolute;background:var(--paper2,#fff);border:1.5px solid var(--ink);box-shadow:0 3px 0 var(--blue);display:flex;flex-wrap:wrap;align-content:center;justify-content:space-around;gap:2px;padding:2px}
+.vmap .cards.h .tbl{left:6%;right:6%;top:36%;height:26%}
+.vmap .cards.v .tbl{left:28%;right:28%;top:5%;bottom:7%;flex-direction:column}
+.vmap .tbl span{width:6px;height:8px;background:#fff;border:1px solid var(--ink);border-top:2px solid var(--red);transform:rotate(var(--r))}
+.vmap .tcg{position:absolute;left:-2px;top:-15px;background:var(--red);color:var(--onred,#fff);font:400 9px/1 Anton,Impact,sans-serif;letter-spacing:.5px;padding:3px 5px 2px;border:1.5px solid var(--ink);border-radius:3px}
+.vmap .bunting{position:absolute;left:0;top:0;width:100%;height:100%;z-index:1500;pointer-events:none}
+.vflag.down{transform:translate(-50%,0);flex-direction:column-reverse;animation-name:bobd}
+.vflag.down small{margin:0 0 4px}
+@keyframes bobd{50%{transform:translate(-50%,7px)}}
+.vflag{z-index:3000}
+@media(max-width:860px){.gold{grid-template-columns:1fr}}
+.vflag b{font-size:clamp(10px,1.05vw,15px);padding:4px 8px 3px;border-radius:6px;box-shadow:2px 3px 0 var(--red)}
+.vflag small{font-size:8px;padding:1px 6px;margin-top:3px}
+.vflag i{height:12px}
+.vflag::after{width:9px;height:9px}
+</style>
+<header class="nav"><div class="wrap"><div class="in">
+  <a class="star" href="#top" aria-label="NFC Summit 2027">✦</a>
+  <nav><a href="#film">2026</a><a href="#machines">The fair</a><a href="#worlds">Six worlds</a><a href="#days">Three days</a><a href="#venue">The venue</a><a href="#sponsors">Sponsors</a><a class="pill dark" href="#join">Get your ticket</a></nav>
+</div></div></header>
+
+<section class="hero" id="top">
+  <div class="sky"></div><img class="lis" src="img/lisbon.webp" alt="">
+  <h1 class="display" aria-label="NFC Summit"><span style="--i:0">N</span><span style="--i:1">F</span><span style="--i:2">C</span><span style="--i:3">&nbsp;</span><span style="--i:4">S</span><span style="--i:5">u</span><span style="--i:6">m</span><span style="--i:7">m</span><span style="--i:8">i</span><span style="--i:9">t</span></h1>
+  <img class="dragon" src="img/hero.webp" alt="The NFC dragon as a fairground ringmaster, in a top hat and red coat, arms open">
+  <div class="meta"><span class="serif">Play the art.</span>The Digital Pop Culture Festival<br>27–29 May 2027 · Unicorn Factory · Lisbon</div>
+  <div class="btns"><a class="pill dark" href="#join">Get your ticket</a><a class="pill line" href="#worlds">See the six worlds</a></div>
+  <div class="year display" aria-hidden="true">2027</div>
+</section>
+
+<div class="strip" aria-hidden="true"><div class="run"><span>1 ticket</span><i>✱</i><span>6 worlds</span><i>✱</i><span>3 days</span><i>✱</i><span>Lisbon</span><i>✱</i><span>Play the art</span><i>✱</i><span>Sixth edition</span><i>✱</i><span>Five years of NFC</span><i>✱</i><span>1 ticket</span><i>✱</i><span>6 worlds</span><i>✱</i><span>3 days</span><i>✱</i><span>Lisbon</span><i>✱</i><span>Play the art</span><i>✱</i><span>Sixth edition</span><i>✱</i><span>Five years of NFC</span><i>✱</i></div></div>
+<div class="parade" id="parade1" aria-hidden="true"></div>
+
+<section class="film" id="film" aria-label="NFC Summit 2026, the film">
+  <div class="st">
+    <div class="kick"><span class="label">NFC Summit 2026 · The film</span><h2 class="display">It already <em>happened.</em></h2></div>
+    <div class="box" id="fbox">
+      <video id="fvid" src="vid/aftermovie.mp4" poster="img/poster.jpg" muted loop playsinline preload="metadata"></video>
+      <span class="tag label">2026</span>
+      <button class="snd" id="fsnd" type="button" aria-pressed="false">Sound on</button>
+    </div>
+    <div class="say" id="fsay">
+      <span class="label">Sixth edition</span>
+      <h2 class="display">The reference for <em>digital pop culture</em> in Europe.</h2>
+      <p class="serif">2027 marks our fifth anniversary.</p>
+      <p>Five years of bringing together artists, collectors, builders, and fans in Lisbon. To celebrate our birthday, we're not just doing more of the same. We're taking things to a whole new level. Just wait until you see what we've built.</p>
+    </div>
+  </div>
+</section>
+
+<section class="rib" aria-label="Photos from NFC Summit 2026">
+  <div class="row" id="rib1"><figure><img src="img/p085.webp" alt="Crowd in front of a giant wall of digital artworks" loading="lazy"></figure><figure><img src="img/p037.webp" alt="The entrance street with a giant pixel skull mural" loading="lazy"></figure><figure><img src="img/p030.webp" alt="Two cosplayers posing" loading="lazy"></figure><figure><img src="img/p067.webp" alt="Two silhouettes inside an immersive light room" loading="lazy"></figure><figure><img src="img/p068.webp" alt="Players around a long card table" loading="lazy"></figure><figure><img src="img/p058.webp" alt="A speaker in a yellow smiley mask" loading="lazy"></figure><figure><img src="img/p026.webp" alt="Audience at a talk in the factory hall" loading="lazy"></figure><figure><img src="img/p064.webp" alt="A visitor among the old milling machines" loading="lazy"></figure></div>
+  <div class="row" id="rib2"><figure><img src="img/p034.webp" alt="A young seller behind a table of figurines" loading="lazy"></figure><figure><img src="img/p063.webp" alt="A group in masks and costumes" loading="lazy"></figure><figure><img src="img/p045.webp" alt="Three artworks on a mesh wall in the factory" loading="lazy"></figure><figure><img src="img/p025.webp" alt="A player at an arcade basketball machine" loading="lazy"></figure><figure><img src="img/p007.webp" alt="Pixel portraits painted on a wall" loading="lazy"></figure><figure><img src="img/p078.webp" alt="The party terrace above the river" loading="lazy"></figure><figure><img src="img/p065.webp" alt="A large LED artwork between the machines" loading="lazy"></figure><figure><img src="img/p002.webp" alt="A DJ in front of the crowd by the sea" loading="lazy"></figure><figure><img src="img/p036.webp" alt="Kids playing at the gaming tables" loading="lazy"></figure></div>
+  <div class="wrap"><div class="cap"><span class="label">Lisbon, June 2026</span><span class="label">Photos: Guillermo Vidal and friends</span></div></div>
+</section>
+
+<section class="idea" id="machines"><div class="sky soft"></div><div class="wrap">
+  <span class="label rv">New in 2027 · Art Fun Fair</span>
+  <h2 class="display rv">You don't look at the art. <em>You play it.</em></h2>
+  <p class="lead rv">This year the summit becomes a fairground, and it is not an ordinary one. Every machine has a screen, a score and an artist behind it. Art at the service of entertainment, by communities, for communities.</p>
+
+  <p class="tagline rv">Every stand is an <em>artistic digital activation.</em></p>
+  <div class="steps">
+    <div class="ticket two rv"><div class="draw"><div class="sign" aria-label="Artistic digital activation">Artistic<em>Digital</em><em>Activation</em></div><img src="img/s_arcade.webp" alt="Drawing of an arcade cabinet" loading="lazy"><img src="img/s_photobooth.webp" alt="Drawing of a photobooth" loading="lazy"></div><span>01</span><b>Play</b><p class="serif">Pick a machine made by an artist.</p><p>Shoot, grab, pose or press start. Every stand carries one artist's universe.</p></div>
+    <div class="ticket rv d1"><div class="draw"><div class="sign" aria-label="Artistic digital activation">Artistic<em>Digital</em><em>Activation</em></div><img src="img/s_punch.webp" alt="Drawing of a punching ball machine with a score screen" loading="lazy"></div><span>02</span><b>Win</b><p class="serif">Your score goes up on the screen.</p><p>Each stand has its own leaderboard and its own prizes.</p></div>
+    <div class="ticket rv d2"><div class="draw"><div class="sign" aria-label="Artistic digital activation">Artistic<em>Digital</em><em>Activation</em></div><img src="img/s_claw.webp" alt="Drawing of a claw machine full of prizes" loading="lazy"></div><span>03</span><b>Keep</b><p class="serif">You leave with a print.</p><p>A printed piece that carries the artist's name. The souvenir is the artwork.</p></div>
+  </div>
+  <a class="pill dark rv" href="fair.html">Discover the Art Fun Fair →</a>
+</div></section>
+
+<div class="worlds" id="worlds">
+  <section class="world" data-face="fair" style="--sb:var(--red);--sf:var(--onred)"><div class="wrap">
+    <a class="card tilt" href="fair.html" aria-label="Open Art Fun Fair"><h3 class="display">Art Fun Fair</h3><img src="img/fair.webp" alt="Dragon throwing a ball at a stall where the targets are small screens" loading="lazy"><small>01 / 06</small></a>
+    <div class="info"><div><span class="label">World 01 / 06</span><h2 class="display">Art Fun Fair</h2></div>
+      <div><p class="serif">Play the art.</p><p>Photobooths, arcades, claw machines and shooting stalls designed by artists. Every game has a screen, a score and a print to take home.</p><ul><li>Photobooths</li><li>Arcades</li><li>Claw machines</li><li>Leaderboards</li></ul><a class="pill" href="fair.html">Open this world →</a></div></div>
+  </div></section>
+  <section class="world" data-face="kawaii" style="--sb:var(--blue);--sf:#fff"><div class="wrap">
+    <a class="card tilt" href="kawaii.html" aria-label="Open Kawaii Summit"><h3 class="display">Kawaii Summit</h3><img src="img/kawaii.webp" alt="Dragon holding trading cards and a phone showing a holographic card" loading="lazy"><small>02 / 06</small></a>
+    <div class="info"><div><span class="label">World 02 / 06</span><h2 class="display">Kawaii Summit</h2></div>
+      <div><p class="serif">The card is the artwork.</p><p>Half tournament, half art show. Pokémon, One Piece, Yu-Gi-Oh! and more on the tables. On the walls, the card as an artwork, with PHANTASM by Polygon1993.</p><ul><li>Pokémon</li><li>One Piece</li><li>Yu-Gi-Oh!</li><li>Art exhibitions</li><li>PHANTASM</li></ul><a class="pill" href="kawaii.html">Open this world →</a></div></div>
+  </div></section>
+  <section class="world" data-face="conf" style="--sb:var(--paper);--sf:var(--ink)"><div class="wrap">
+    <a class="card tilt" href="conference.html" aria-label="Open Conference"><h3 class="display">Conference</h3><img src="img/conf.webp" alt="Dragon speaking into a microphone in front of an LED wall" loading="lazy"><small>03 / 06</small></a>
+    <div class="info"><div><span class="label">World 03 / 06</span><h2 class="display">Conference</h2></div>
+      <div><p class="serif">Two days, one stage.</p><p>Day one is a working day: the brightest minds in the space, in working groups, one big theme every two hours. Day two is the symposium: main stage, big names.</p><ul><li>Working groups</li><li>Symposium</li><li>Main stage</li></ul><a class="pill" href="conference.html">Open this world →</a></div></div>
+  </div></section>
+  <section class="world" data-face="artfactory" style="--sb:var(--red);--sf:var(--onred)"><div class="wrap">
+    <a class="card tilt" href="art-factory.html" aria-label="Open Art Factory"><h3 class="display">Art Factory</h3><img src="img/artfactory.webp" alt="Dragon painting with a stylus on a screen mounted on an easel" loading="lazy"><small>04 / 06</small></a>
+    <div class="info"><div><span class="label">World 04 / 06</span><h2 class="display">Art Factory</h2></div>
+      <div><p class="serif">Curated, installed, alive.</p><p>The museum of the summit. Four floors of a former flour mill, in the heart of Unicorn Factory, with the machines still in place.</p><ul><li>Four floors</li><li>Curations</li><li>Installations</li></ul><a class="pill" href="art-factory.html">Open this world →</a></div></div>
+  </div></section>
+  <section class="world" data-face="hack" style="--sb:var(--blue);--sf:#fff"><div class="wrap">
+    <a class="card tilt" href="hackathon.html" aria-label="Open Hackathon · AI Day"><h3 class="display">Hackathon · AI Day</h3><img src="img/hack.webp" alt="Dragon coding on a laptop between two monitors, with a small robot" loading="lazy"><small>05 / 06</small></a>
+    <div class="info"><div><span class="label">World 05 / 06</span><h2 class="display">Hackathon<br>AI Day</h2></div>
+      <div><p class="serif">Build it in two days.</p><p>At Escola 42, in parallel with the summit, 27 and 28 May. Teams ship with AI, the best projects demo on stage.</p><ul><li>Escola 42</li><li>27–28 May</li><li>Demo on stage</li></ul><a class="pill" href="hackathon.html">Open this world →</a></div></div>
+  </div></section>
+  <section class="world" data-face="party" style="--sb:var(--ink);--sf:var(--paper)"><div class="wrap">
+    <a class="card tilt" href="parties.html" aria-label="Open Parties"><h3 class="display">Parties</h3><img src="img/party.webp" alt="Dragon behind a DJ booth with LED screens and a disco ball" loading="lazy"><small>06 / 06</small></a>
+    <div class="info"><div><span class="label">World 06 / 06</span><h2 class="display">Parties</h2></div>
+      <div><p class="serif">Every night, everywhere.</p><p>A party every evening, one big one, and a whole third day made for it. Surprises to come.</p><ul><li>Every evening</li><li>The big one</li><li>29 May · Party day</li></ul><a class="pill" href="parties.html">Open this world →</a></div></div>
+  </div></section>
+</div>
+
+
+<section class="prog" id="days" style="border-radius:36px 36px 0 0;margin-top:-36px"><div class="wrap">
+  <h2 class="display rv">Three days in May</h2>
+  <div class="days">
+    <div class="day rv"><span class="label">Thursday</span><b>27 May</b><p class="serif">The working day.</p><ul><li>Conference: working groups, one big theme every two hours</li><li>The fair, the card tables and the Art Factory open</li><li>Hackathon · AI Day starts at Escola 42</li></ul></div>
+    <div class="day rv d1"><span class="label">Friday</span><b>28 May</b><p class="serif">The symposium.</p><ul><li>Main stage, big names</li><li>Tournaments, fair and Art Factory all day</li><li>Hackathon demos</li></ul></div>
+    <div class="day rv d2"><span class="label">Saturday</span><b>29 May</b><p class="serif">The party day.</p><ul><li>No talks, no stage: a full day of party</li><li>The final party</li><li>Surprises to come</li></ul></div>
+  </div>
+</div></section>
+
+<div class="parade" id="parade3" aria-hidden="true"></div>
+<section class="doors"><div class="wrap">
+  <h2 class="display rv">Take <em>your place</em></h2>
+  <div class="dgrid">
+    <div class="door rv" style="--db:var(--paper2);--df:var(--ink)"><span class="tagl">For everyone</span><h3 class="display">Come and play</h3><p class="serif">One ticket, six worlds, three days.</p><p>The fair, the cards, the stage, the factory and the nights.</p><a class="pill dark" href="#join" data-todo="ticketing">Get your ticket</a></div>
+    <div class="door rv d1" style="--db:var(--red);--df:var(--onred)"><span class="tagl">50 places</span><h3 class="display">Show your art</h3><p class="serif">Your universe on a machine.</p><p>Join a shared machine with other artists, or design your own stand. Players choose you on screen and leave with your print.</p><a class="pill white" href="fair.html#artists">Apply as an artist</a></div>
+    <div class="door rv d2" style="--db:var(--ink);--df:var(--paper)"><span class="tagl">Partners</span><h3 class="display">Own a world</h3><p class="serif">Put your name on the fair.</p><p>A stand, a stage, a night, a table. Each world can carry a partner.</p><a class="pill white" href="#sponsors">Become a sponsor</a></div>
+  </div>
+</div></section>
+
+<section class="venue" id="venue"><div class="wrap">
+  <div class="top"><h2 class="display rv">Unicorn Factory, <em>Lisbon.</em></h2><p class="rv">A former industrial complex in Beato, located along the Tagus River. Everything is just a short walk away, with the fair at the heart of it all, connecting the different spaces and experiences.</p></div>
+  <div class="mapbox rv"><div class="vmap" id="vmap"><img src="img/map.webp" alt="Drawn map of the Unicorn Factory campus seen from above: the Art Factory and the Kawaii Summit building side by side, the conference building and the grain silos at the bottom, sheds on the right, a perimeter wall on the left and the central plaza in the middle" loading="lazy"></div></div>
+</div></section>
+
+<section class="spons" id="sponsors"><div class="wrap">
+  <h2 class="display rv">Sponsors <em>2027</em></h2>
+  <p class="serif sub rv">Already sponsors for 2027, live from the wall.</p>
+  <h3 class="label rv">Gold sponsors</h3>
+  <div class="gold rv"><div>JPEG-FRENS</div><div>Yuga Labs</div><div>Adam Weitsman</div></div>
+  <h3 class="label rv">Community sponsors</h3>
+  <div class="comm rv"><img src="img/sp_501.webp" alt="Community sponsor" loading="lazy"><img src="img/sp_502.webp" alt="Community sponsor" loading="lazy"><img src="img/sp_507.webp" alt="Community sponsor" loading="lazy"><img src="img/sp_506.webp" alt="Community sponsor" loading="lazy"><img src="img/sp_547.webp" alt="Community sponsor" loading="lazy"><img src="img/sp_546.webp" alt="Community sponsor" loading="lazy"><img src="img/sp_544.webp" alt="Community sponsor" loading="lazy"><img src="img/sp_545.webp" alt="Community sponsor" loading="lazy"><img src="img/sp_509.webp" alt="Community sponsor" loading="lazy"><img src="img/sp_548.webp" alt="Community sponsor" loading="lazy"><img src="img/sp_505.webp" alt="Community sponsor" loading="lazy"><img src="img/sp_510.webp" alt="Community sponsor" loading="lazy"><img src="img/sp_515.webp" alt="Community sponsor" loading="lazy"><span aria-label="Your place">+</span></div>
+  <h3 class="label rv">Names on the wall</h3>
+  <div class="wallnames rv" tabindex="0" aria-label="Names on the wall"><span>DIEVARDUMP</span><span>KATYATSOY</span><span>RITCHIESACRA</span><span>JOHNKARP.ETH</span><span>ADAM-WEITSMAN</span><span>JOANA-KL</span><span>MONOKAI</span><span>RHYNOTIC</span><span>TRISKELION</span><span>MUSEUMGHOST</span><span>CRYPTO-STAMPS</span><span>ISMA</span><span>BBA</span><span>SHILLS</span><span>RESTORED</span><span>SELO</span><span>ELEVENYELLOW</span><span>BRIGHTLIGHTART</span><span>CLSTR.ART</span><span>TOMMI</span><span>MAGIC-FOREST</span><span>ALPHALABS.XYZ</span><span>3MEMBERME</span><span>SESOUR</span><span>CRYPTOPHILATELY</span><span>SHERONE</span><span>MAX</span><span>LOUIS</span><span>LILA</span><span>5000</span><span>YEARS</span><span>.IO</span><span>PLEXIPLAY</span><span>ALLCITY</span><span>SEANBONNER</span><span>GT</span><span>VALI</span><span>HOT-LEGS</span><span>XERAK</span><span>EMBII</span><span>ANDREWGMI</span><span>ABOSCH</span><span>FROGGY</span><span>KANGSCHWEPE</span><span>SNOWFRO</span><span>PENG1</span><span>BRINKMAN</span><span>KTORN</span><span>TORMIUS</span><span>BASILEUS</span><span>ASDF</span><span>SHORTCUT</span><span>K4NCUN0</span><span>MANING</span><span>BARD-IONSON</span><span>INKSEA</span><span>REM-NFTMORNING</span><span>MADKING</span><span>FRANKFLUX</span><span>SERC</span><span>RVIG</span><span>AI-ART-MAGAZINE</span><span>JOHN-FN-KARP</span><span>RAINERHOSCH</span><span>ZUMBAH</span><span>AMMAR</span><span>DAVEKRUGMAN</span><span>AGORIA</span><span>ZZ666</span><span>NASIR</span><span>IVANA</span><span>ELCASTOR</span><span>INVB</span><span>MLO.ART</span><span>STONE</span><span>COLBORN</span><span>CRYPTOSTAMP.PL</span><span>DSANCHESGM</span><span>ARTSEA</span><span>LUKE</span><span>JPEG-FRENS</span><span>PHRAZE</span><span>DRAGONATE</span><span>DEFI-GRANDDAD</span><span>TENDRE.XYZ</span><span>JEFF-DAVIS</span><span>DMITRICHERNIAK</span><span>SHALIN.ETH</span><span>UPRISING.ART</span><span>0XBRAIN</span><span>RAPTORNEWS</span><span>NORMIES</span><span>ENDER</span><span>TINY-VIKINGS</span><span>ACHETEZDELART</span><span>JOHN FN KARP IS THE GOAT</span><span>REKT</span><span>TSCHUUULY</span><span>GAZZINHO</span><span>STUDY THE LORE</span><span>PHANTOM-S</span><span>MARIAMINDAL</span><span>ROSENBAYER</span><span>SHALIN</span><span>ROSS</span><span>NISSLA</span><span>KOHAKU-REI</span><span>LEE-MAYC</span><span>KEMEK</span><span>SUYE</span><span>ONE DAY WE WILL BE IN CHARGE</span><span>MR-RICHI</span><span>DAVIDOXLEY</span><span>721T-AGNT-NXT3D</span><span>DARK0</span><span>RENEIL1337</span><span>PROTOURIST</span><span>PEPE</span><span>FARLOPA</span><span>DAN</span><span>SANDBOX</span><span>CHAZZ-GOLD</span><span>MAX-PRETENDS</span><span>NUNOCOSTAPT</span><span>HARTO</span><span>ROCKETGIRL</span><span>RACING-RALPH</span><span>DOMINIK</span><span>JUST-STEFF</span><span>HERMES</span><span>THEAU</span><span>BEING</span><span>CHRISROC</span><span>G4SP4RD</span><span>RICARDO</span><span>MARCOTIC</span><span>MYO</span><span>RUTGERVANDERTAS</span><span>JAEN</span><span>RAY</span><span>PIV</span><span>P-E.C</span><span>PAUSER</span><span>GMSPACE</span><span>RAHIM</span><span>FRANKNFT</span><span>GVC</span><span>CONNY.ETH</span><span>TWEETIOUS</span><span>THE-MEEBITS</span><span>EDOUARD</span><span>DANGIUZ</span><span>TRUSTAMUNDO</span><span>JOELD.ETH</span><span>TULIPANI</span><span>RASTER</span><span>NEF</span><span>GENERALWAKANDA</span><span>IANCR</span><span>LAMPWRECKED</span><span>LUDO</span><span>MARIE-LOU</span><span>CHRINGO</span><span>SPELLSOFGENESIS</span><span>-..-II-...--0</span><span>POPEYE</span><span>PPRGB</span><span>ALIENQUEEN</span><span>100COLLECTORS</span><span>FANNY</span><span>IRISHNFTGAL</span><span>TIC</span><span>TREVOR AND VIOLET JONES</span><span>MONTANAKIND</span><span>MEEGS4LIFE</span><span>DUYGU</span><span>YIGITDUMAN</span><span>SADIK</span><span>BLONDIE</span><span>FELIXFELIXFELIX</span><span>JOY-COLLECTIVE</span><span>DANNYB0YYY</span><span>GENUINE</span><span>DSPURRIER</span><span>ARTCRUSH</span><span>PARADIGMSTORIES</span><span>MOLEK</span><span>VELVET-V0</span><span>ANIMATTTIC</span><span>THEO-GOODMAN</span><span>SEIZERPUNK</span><span>UNDEAD</span><span>SECURECYPHER</span><span>ETA</span><span>AFROVIKING</span><span>ZADKIELL</span><span>GPUNK-LUV-JKARP</span><span>NUCLEARSAMURAI</span><span>PBOY</span><span>RACHELSTWOOD</span><span>EDUARDO-S.</span><span>CARL SUTTON</span><span>CERA</span><span>ADAMTASTIC</span><span>JOHAMBURG-5418</span><span>FAMILYDOGECOIN</span><span>ALAN-BOLTON</span><span>DAFTCONNECTOR</span><span>CROMATIKAP.DEV</span><span>GULYILDIZ</span><span>SATOR</span><span>EFDOT</span><span>RWUENAS</span><span>TANIAMARQUESNFT</span><span>ESSJAYNE</span><span>FREEDZ</span><span>BULLAUGE</span><span>DEGEDOG</span><span>HASH-GALLERY</span><span>CRYTOLLIE</span><span>DAKNT</span><span>BEERISH</span><span>BOREDBAE98</span><span>STEFAN</span><span>VECTRIS</span><span>SUPERRAREJOHN</span><span>ETERNO</span><span>-IAN-</span><span>FRISKY</span><span>PUZZLEPOP.CLUB</span><span>SERGESATS</span><span>YARASPUCIA</span><span>NICOLAS.BETS</span><span>BITMONK</span><span>BULLY-MEOW</span><span>SOLEMN</span><span>ACHIMH.ETH</span><span>BOTTO</span><span>PAINTS LIGHT FRAMES HOLD PICTURES TIME MARKS EVERYTHING</span><span>00OOOO00</span><span>MICHMAST</span><span>MATTIAC.IT</span><span>WARRENHIMSELF</span><span>FLEXASAURUSREX</span><span>JUDITHESSS</span><span>DEFIANTSQUID</span><span>LADYKRISTINA-V</span><span>TONYHERRERA</span><span>AMBI</span><span>TARAINABSTRACT</span><span>2SISTERS</span><span>BRYNN-ALISE</span><span>KOMPAKD</span><span>DUTCHTIDE</span><span>HI-BALL-CHARLIE</span><span>REBAS</span><span>VALIDVENT</span><span>WALLETVAULT</span><span>LUGAVE-WAS-HERE</span><span>ANA-NOVO</span><span>SHIFTWORK.CC</span><span>VRPUNK</span><span>VANDALO-RUINS</span><span>PAULINE-FAIEFF</span><span>DEFI</span><span>COCKTAIL</span><span>G.6120.EU</span><span>ARTSQUAD-EELMI</span><span>ONELOVEART-JEN</span><span>NYGILIA</span><span>COPERNICUSBEER</span><span>ANCURATED</span><span>DITAI</span><span>SKEENEE</span><span>IAMJOHNDOE</span><span>PIXELMIX</span><span>PLUTONIUM</span><span>NAKARMAZ</span><span>COOPS</span><span>GWENDALL</span></div>
+  <div class="foot rv"><p>Every sponsor above bought a piece of the venue: painted for real, recorded on-chain. More to be announced.</p><a class="pill dark" href="https://onthewall.nfcsummit.com" target="_blank" rel="noopener">Get on the wall →</a></div>
+</div></section>
+
+<div class="parade" id="parade2" aria-hidden="true"></div>
+<section class="final" id="join"><div class="sky mask"></div><img class="lis" src="img/lisbon.webp" alt=""><div class="wrap">
+  <div class="count" id="count">
+    <div><b id="cd">–</b><span class="label">Days</span></div>
+    <div><b id="ch">–</b><span class="label">Hours</span></div>
+    <div><b id="cm">–</b><span class="label">Minutes</span></div>
+  </div>
+  <h2 class="display">Until the fair opens</h2>
+  <p class="serif">27–29 May 2027 · Unicorn Factory · Lisbon</p>
+  <div class="btns"><a class="pill dark" href="#join" data-todo="ticketing">Get your ticket</a><a class="pill white" href="fair.html#artists">Apply as an artist</a><a class="pill white" href="#sponsors">Become a sponsor</a><a class="pill white" href="https://onthewall.nfcsummit.com" target="_blank" rel="noopener">Get on the wall ↗</a></div>
+  <img src="img/hero.webp" alt="" loading="lazy">
+</div></section>
+<footer><div class="wrap"><span>✦ NFC Summit 2027 · The Digital Pop Culture Festival</span><a href="https://onthewall.nfcsummit.com" target="_blank" rel="noopener" style="text-decoration:underline;text-underline-offset:4px">The Wall: onthewall.nfcsummit.com ↗</a><span>27–29 May 2027 · Unicorn Factory · Beato · Lisbon</span></div></footer>
+
+<a class="tix" href="#join" aria-label="Get your ticket">
+  <div class="c"><div class="f fr"><small><span>NFC 2027</span><span>✦</span></small><img src="img/hero.webp" alt=""><strong>Admit one</strong></div><div class="f bk"><i>✦</i><b>Get your ticket</b></div></div>
+  <span class="go">Get your ticket →</span>
+</a>
+
+<script>
+var NFC = (function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var COLS = 10, TOTAL = 82;
+  var NAMES = ["SHILLS", "JOHNKARP.ETH", "KATYATSOY", "ROSENBAYER", "TWEETIOUS", "K4NCUN0", "NISSLA", "LAMPWRECKED", "CHRINGO", "PAUSER", "ZADKIELL", "AMMAR", "PARADIGMSTORIES", "ADAMTASTIC", "SEIZERPUNK", "MANING", "PIV", "GT", "TRUSTAMUNDO", "TANIAMARQUESNFT", "REBAS", "0XBRAIN", "ZZ666", "COOPS", "ZUMBAH", "TULIPANI", "ENDER", "IVANA", "VECTRIS", "SHORTCUT", "JUDITHESSS", "FRANKNFT", "IRISHNFTGAL", "DITAI", "COCKTAIL", "FRISKY", "KARP", "RAY", "CRYTOLLIE", "NYGILIA", "EFDOT", "SUPERRAREJOHN", "RACHELSTWOOD", "AMBI", "MEEGS4LIFE", "RAINERHOSCH", "KTORN", "BULLAUGE", "ISMA", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];
+  function frame(el, idx, dir, f){ var col = idx % COLS, row = Math.floor(idx / COLS); el.style.backgroundPosition = ((col*4+f)/39*100).toFixed(3) + '% ' + ((row*4+dir)/35*100).toFixed(3) + '%'; }
+  function pick(n){ var a = []; for (var i = 0; i < TOTAL; i++) a.push(i); for (var j = a.length - 1; j > 0; j--){ var k = Math.floor(Math.random()*(j+1)), t = a[j]; a[j] = a[k]; a[k] = t; } return a.slice(0, n); }
+
+  // reveal on scroll
+  function reveal(){
+    var els = [].slice.call(document.querySelectorAll('.rv'));
+    if ('IntersectionObserver' in window && !reduce){
+      var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, {threshold:.12});
+      els.forEach(function(e){ io.observe(e); });
+    } else els.forEach(function(e){ e.classList.add('in'); });
+  }
+
+  // a line of People of the Wall walking across a band
+  function parade(host, n, withNames){
+    if (!host) return;
+    var lane = document.createElement('div'); lane.className = 'lane'; host.appendChild(lane);
+    var ids = pick(n), ws = [];
+    ids.forEach(function(id, i){
+      var w = document.createElement('div'); w.className = 'who';
+      var nm = NAMES[id];
+      w.innerHTML = (withNames && nm ? '<b>' + nm + '</b>' : '') + '<div class="sp"></div>';
+      lane.appendChild(w);
+      var dir = Math.random() < .5 ? 1 : -1;
+      ws.push({el:w, sp:w.lastChild, id:id, x:Math.random(), v:(.018 + Math.random()*.02) * dir, ph:Math.random()*4});
+    });
+    var vis = true, t0 = performance.now();
+    if ('IntersectionObserver' in window) new IntersectionObserver(function(es){ vis = es[0].isIntersecting; }).observe(host);
+    function step(now){
+      var dt = Math.min((now - t0) / 1000, .1); t0 = now;
+      if (vis){ var W = lane.clientWidth; ws.forEach(function(w){
+        if (!reduce) w.x += w.v * dt * (900 / Math.max(W, 500));
+        if (w.x > 1.08) w.x = -.08; if (w.x < -.08) w.x = 1.08;
+        w.el.style.transform = 'translateX(' + (w.x * W - 36).toFixed(1) + 'px)';
+        frame(w.sp, w.id, w.v > 0 ? 1 : 3, reduce ? 0 : Math.floor(now/160 + w.ph) % 4);
+      }); }
+      requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  // the card that follows you: sticky ticket
+  function ticket(faces){
+    var t = document.querySelector('.tix'); if (!t) return;
+    var c = t.querySelector('.c'), img = t.querySelector('.fr img'), name = t.querySelector('.fr strong');
+    var turns = 0, cur = '';
+    function set(key){
+      if (key === cur || !faces[key]) return; cur = key; turns += 1;
+      c.style.setProperty('--ty', (turns * 360) + 'deg');
+      setTimeout(function(){ img.src = 'img/' + faces[key][0] + '.webp'; name.textContent = faces[key][1]; }, 240);
+    }
+    var last = window.scrollY;
+    window.addEventListener('scroll', function(){
+      var y = window.scrollY, d = Math.max(-1, Math.min(1, (y - last) / 40)); last = y;
+      c.style.setProperty('--tz', (4 + d * 9).toFixed(1) + 'deg');
+      t.classList.toggle('off', y < 200);
+      var join = document.getElementById('join');
+      if (join){ var r = join.getBoundingClientRect(); if (r.top < window.innerHeight * .55) t.classList.add('off'); }
+    }, {passive:true});
+    t.classList.add('off');
+    return set;
+  }
+  function menu(home){
+    var nav = document.querySelector('.nav nav'); if (!nav) return;
+    var b = document.createElement('button'); b.className = 'burger'; b.type = 'button'; b.setAttribute('aria-label', 'Open the menu'); b.setAttribute('aria-expanded', 'false'); b.innerHTML = '<i></i><i></i>';
+    nav.appendChild(b);
+    var W = [['Art Fun Fair','fair.html'],['Kawaii Summit','kawaii.html'],['Conference','conference.html'],['Art Factory','art-factory.html'],['Hackathon · AI Day','hackathon.html'],['Parties','parties.html']];
+    var h = home ? '' : 'index.html';
+    var m = document.createElement('div'); m.className = 'menu'; m.setAttribute('role', 'dialog'); m.setAttribute('aria-label', 'Menu');
+    m.innerHTML = '<div class="top"><a class="star" href="' + (home ? '#top' : 'index.html') + '" style="font-size:40px;line-height:1">✦</a><button class="x" type="button">Close</button></div><ol>' +
+      W.map(function(w, i){ return '<li><a href="' + w[1] + '"><small>0' + (i + 1) + '</small>' + w[0] + '</a></li>'; }).join('') + '</ol>' +
+      '<div class="more"><a href="' + h + '#film">2026, the film</a><a href="' + h + '#days">Three days</a><a href="' + h + '#sponsors">Sponsors</a><a href="https://onthewall.nfcsummit.com" target="_blank" rel="noopener">The Wall ↗</a><a class="pill red" href="' + h + '#join">Get your ticket</a></div>';
+    document.body.appendChild(m);
+    function set(on){ m.classList.toggle('on', on); b.setAttribute('aria-expanded', String(on)); document.documentElement.style.overflow = on ? 'hidden' : ''; if (on) m.querySelector('.x').focus(); else b.focus(); }
+    b.addEventListener('click', function(){ set(true); });
+    m.querySelector('.x').addEventListener('click', function(){ set(false); });
+    m.addEventListener('click', function(e){ if (e.target.closest('a')) { m.classList.remove('on'); document.documentElement.style.overflow = ''; b.setAttribute('aria-expanded', 'false'); } });
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && m.classList.contains('on')) set(false); });
+  }
+  function countdown(){
+    var target = Date.parse('2027-05-27T09:00:00+01:00'), d = document.getElementById('cd'); if (!d) return;
+    function cd(){ var m = Math.floor(Math.max(0, target - Date.now()) / 60000);
+      d.textContent = Math.floor(m / 1440); document.getElementById('ch').textContent = Math.floor(m % 1440 / 60); document.getElementById('cm').textContent = m % 60; }
+    cd(); setInterval(cd, 30000);
+  }
+  return {menu:menu, reduce:reduce, frame:frame, pick:pick, reveal:reveal, parade:parade, ticket:ticket, countdown:countdown, NAMES:NAMES};
+})();
+(function(){
+  var reduce = NFC.reduce;
+  NFC.reveal(); NFC.countdown(); NFC.menu(true);
+  NFC.parade(document.getElementById('parade1'), 9, true);
+  NFC.parade(document.getElementById('parade2'), 12, true);
+  var setFace = NFC.ticket({hero:['hero','Admit one'],fair:['fair','Art Fun Fair'],kawaii:['kawaii','Kawaii Summit'],conf:['conf','Conference'],artfactory:['artfactory','Art Factory'],hack:['hack','Hackathon'],party:['party','Parties']}) || function(){};
+
+  // hero parallax
+  var dragon = document.querySelector('.hero .dragon'), title = document.querySelector('.hero h1'), wide = window.matchMedia('(min-width: 761px)');
+
+  // film
+  var film = document.getElementById('film'), box = document.getElementById('fbox'), vid = document.getElementById('fvid'), say = document.getElementById('fsay'), kick = film.querySelector('.kick'), snd = document.getElementById('fsnd');
+  snd.addEventListener('click', function(){ vid.muted = !vid.muted; snd.textContent = vid.muted ? 'Sound on' : 'Sound off'; snd.setAttribute('aria-pressed', String(!vid.muted)); if (vid.paused) vid.play().catch(function(){}); });
+  if ('IntersectionObserver' in window) new IntersectionObserver(function(es){ if (es[0].isIntersecting) vid.play().catch(function(){}); else { vid.pause(); } }, {threshold:.05}).observe(film);
+  function lerp(a, b, t){ return a + (b - a) * t; }
+  function ease(t){ t = Math.min(Math.max(t, 0), 1); return t < .5 ? 2*t*t : 1 - Math.pow(-2*t + 2, 2) / 2; }
+  function filmFrame(){
+    var r = film.getBoundingClientRect(), H = window.innerHeight, W = document.documentElement.clientWidth, st = film.querySelector('.st'), SH = st.clientHeight;
+    var span = film.offsetHeight - SH; if (!(span > 0)) return;
+    var p = Math.min(Math.max(-r.top / span, 0), 1), narrow = W < 860;
+    // three poses: card, full, aside
+    var cw = narrow ? W * .84 : Math.min(W * .5, 760), ch = cw * 9 / 16;
+    var A = {w:cw, h:ch, x:(W - cw) / 2, y:SH * (narrow ? .42 : .4), rot:-3};
+    var B = {w:W * .96, h:SH * .92, x:W * .02, y:SH * .04, rot:0};
+    var sw = narrow ? W - 40 : W * .5, sh2 = sw * 9 / 16;
+    var C = {w:sw, h:sh2, x:narrow ? 20 : Math.max(20, W * .04), y:narrow ? SH * .08 : (SH - sh2) / 2, rot:narrow ? 0 : -2};
+    var a, b, t;
+    if (p < .34){ a = A; b = B; t = ease(p / .34); } else if (p < .6){ a = B; b = B; t = 0; } else { a = B; b = C; t = ease((p - .6) / .3); }
+    box.style.width = lerp(a.w, b.w, t).toFixed(1) + 'px'; box.style.height = lerp(a.h, b.h, t).toFixed(1) + 'px';
+    box.style.transform = 'translate(' + lerp(a.x, b.x, t).toFixed(1) + 'px,' + lerp(a.y, b.y, t).toFixed(1) + 'px) rotate(' + lerp(a.rot, b.rot, t).toFixed(2) + 'deg)';
+    kick.style.opacity = (1 - ease(p / .2)).toFixed(2);
+    var s = ease((p - .72) / .2); say.style.opacity = s.toFixed(2);
+    if (!narrow) say.style.transform = 'translateY(-50%) translateX(' + ((1 - s) * 60).toFixed(1) + 'px)';
+  }
+
+  // photo ribbons
+  var rib1 = document.getElementById('rib1'), rib2 = document.getElementById('rib2'), ribs = rib1.parentNode;
+  function ribFrame(){ var r = ribs.getBoundingClientRect(), H = window.innerHeight; if (r.bottom < 0 || r.top > H) return; var p = (H - r.top) / (H + r.height);
+    var W = document.documentElement.clientWidth, m1 = Math.max(0, rib1.scrollWidth - W), m2 = Math.max(0, rib2.scrollWidth - W);
+    rib1.style.transform = 'translateX(' + (-p * m1).toFixed(1) + 'px)'; rib2.style.transform = 'translateX(' + (-(1 - p) * m2).toFixed(1) + 'px)'; }
+
+  // worlds: tilt on the cards, ticket face follows the world on screen
+  if (!reduce) [].forEach.call(document.querySelectorAll('.tilt'), function(c){
+    c.addEventListener('pointermove', function(e){ var r = c.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5; c.style.transform = 'perspective(900px) rotateY(' + (x * 10) + 'deg) rotateX(' + (-y * 10) + 'deg)'; });
+    c.addEventListener('pointerleave', function(){ c.style.transform = ''; });
+  });
+  var worlds = [].slice.call(document.querySelectorAll('.world')), wbox = document.getElementById('worlds');
+  // deck: lock the stage and deal the worlds one over the other
+  var wstage = document.createElement('div'); wstage.className = 'wstage';
+  worlds.forEach(function(w){ wstage.appendChild(w); }); wbox.appendChild(wstage); wbox.classList.add('deck');
+  var wdots = document.createElement('div'); wdots.className = 'wdots'; wdots.setAttribute('aria-hidden', 'true');
+  worlds.forEach(function(){ wdots.appendChild(document.createElement('i')); }); wstage.appendChild(wdots);
+  var WN = worlds.length, lastIdx = -1;
+  function sizeDeck(){ var H = wstage.clientHeight || window.innerHeight; wbox.style.height = Math.round(H * (WN - 1) * 1.05 + H * 1.25) + 'px'; }
+  sizeDeck(); window.addEventListener('resize', sizeDeck);
+  function journeyFrame(){
+    var r = wbox.getBoundingClientRect(), H = wstage.clientHeight || window.innerHeight;
+    var p = Math.min(Math.max(-r.top / (H * 1.05), 0), WN - 1);
+    worlds.forEach(function(w, i){
+      var t = i === 0 ? 1 : Math.min(Math.max((p - (i - 1)) / .8, 0), 1); t = 1 - Math.pow(1 - t, 3);
+      var c = Math.min(Math.max((p - i) / .8, 0), 1);
+      w.style.transform = 'translateY(' + ((1 - t) * 104).toFixed(2) + '%) scale(' + (1 - c * .06).toFixed(4) + ')';
+      w.style.filter = c > 0 ? 'brightness(' + (1 - c * .3).toFixed(3) + ')' : '';
+      w.style.setProperty('--t', t.toFixed(3));
+      w.style.visibility = (t <= 0 || (i < WN - 1 && p - i >= 1.02)) ? 'hidden' : 'visible';
+    });
+    var idx = Math.min(WN - 1, Math.floor(p + .45));
+    if (idx !== lastIdx){ lastIdx = idx; [].forEach.call(wdots.children, function(d, k){ d.classList.toggle('on', k === idx); }); }
+    if (r.top < window.innerHeight * .5 && r.bottom > window.innerHeight * .5) setFace(worlds[idx].getAttribute('data-face'));
+  }
+  // split the big title into words, number the sponsor tiles
+  [].forEach.call(document.querySelectorAll('.idea h2'), function(h){ var k = 0;
+    (function walk(n){ [].slice.call(n.childNodes).forEach(function(c){
+      if (c.nodeType === 3){ var f = document.createDocumentFragment(); c.textContent.split(/(\s+)/).forEach(function(t){ if (!t) return; if (/^\s+$/.test(t)) f.appendChild(document.createTextNode(' ')); else { var s = document.createElement('span'); s.className = 'w'; s.style.setProperty('--k', k++); s.textContent = t; f.appendChild(s); } }); n.replaceChild(f, c); }
+      else if (c.nodeType === 1) walk(c); }); })(h); });
+  [].forEach.call(document.querySelectorAll('.comm > *'), function(e, k){ e.style.setProperty('--k', k); });
+  NFC.parade(document.getElementById('parade3'), 8, false);
+
+  // ---- The venue: props, labels and People of the Wall that never walk through anything
+  (function(){
+    var map = document.getElementById('vmap'); if (!map) return;
+    var PROPS = [{"t": "container", "name": "JPEG FRENS", "skin": "jpeg", "x": 31.2, "y": 57.0, "w": 8.6, "h": 7.6}, {"t": "container", "name": "OpenSea", "skin": "blue", "x": 50.3, "y": 88.6, "w": 8.0, "h": 7.0}, {"t": "container", "name": "OpenSea", "skin": "blue", "x": 54.6, "y": 80.6, "w": 7.4, "h": 6.6}, {"t": "gallery", "x": 21.2, "y": 53.2, "w": 7.0, "h": 8.6}, {"t": "gallery", "x": 21.2, "y": 62.6, "w": 7.0, "h": 8.6}, {"t": "machines", "m": "arcade", "x": 39.6, "y": 58.6, "w": 7.2, "h": 6.0}, {"t": "machines", "m": "photobooth", "x": 47.6, "y": 58.6, "w": 7.2, "h": 6.0}, {"t": "machines", "m": "claw", "x": 63.0, "y": 61.4, "w": 7.2, "h": 5.4}, {"t": "machines", "m": "arcade", "x": 69.2, "y": 66.0, "w": 7.2, "h": 5.4}, {"t": "machines", "m": "photobooth", "x": 77.0, "y": 65.6, "w": 7.2, "h": 5.4}, {"t": "cards", "o": "h", "x": 49.4, "y": 66.2, "w": 6.6, "h": 4.6}, {"t": "cards", "o": "h", "x": 56.4, "y": 65.6, "w": 5.2, "h": 4.6}, {"t": "cards", "o": "v", "x": 50.2, "y": 76.4, "w": 3.2, "h": 10.6}, {"t": "cards", "o": "h", "x": 40.2, "y": 91.4, "w": 8.4, "h": 5.2}, {"t": "parasol", "x": 17.0, "y": 74.5, "w": 4.2, "h": 5.6}, {"t": "parasol", "x": 21.5, "y": 80.5, "w": 4.2, "h": 5.6}, {"t": "parasol", "x": 16.5, "y": 86.5, "w": 4.2, "h": 5.6}], G = {"w": 192, "h": 128, "b": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB/4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP/gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAB/4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAf/4AAAAAAAAAAAAAAAAAAAAAAAAAAAAA//4AAAAADwAAAAAAAAAAAAAAAAAAAAAB//4AAAAA/gAAAAAAAAAAAAAAAAAAAAAB//4AAAAAfAAAAAAAAAAAAAAAAAAAAAAD//4AAAAAfgAAAAAAAAAAAAAAAAAAAAAD//4AAAAAfAAAAAAAAAAAAAAAAAAAAAAD//4AAAAAfAAAAAAAAAAAAAAAAAAAAAAH//gAAAAAfAAAAAAAAAAAAAAAAAAAAAAH//AAAAAAfAAAAAAAAAAAAAAAAAAAAAAH/+AAAAAAfgAAAAAAAAAAAAAAAAAAAAAP/+AAAAAAfgAAAAAAAAAAAAAAAAAAAAAP//AAAAAAfgAAAAAAAAAAAAAAAAAAAAAP//gAAAAAfgAAAAAAAAAAAAAAAAAAAAAf////wAAAfgAAAAAAAAAAAAAAAAAAAAAf////gAAAfgAAAAAAAAAAAAAAAAAAAAAf////AAAAfwAAAAAAAAAAAAAAAAAAAAAf///+AAAAfwAAAAAAAAAAAAAAAAAAAAA////8AAAAf4AAAAAAAAAAAAAAAAAAAAA////8AAAAf+AAAAAAAAAAAAAAAAAAAAA////8AAAAf/+AAAAAAAAAAAAAAAAAAAB////8AAAAf/+AAAAAAAAAAAAAAAAAAAB////4AAAAf/+AAAAAAAAAAAAAAAAAAAB////4AAAAf/+AAAAAAAAAAAAAAAAAAAB////4AAAAf/+AAAAAAAAAAAAAAAAAAAD////4AAAAf/+AAAAAAAAAAAAAAAAAAAH////4AAAAf/+AAAAAAAAAAAAAAAAAAAH////4AAAAf/+AAAAAAAAAAAAAAAAAAAH////4AAAAf/+AAAAAAAAAAAAAAAAAAAH////wAAAAf/8AAAAAAAAAAAAAAAAAAAP////wAAAAf/+AAAAAAAAAAAAAAAAAAAP////wAAAAf/+AAAAAAAAAAAAAAAAAAAP////wAAAAf/+AAAAAAAAAAAAAAAAAAAP////wAAAAf/+AAAAAAAAAAAAAAAAAAAf////wAAAAf//AAAAAAAAAAAAAAAAAAAf////wAAAAf//AAAAAAAAAAAAAAAAAAAf////gAAAAf//AAAAAAAAAAAAAAAAAAA/////wAAAAf//AAAAAAAAAAAAAAAAAAA/////wAAAAf//gAAAAAAAAAAAAAAAAAA/////gAAAAf//gAAAAAAAAAAAAAAAAAB/////gAAAAf//gAAAAAAAAAAAAAAAAAB/////gAAAAf//gAAAAAAAAAAAAAAAAAB/////AAAAAf//gAAAAAAAAAAAAAAAAAD/////AAAAAf//wAAAAAAAAAAAAAAAAAD/////AAAAAf//wAAAAAAAAAAAAAAAAAD/////AAAAAP//wAAAAAAAAAAAAAAAAAH/////AAAAAP//wAAAAAAAAAAAAAAAAAH/////AAAAAP//wAAAAAAAAAAAAAAAAAH/////AAAAAP//4AAAAAgAAAAAAAAAAAP////+AAAAAP//4AAAAA8AAAAAAAAAAAP////+AAAAAP//4AAAAA+AAAAAAAAAAAP////+AAAAAP//4AAAAA/AAAAAAAAAAAf4AAf+AAAAAP//8AAAAA/gAEAAAAAAAAfwAAP+AAAAAP//8AAAAA///8AAAAAAAAfwAAP+AAAAAP//8AAAAB///8AAAAAAAAfwAAP+AAAAAP//8AAAAB///8AAAAAAAA/wAAOAAAAAAP//+AAAABA//8AAAAAAAA/wAAMAAAAAAAD/+AAAAAAH/8AAAAAAAA/wAAMAAAAAAAB/+AAAAAAD/8AAAAAAAB/wAAMAAAAAAAB/+AAAAAAD/8AAAAAAAB/wAAMAAAAAAAB/+AAAAAAD/8AAAAAAAD/wAAMAAAAAAAB//AAAAAAD/8AAAAAAAD/wAAMAAAAAAAB/+AAAAAAD/8AAAAAAAD/4AAcAAAAAAAB/+AAAAAAD/8AAAAAAAD/4AAcAAAAAAAD/+AAAAAAH/8AAAAAAAH/wAAMAAAf/////+AAAAAAf/8AAAAAAAH/wAAMAAAf/////+AAAAAAAf8AAAAAAAH/wAAOAAA/////gDAAAAAAAP8AAAAAAAH/wAAP/////+ABAB/+AAAAAP8AAAAAAAP/wAAP/////8AAAB/+AAAAAP8AAAAAAAP/wAAP/////8AAAAAOAAAAAP8AAAAAAAf/wAAP/////8AAgAAGAAAAAP8AAAAAAAf/wAAP/////+AB/8AGAAAAAP8AAAAAAAf/wAAP/////////8AHAAAAAf8AAAAAAAf/wAAP4BgP/////8AD//////wAAAAAAAf/4AAAAAAH/////8ADwAAAAAAAAAAAAA////4AAAAH/////8AAAAAAAAAAAAAAAA////wAAAAD/////4AAAAAAAAAAAAAAAA////wAAAAD/////4AAAAAAAAAAAAAAAB////wAAAAD/////4AAAAAAAAAAAAAAAB////gAAAAD//x//4AAAAAAAAAAAAAAAB/8H/gAAAAD/xg//4AAAAAAAAAAAAAAAB/4D+AAAAAAAAg//4AAAAAAAAAAAAAAAD/4D8AAAAAAAAA//4AAAAAAAAAAAAAAAD/4D8AAAAAAAAA//4AAAAAAAAAAAAAAAH/8H8AAAAAAAAA//4AAAAAAAAAAAAAAAH///4AAAAAAAAAwAAAAAAAAAAAAAAAAAH///4AAAAAAAAAgAAAAAAAAAAAAAAAAAP///4AAAAAAAAAgAAAAAAAAAAAAAAAAAP///gAAAAAAAAAgAAAAAAAAAAAAAAAAAP///AAAAAAAAAAgAAAAAAAAAAAAAAAAAP///AAAAAAAAAAgAAAAAAAAAAAAAAAAAf///AAAAAAAAAAgAAAAAAAAAAAAAAAAAf///gAAAAAAAAAgAAAAAAAAAAAAAAAAAf///gAAAAAAAABgAAAAAAAAAAAAAAAAAf///gAAAAAAAAPgAAAAAAAAAAAAAAAAA//4PgAAAAAAAAfAAAAAAAAAAAAAAAAAB//wHgAAAAAAAAAABwAAAAAAAAAAAAAAB//wHgAAAAAAAAAAAwAAAAAAAAAAAAAAB//wHwAAAAAAAAAAAwAAAAAAAAAAAAAAB//4P8AAAAAAAAAAAwAAAAAAAAAAAAAAB////8AAAAAAAAAAAwAAAAAAAAAAAAAAD////+AAAA+AAAAAAwAAAAAAAAAAAAAAD/////AAAA+AAAAAAwAAAAAAAAAAAAAAD/////AAAA+AAAAAAwAAAAAAAAAAAAAAD////+AAAB/AAEAAAwAAAAAAAAAAAAAAH/////AAAf///+AABwAAAAAAAAAAAAAAH/////wH/////////wAAAAAAAAAAAAAAH////////////////wAAAAAAAAAAAAAAP////////////////gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"};
+    var GW = G.w, GH = G.h, raw = atob(G.b), free = new Uint8Array(GW * GH), i;
+    for (i = 0; i < GW * GH; i++) free[i] = (raw.charCodeAt(i >> 3) >> (7 - (i & 7))) & 1;
+    var INK = 'var(--ink)';
+    function box(cls, p, z){ var d = document.createElement('div'); d.className = 'prop ' + cls; d.style.left = p.x + '%'; d.style.top = p.y + '%'; d.style.width = p.w + '%'; d.style.height = p.h + '%'; d.style.zIndex = z; map.appendChild(d); return d; }
+    map.insertAdjacentHTML('beforeend', '<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><pattern id="nfcdots" width="4" height="4" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".75" style="fill:var(--ink)" opacity=".28"/></pattern></defs></svg>');
+    function container(skin){
+      var j = skin === 'jpeg', f = j ? '#F6B800' : 'var(--blue)', s = j ? '#C99600' : 'var(--ink)', t = j ? '#FFDC66' : '#6E8FE0', l = '';
+      for (var x = 5; x < 104; x += 5) l += '<line x1="' + x + '" y1="16" x2="' + x + '" y2="66" style="stroke:rgba(0,0,0,.16);stroke-width:1"/>';
+      var art = j ? '<image href="img/jpeg_chars.webp" x="46" y="24" width="58" height="42" preserveAspectRatio="xMaxYMax meet"/><text x="5" y="40" style="font:15px Anton,Impact,sans-serif;fill:#16224F">JPEG</text><text x="5" y="56" style="font:15px Anton,Impact,sans-serif;fill:#16224F">FRENS</text>'
+                  : '<text x="53" y="48" text-anchor="middle" style="font:17px Anton,Impact,sans-serif;fill:#fff;letter-spacing:.5px">OPENSEA</text>';
+      return '<svg viewBox="0 0 120 68" width="100%" height="100%" aria-hidden="true"><polygon points="0,14 14,0 120,0 106,14" style="fill:' + t + ';stroke:' + INK + ';stroke-width:1.6"/><polygon points="106,14 120,0 120,54 106,68" style="fill:' + s + ';stroke:' + INK + ';stroke-width:1.6"/><rect x="0" y="14" width="106" height="54" style="fill:' + f + '"/>' + l + art + '<rect x="0" y="14" width="106" height="54" style="fill:url(#nfcdots);stroke:' + INK + ';stroke-width:1.6"/></svg>';
+    }
+    function gallery(k){
+      return '<svg viewBox="0 0 100 112" width="100%" height="100%" aria-hidden="true"><polygon points="0,16 14,0 100,0 86,16" style="fill:#fff;stroke:' + INK + ';stroke-width:1.6"/><polygon points="86,16 100,0 100,96 86,112" style="fill:#DCE4F7;stroke:' + INK + ';stroke-width:1.6"/><rect x="0" y="16" width="86" height="96" style="fill:#fff;stroke:' + INK + ';stroke-width:1.6"/>' +
+        '<text x="43" y="30" text-anchor="middle" style="font:600 9px Space Grotesk,Arial,sans-serif;letter-spacing:1.5px;fill:' + INK + '">GALLERY</text>' +
+        '<rect x="8" y="38" width="30" height="28" style="fill:var(--red);stroke:' + INK + ';stroke-width:2"/><circle cx="23" cy="52" r="7" style="fill:#fff"/>' +
+        '<rect x="48" y="38" width="30" height="28" style="fill:var(--blue);stroke:' + INK + ';stroke-width:2"/><path d="M50 64 L60 48 L68 58 L72 52 L77 64Z" style="fill:#B5FF00"/>' +
+        '<rect x="35" y="78" width="16" height="34" style="fill:' + INK + '"/><rect x="0" y="16" width="86" height="96" style="fill:url(#nfcdots)"/></svg>';
+    }
+    function parasol(){
+      return '<svg viewBox="0 0 60 80" width="100%" height="100%" aria-hidden="true"><ellipse cx="13" cy="72" rx="5" ry="2.5" style="fill:var(--blue)"/><ellipse cx="47" cy="72" rx="5" ry="2.5" style="fill:var(--blue)"/><line x1="30" y1="14" x2="30" y2="66" style="stroke:' + INK + ';stroke-width:2"/><ellipse cx="30" cy="66" rx="14" ry="5" style="fill:#fff;stroke:' + INK + ';stroke-width:1.5"/>' +
+        '<polygon points="2,26 30,6 16,28" style="fill:var(--red);stroke:' + INK + ';stroke-width:1.2"/><polygon points="16,28 30,6 30,29" style="fill:#fff;stroke:' + INK + ';stroke-width:1.2"/><polygon points="30,29 30,6 44,28" style="fill:var(--red);stroke:' + INK + ';stroke-width:1.2"/><polygon points="44,28 30,6 58,26" style="fill:#fff;stroke:' + INK + ';stroke-width:1.2"/></svg>';
+    }
+    var PLAYERS = [], hot = [];
+    function seat(x, y, dir){ PLAYERS.push({x:x, y:y, dir:dir}); }
+    PROPS.forEach(function(p){
+      if (p.t === 'container'){ box('ctn', p, Math.round((p.y + p.h) * 10)).innerHTML = container(p.skin); hot.push([p.x + p.w * .45, p.y + p.h + 1.6]); }
+      else if (p.t === 'gallery'){ box('gal', p, Math.round((p.y + p.h) * 10)).innerHTML = gallery(); seat(p.x + p.w * .38, p.y + p.h + 1.4, 0); hot.push([p.x + p.w * .7, p.y + p.h + 2]); }
+      else if (p.t === 'parasol'){ box('par', p, Math.round((p.y + p.h) * 10)).innerHTML = parasol(); seat(p.x + p.w * .9, p.y + p.h * .98, 3); }
+      else if (p.t === 'machines'){
+        var m = box('mat fair', p, Math.round((p.y + p.h * .55) * 10));
+        for (var k = 0; k < 3; k++){ var im = document.createElement('img'); im.src = 'img/s_' + p.m + '.webp'; im.alt = ''; im.style.left = (3 + k * 33) + '%'; im.style.animationDelay = (-k * .7) + 's'; m.appendChild(im);
+          seat(p.x + p.w * (.18 + k * .33), p.y + p.h * .98, 0); }
+        hot.push([p.x + p.w * .5, p.y + p.h + 2.2]);
+      }
+      else if (p.t === 'cards'){
+        var c = box('mat cards ' + p.o, p, Math.round((p.y + p.h * .5) * 10)), tb = document.createElement('div'); tb.className = 'tbl'; c.appendChild(tb);
+        var n = p.o === 'h' ? Math.round(p.w * 1.6) : Math.round(p.h * .9);
+        for (k = 0; k < n; k++){ var cd = document.createElement('span'); cd.style.setProperty('--r', ((k * 37) % 30 - 15) + 'deg'); tb.appendChild(cd); }
+        c.insertAdjacentHTML('beforeend', '<b class="tcg">TCG</b>');
+        if (p.o === 'h'){ var q = Math.max(2, Math.round(p.w / 2.6)); for (k = 0; k < q; k++){ var xx = p.x + p.w * (k + .5) / q; seat(xx, p.y + p.h * .3, 2); seat(xx + .4, p.y + p.h * 1.02, 0); } }
+        else { q = Math.max(2, Math.round(p.h / 3.2)); for (k = 0; k < q; k++){ var yy = p.y + p.h * (k + .6) / q; seat(p.x - .2, yy, 1); seat(p.x + p.w + .2, yy, 3); } }
+        hot.push([p.x + p.w * .5, p.y + p.h + 2.4]);
+      }
+    });
+    // bunting across the plaza
+    var BUN = [[[28,52.5],[37.4,56]],[[50.4,55.2],[59.6,57.6]],[[49.6,73.8],[61.6,71]],[[25.6,72.5],[13.8,71]]], sv = '';
+    BUN.forEach(function(b){ var a = b[0], c = b[1], mx = (a[0] + c[0]) / 2, my = (a[1] + c[1]) / 2 + 2.2;
+      var A = [a[0] * 15.36, a[1] * 10.24], C = [c[0] * 15.36, c[1] * 10.24], M = [mx * 15.36, my * 10.24];
+      sv += '<path d="M' + A + ' Q' + M + ' ' + C + '" style="fill:none;stroke:var(--ink);stroke-width:1.4"/>';
+      for (var t = .06, k = 0; t < .96; t += .085, k++){ var u = 1 - t, x = u*u*A[0] + 2*u*t*M[0] + t*t*C[0], y = u*u*A[1] + 2*u*t*M[1] + t*t*C[1];
+        sv += '<polygon points="' + (x - 5) + ',' + y + ' ' + (x + 5) + ',' + y + ' ' + x + ',' + (y + 11) + '" style="fill:' + (k % 2 ? 'var(--blue)' : 'var(--red)') + ';stroke:var(--ink);stroke-width:.8"/>'; } });
+    map.insertAdjacentHTML('beforeend', '<svg class="bunting" viewBox="0 0 1536 1024" preserveAspectRatio="none" aria-hidden="true">' + sv + '</svg>');
+    // labels
+    var FL = [[47,10.5,'Side events','',''],[44,28,'Art Factory','Four floors','art-factory.html'],[61.6,43,'The Wall','On the wall','https://onthewall.nfcsummit.com'],[77.5,19,'Hackathon','AI Day','hackathon.html'],[82.5,31,'Parties','Every evening','parties.html'],
+              [31,78.5,'Conference','Main stage','conference.html'],[43,83,'Kawaii Summit','Cards + tournaments','kawaii.html'],[55.4,57.6,'Art Fun Fair','Central plaza','fair.html','star'],[24.7,52.6,'Galleries','Art galleries',''],[58.6,71.6,'Card tables','Tournaments','kawaii.html','down']];
+    FL.forEach(function(f, k){ var tag = f[4] ? 'a' : 'span', e = document.createElement(tag); e.className = 'vflag' + (f[5] ? ' ' + f[5] : ''); e.style.left = f[0] + '%'; e.style.top = f[1] + '%'; e.style.setProperty('--i', k);
+      if (f[4]){ e.href = f[4]; if (/^http/.test(f[4])){ e.target = '_blank'; e.rel = 'noopener'; } }
+      e.innerHTML = '<b>' + f[2] + '</b>' + (f[3] ? '<small>' + f[3] + '</small>' : '') + '<i></i>'; map.appendChild(e); });
+
+    // ---- walking: grid + A* + no walking through people
+    function idx(cx, cy){ return cy * GW + cx; }
+    function ok(cx, cy){ return cx >= 0 && cy >= 0 && cx < GW && cy < GH && free[idx(cx, cy)] === 1; }
+    function okf(x, y){ return ok(Math.floor(x), Math.floor(y)); }
+    function nearFree(x, y){ var cx = Math.floor(x), cy = Math.floor(y); for (var r = 0; r < 14; r++) for (var dy = -r; dy <= r; dy++) for (var dx = -r; dx <= r; dx++){ if (Math.max(Math.abs(dx), Math.abs(dy)) !== r) continue; if (ok(cx + dx, cy + dy)) return [cx + dx + .5, cy + dy + .5]; } return null; }
+    var pc = function(p){ return [p[0] / 100 * GW, p[1] / 100 * GH]; };
+    // static players block their cell
+    PLAYERS.forEach(function(p){ var g = pc([p.x, p.y]); p.gx = g[0]; p.gy = g[1]; var cx = Math.floor(g[0]), cy = Math.floor(g[1]); if (cx >= 0 && cy >= 0 && cx < GW && cy < GH) free[idx(cx, cy)] = 2; });
+    var cells = []; for (i = 0; i < GW * GH; i++) if (free[i] === 1) cells.push(i);
+    var hotc = hot.map(function(h){ return nearFree(h[0] / 100 * GW, h[1] / 100 * GH); }).filter(Boolean);
+    var gS = new Float32Array(GW * GH), fS = new Float32Array(GW * GH), from = new Int32Array(GW * GH), seen = new Uint32Array(GW * GH), stamp = 0;
+    function astar(sx, sy, tx, ty){
+      stamp++; var s = idx(sx, sy), t = idx(tx, ty), heap = [s], D = [[1,0,1],[-1,0,1],[0,1,1],[0,-1,1],[1,1,1.414],[1,-1,1.414],[-1,1,1.414],[-1,-1,1.414]];
+      gS[s] = 0; fS[s] = 0; from[s] = -1; seen[s] = stamp;
+      function push(n){ heap.push(n); var c = heap.length - 1; while (c > 0){ var p = (c - 1) >> 1; if (fS[heap[p]] <= fS[heap[c]]) break; var tmp = heap[p]; heap[p] = heap[c]; heap[c] = tmp; c = p; } }
+      function pop(){ var top = heap[0], last = heap.pop(); if (heap.length){ heap[0] = last; var c = 0; for (;;){ var l = 2 * c + 1, r = l + 1, m = c; if (l < heap.length && fS[heap[l]] < fS[heap[m]]) m = l; if (r < heap.length && fS[heap[r]] < fS[heap[m]]) m = r; if (m === c) break; var tmp = heap[m]; heap[m] = heap[c]; heap[c] = tmp; c = m; } } return top; }
+      var closed = new Set(), guard = 0;
+      while (heap.length && guard++ < 9000){
+        var cur = pop(); if (cur === t) break; if (closed.has(cur)) continue; closed.add(cur);
+        var cx = cur % GW, cy = (cur / GW) | 0;
+        for (var k = 0; k < 8; k++){ var nx = cx + D[k][0], ny = cy + D[k][1]; if (!ok(nx, ny)) continue; if (k > 3 && (!ok(cx + D[k][0], cy) || !ok(cx, cy + D[k][1]))) continue;
+          var n = idx(nx, ny), g = gS[cur] + D[k][2];
+          if (seen[n] !== stamp || g < gS[n]){ seen[n] = stamp; gS[n] = g; from[n] = cur; fS[n] = g + Math.hypot(nx - tx, ny - ty); push(n); } }
+      }
+      if (seen[t] !== stamp) return null;
+      var path = [], c2 = t; while (c2 !== -1 && c2 !== s){ path.push([c2 % GW + .5, ((c2 / GW) | 0) + .5]); c2 = from[c2]; } path.reverse(); return path;
+    }
+    function los(ax, ay, bx, by){ var d = Math.hypot(bx - ax, by - ay), n = Math.ceil(d * 2.5); for (var k = 1; k <= n; k++){ var t = k / n, x = ax + (bx - ax) * t, y = ay + (by - ay) * t; if (!okf(x, y) || !okf(x + .35, y) || !okf(x - .35, y) || !okf(x, y + .3) || !okf(x, y - .3)) return false; } return true; }
+    function smooth(x, y, path){ var out = [], cx = x, cy = y, k = 0; while (k < path.length){ var far = k; for (var j = Math.min(path.length - 1, k + 40); j > k; j--) if (los(cx, cy, path[j][0], path[j][1])){ far = j; break; } out.push(path[far]); cx = path[far][0]; cy = path[far][1]; k = far + 1; } return out; }
+    var people = [], N = 78;
+    PLAYERS.forEach(function(p){ var el = document.createElement('div'); el.className = 'sp'; map.appendChild(el); people.push({el:el, x:p.gx, y:p.gy, dir:p.dir, still:true, id:0}); });
+    var ids = NFC.pick(82); while (ids.length < N + PLAYERS.length) ids = ids.concat(NFC.pick(82));
+    ids.slice(0, N + PLAYERS.length).forEach(function(id, k){
+      if (k < PLAYERS.length){ people[k].id = id; return; }
+      var c = cells[(Math.random() * cells.length) | 0], el = document.createElement('div'); el.className = 'sp'; map.appendChild(el);
+      people.push({el:el, id:id, x:c % GW + .5, y:((c / GW) | 0) + .5, dir:2, still:false, path:[], wait:Math.random() * 3, stuck:0, v:2.6 + Math.random() * 1.6, ph:Math.random() * 4});
+    });
+    function newGoal(p){
+      var g = (Math.random() < .55 && hotc.length) ? hotc[(Math.random() * hotc.length) | 0] : null, tx, ty;
+      if (g){ tx = Math.floor(g[0] + (Math.random() - .5) * 6); ty = Math.floor(g[1] + (Math.random() - .5) * 3); if (!ok(tx, ty)){ var nf = nearFree(tx, ty); if (!nf) return; tx = Math.floor(nf[0]); ty = Math.floor(nf[1]); } }
+      else { var c = cells[(Math.random() * cells.length) | 0]; tx = c % GW; ty = (c / GW) | 0; }
+      var sx = Math.floor(p.x), sy = Math.floor(p.y); if (!ok(sx, sy)){ var f = nearFree(p.x, p.y); if (!f) return; p.x = f[0]; p.y = f[1]; sx = Math.floor(f[0]); sy = Math.floor(f[1]); }
+      var path = astar(sx, sy, tx, ty); p.path = path ? smooth(p.x, p.y, path) : []; p.stuck = 0;
+    }
+    window.__nfcVenue = {people:people, ok:ok, GW:GW, GH:GH};
+    var vis = false; if ('IntersectionObserver' in window) new IntersectionObserver(function(es){ vis = es[0].isIntersecting; }).observe(map); else vis = true;
+    var t0 = performance.now(), R = 1.25;
+    function step(now){
+      var dt = Math.min((now - t0) / 1000, .08); t0 = now;
+      if (vis){
+        var Wd = map.clientWidth, Hd = map.clientHeight, cw = Wd / GW, ch = Hd / GH, base = Wd / 1536;
+        for (var a = 0; a < people.length; a++){ var p = people[a], moving = false;
+          if (!p.still && !reduce){
+            if (!p.path.length){ p.wait -= dt; if (p.wait <= 0){ newGoal(p); p.wait = 1 + Math.random() * 4; } }
+            else {
+              var tg = p.path[0], dx = tg[0] - p.x, dy = tg[1] - p.y, d = Math.hypot(dx, dy);
+              if (d < .15){ p.path.shift(); }
+              else {
+                var ux = dx / d, uy = dy / d, blocked = false;
+                for (var b = 0; b < people.length; b++){ if (b === a) continue; var q = people[b], ox = q.x - p.x, oy = (q.y - p.y) * 1.3, od = Math.hypot(ox, oy);
+                  if (od < R * 1.6 && (ox * ux + oy * uy) > od * .35){ blocked = true; break; } }
+                if (blocked){
+                  p.stuck += dt;
+                  if (p.stuck > .6 && p.stuck - dt <= .6){ var side = (a % 2 ? 1 : -1); for (var s2 = 0; s2 < 2; s2++){ var px = p.x - uy * 2.2 * side, py = p.y + ux * 2.2 * side; if (los(p.x, p.y, px, py)){ p.path.unshift([px, py]); break; } side = -side; } }
+                  if (p.stuck > 2.4){ p.path = []; p.wait = .3; p.stuck = 0; }
+                } else {
+                  p.stuck = 0; var st = Math.min(d, p.v * dt), nx = p.x + ux * st, ny = p.y + uy * st;
+                  if (okf(nx, ny)){ p.x = nx; p.y = ny; moving = true; } else { p.path = []; p.wait = .2; }
+                  p.dir = Math.abs(dy) > Math.abs(dx) * 1.2 ? (dy > 0 ? 2 : 0) : (dx > 0 ? 1 : 3);
+                }
+              }
+            }
+          }
+          var yP = p.y / GH, sc = base * .92 * (.86 + yP * .3);
+          p.el.style.transform = 'translate(' + (p.x * cw - 24).toFixed(1) + 'px,' + (p.y * ch - 46).toFixed(1) + 'px) scale(' + sc.toFixed(3) + ')';
+          p.el.style.zIndex = Math.round(yP * 1000) + 1;
+          NFC.frame(p.el, p.id, p.dir, moving ? Math.floor(now / 140 + (p.ph || 0)) % 4 : 0);
+        }
+      }
+      requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  })();
+
+  var tick = false;
+  function all(){
+    filmFrame(); ribFrame(); journeyFrame();
+    if (!reduce && wide.matches){ var y = Math.min(window.scrollY, 900); dragon.style.transform = 'translateX(-50%) translateY(' + (y * .12) + 'px) scale(' + (1 + y * .00025) + ')'; title.style.transform = 'translateY(' + (y * .3) + 'px)'; }
+    if (window.scrollY < 300) setFace('hero');
+  }
+  function req(){ if (!tick){ tick = true; requestAnimationFrame(function(){ tick = false; all(); }); } }
+  window.addEventListener('scroll', req, {passive:true}); window.addEventListener('resize', req); all();
+})();
+</script>
+
+</body></html>

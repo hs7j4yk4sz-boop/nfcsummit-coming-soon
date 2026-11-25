@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="claude:viewport-fit-sides" content="cover"><title>Art Factory · NFC Summit 2027</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Cormorant+Garamond:ital,wght@0,400;1,400;1,500&family=Space+Grotesk:wght@400;500;600&display=swap"><style>:root{
+  --paper:#FFFFFF; --paper2:#F3F6FF; --red:#F6B800; --blue:#1442B2; --ink:#0E2A6E; --white:#FFFFFF; --emc:var(--blue); --onred:var(--ink);
+  --display:'Anton','Impact','Arial Narrow',sans-serif;
+  --serif:'Cormorant Garamond','Times New Roman',serif;
+  --text:'Space Grotesk','Helvetica Neue',Arial,sans-serif;
+  --gut:max(20px, env(safe-area-inset-left, 0px));
+  --gutr:max(20px, env(safe-area-inset-right, 0px));
+  color-scheme:light;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--text);font-size:17px;line-height:1.45}
+img,video{max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1440px;margin:0 auto;padding-left:var(--gut);padding-right:var(--gutr)}
+.display{font-family:var(--display);font-weight:400;text-transform:uppercase;line-height:.9;letter-spacing:-.01em;text-wrap:balance}
+.serif{font-family:var(--serif);font-style:italic;font-weight:400;line-height:1}
+.label{font-weight:600;font-size:13px;letter-spacing:.2em;text-transform:uppercase}
+.pill{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:40px;padding:16px 28px;font-weight:600;font-size:15px;text-transform:uppercase;letter-spacing:.04em;border:1.5px solid transparent;transition:transform .15s ease, box-shadow .15s ease;cursor:pointer;font-family:var(--text)}
+.pill:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 rgba(0,0,0,.4)}
+.pill:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.pill.dark{background:var(--ink);color:var(--paper)}
+.pill.line{background:var(--paper);color:var(--ink);border-color:var(--ink)}
+.pill.white{background:#fff;color:var(--ink)}
+.pill.red{background:var(--red);color:var(--onred)}
+.dots{background-image:radial-gradient(currentColor 1.3px,transparent 1.8px);background-size:10px 10px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.rv{opacity:0;transform:translateY(34px);transition:opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.08s}.rv.d2{transition-delay:.16s}.rv.d3{transition-delay:.24s}
+
+/* nav */
+.nav{position:absolute;left:0;right:0;top:0;z-index:20}
+.nav .in{display:flex;justify-content:space-between;align-items:center;height:74px;border-bottom:1.5px solid currentColor}
+.nav .star{font-size:40px;line-height:1;display:inline-block;transition:transform .6s ease}
+.nav .star:hover{transform:rotate(180deg)}
+.nav nav{display:flex;gap:26px;align-items:center;font-weight:500;font-size:16px}
+.nav nav a:not(.pill):hover{text-decoration:underline;text-underline-offset:4px}
+.nav .pill{padding:10px 20px;font-size:13px}
+@media(max-width:860px){.nav nav a:not(.pill){display:none}}
+
+.burger{width:44px;height:44px;border:0;background:none;color:inherit;cursor:pointer;display:flex;flex-direction:column;justify-content:center;gap:7px;padding:8px}
+.burger i{display:block;height:2px;background:currentColor;transition:transform .3s ease}
+.burger:focus-visible{outline:3px solid var(--red)}
+.menu{position:fixed;inset:0;z-index:100;background:var(--ink);color:var(--paper);display:flex;flex-direction:column;padding:22px var(--gutr) calc(28px + env(safe-area-inset-bottom, 0px)) var(--gut);transform:translateY(-102%);transition:transform .5s cubic-bezier(.2,.8,.2,1);overflow-y:auto;visibility:hidden}
+.menu.on{transform:none;visibility:visible}
+.menu .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:clamp(14px,3vh,34px)}
+.menu .x{font:600 13px var(--text);letter-spacing:.14em;text-transform:uppercase;background:none;border:1.5px solid var(--paper);color:var(--paper);border-radius:30px;padding:10px 18px;cursor:pointer}
+.menu ol{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;flex:1}
+.menu ol a{display:flex;align-items:baseline;gap:18px;padding:clamp(6px,1.2vh,12px) 0;border-bottom:1.5px solid rgba(249,233,204,.25);font-family:var(--display);text-transform:uppercase;font-size:clamp(34px,7.2vh,76px);line-height:1;transition:color .2s ease, padding .2s ease}
+.menu ol a small{font:600 13px var(--text);letter-spacing:.18em;opacity:.7;min-width:40px}
+.menu ol a:hover,.menu ol a:focus-visible{color:var(--emc);padding-left:14px;outline:none}
+.menu .more{display:flex;gap:10px 26px;flex-wrap:wrap;align-items:center;margin-top:22px;font-weight:600;font-size:14px;letter-spacing:.08em;text-transform:uppercase}
+.menu .more a:not(.pill):hover{text-decoration:underline;text-underline-offset:4px}
+
+/* sprites */
+.sp{position:absolute;width:48px;height:48px;background-image:url(img/sprites.png);background-size:4000% 3600%;background-repeat:no-repeat;image-rendering:pixelated;pointer-events:none}
+.parade{position:relative;height:0;z-index:8;pointer-events:none}
+.parade .lane{position:absolute;left:0;right:0;bottom:-6px;height:96px;overflow:hidden}
+.parade .who{position:absolute;bottom:0;width:72px;display:flex;flex-direction:column;align-items:center}
+.parade .who .sp{position:relative;width:72px;height:72px}
+.parade .who b{font:600 9px var(--text);letter-spacing:.08em;background:var(--ink);color:var(--paper);padding:2px 6px;border-radius:8px;white-space:nowrap;margin-bottom:-2px}
+
+/* sticky ticket: the card that follows you down the page */
+.tix{position:fixed;right:max(18px, env(safe-area-inset-right, 0px));bottom:calc(18px + env(safe-area-inset-bottom, 0px));z-index:60;display:flex;flex-direction:column;align-items:center;gap:8px;perspective:700px;transition:opacity .3s ease, transform .3s ease}
+.tix.off{opacity:0;pointer-events:none;transform:translateY(30px)}
+.tix .c{position:relative;width:118px;height:160px;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.3,1.4,.4,1);transform:rotateZ(var(--tz,4deg)) rotateY(var(--ty,0deg))}
+.tix:hover .c{transform:rotateZ(0deg) rotateY(var(--ty,0deg)) translateY(-6px) scale(1.05)}
+.tix .f{position:absolute;inset:0;border-radius:12px;border:2px solid var(--ink);background:var(--paper2);box-shadow:5px 6px 0 var(--ink);backface-visibility:hidden;overflow:hidden;display:flex;flex-direction:column}
+.tix .f::before{content:"";position:absolute;inset:0;color:var(--blue);background-image:radial-gradient(currentColor 1.2px,transparent 1.7px);background-size:9px 9px;opacity:.35}
+.tix .f small{position:relative;font:600 8px var(--text);letter-spacing:.16em;text-transform:uppercase;padding:7px 8px 0;display:flex;justify-content:space-between}
+.tix .f img{position:relative;flex:1;min-height:0;object-fit:contain;padding:2px 6px}
+.tix .f strong{position:relative;font-family:var(--display);font-weight:400;font-size:15px;text-transform:uppercase;text-align:center;line-height:1;padding:0 4px 8px}
+.tix .bk{transform:rotateY(180deg);background:var(--red);color:var(--onred);align-items:center;justify-content:center;text-align:center;gap:6px}
+.tix .bk::before{color:var(--onred);opacity:.2}
+.tix .bk b{position:relative;font-family:var(--display);font-weight:400;font-size:26px;line-height:.9;text-transform:uppercase}
+.tix .bk i{position:relative;font-style:normal;font-size:26px;line-height:1}
+.tix .go{background:var(--red);color:var(--onred);border:2px solid var(--ink);border-radius:30px;padding:9px 14px;font:600 12px var(--text);letter-spacing:.06em;text-transform:uppercase;box-shadow:3px 4px 0 var(--ink);white-space:nowrap}
+@media(max-width:860px){
+  .tix{right:0;left:0;bottom:0;padding:10px var(--gutr) calc(10px + env(safe-area-inset-bottom, 0px)) var(--gut);flex-direction:row;justify-content:space-between;background:var(--paper);border-top:2px solid var(--ink)}
+  .tix .c{width:44px;height:60px}.tix .f{border-radius:6px;box-shadow:2px 3px 0 var(--ink)}.tix .f small,.tix .f strong{display:none}.tix .bk b{font-size:11px}.tix .bk i{display:none}
+  .tix .go{flex:1;margin-left:14px;text-align:center;padding:14px;font-size:14px}
+  body{padding-bottom:84px}
+}
+
+/* footer */
+footer{background:var(--ink);color:var(--paper);padding-block:26px 34px;font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+.menu,.strip,.film,.rib,.dark,footer,.tix .bk{--emc:var(--red)}
+.sky{position:absolute;inset:0;background:url(img/clouds.webp) 0 0/max(1200px,100%) auto;animation:drift 160s linear infinite}
+.sky.soft{opacity:.38}
+.sky.mask{background-image:url(img/cloudmask.webp);opacity:.22}
+@keyframes drift{to{background-position:max(1200px,100vw) 0}}
+.nav{color:var(--sf)}
+.sh{position:relative;background:var(--sb);color:var(--sf);overflow:hidden;padding-block:120px clamp(50px,7vw,90px)}
+.sh .wrap{position:relative;display:grid;grid-template-columns:minmax(0,440px) minmax(0,1fr);gap:clamp(28px,6vw,90px);align-items:center}
+.card{position:relative;aspect-ratio:500/660;width:100%;max-width:440px;border-radius:22px;background:var(--paper);color:var(--ink);box-shadow:10px 12px 0 rgba(0,0,0,.28);transition:transform .25s ease;animation:deal .9s cubic-bezier(.2,1.2,.4,1) backwards}
+@keyframes deal{from{transform:translateY(80px) rotate(-14deg);opacity:0}}
+.card::before{content:"";position:absolute;inset:0;border-radius:22px;color:var(--blue);background-image:radial-gradient(currentColor 1.5px,transparent 2px);background-size:14px 14px;opacity:.45}
+.card::after{content:"";position:absolute;inset:14px;border:2px solid var(--ink);border-radius:12px;box-shadow:inset 0 0 0 5px var(--paper),inset 0 0 0 6.5px var(--ink);pointer-events:none}
+.card h3{position:absolute;left:8%;top:5.5%;right:8%;font-size:clamp(22px,2.6vw,36px);z-index:2}
+.card small{position:absolute;right:9%;bottom:6%;font-weight:600;font-size:12px;letter-spacing:.18em;z-index:2}
+.card img{position:absolute;left:50%;bottom:8%;transform:translateX(-50%);max-width:88%;max-height:74%;z-index:1}
+.sh h1{font-size:clamp(56px,10vw,160px);margin:14px 0 18px}
+.sh .serif{font-size:clamp(34px,4.4vw,62px);margin-bottom:18px}
+.sh p.lead{font-size:20px;max-width:50ch;margin-bottom:26px}
+.sh .when{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px}
+.sh .when span{border:1.5px solid currentColor;border-radius:30px;padding:6px 14px;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.sh .pill{background:var(--sf);color:var(--sb)}
+.back{display:inline-flex;gap:8px;align-items:center;font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+.back:hover{text-decoration:underline;text-underline-offset:4px}
+@media(max-width:860px){.sh .wrap{grid-template-columns:1fr}.card{max-width:340px}}
+.blk{padding-block:clamp(60px,8vw,110px)}
+.blk h2{font-size:clamp(42px,6.4vw,96px);margin-bottom:clamp(26px,4vw,50px)}.blk h2 em{font-style:normal;color:var(--emc)}
+.feat{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.feat div{background:var(--paper2);border:2px solid var(--ink);border-radius:16px;padding:26px 24px;box-shadow:8px 9px 0 var(--ink)}
+.feat b{display:block;font-family:var(--display);font-weight:400;font-size:clamp(30px,3.4vw,46px);line-height:.95;text-transform:uppercase;margin-bottom:10px}
+.feat div:nth-child(3n+1) b{color:var(--emc)}.feat div:nth-child(3n+2) b{color:var(--blue)}
+@media(max-width:860px){.feat{grid-template-columns:1fr}}
+.gal{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px}
+.gal figure{margin:0;border:2px solid var(--ink);border-radius:16px;overflow:hidden;position:relative;grid-column:span 4;aspect-ratio:4/3;box-shadow:6px 7px 0 var(--ink);background:#000}
+.gal figure.w{grid-column:span 8;aspect-ratio:auto}
+.gal figure.t{aspect-ratio:3/4}
+.gal img,.gal video{display:block;width:100%;height:100%;object-fit:cover}
+.gal figcaption{position:absolute;left:10px;bottom:10px;background:var(--paper);color:var(--ink);border:1.5px solid var(--ink);border-radius:30px;padding:5px 11px;font:600 11px var(--text);letter-spacing:.08em;text-transform:uppercase}
+@media(max-width:860px){.gal figure,.gal figure.w{grid-column:span 12}}
+.dark{background:var(--ink);color:var(--paper)}.dark .gal figure{border-color:var(--paper);box-shadow:6px 7px 0 var(--red)}
+.cta{background:var(--red);color:var(--onred);border-radius:36px 36px 0 0;text-align:center;padding-block:clamp(60px,8vw,110px);position:relative;overflow:hidden}
+.cta h2{font-size:clamp(44px,8vw,120px);margin-bottom:14px;position:relative}
+.cta .serif{font-size:clamp(26px,3vw,40px);margin-bottom:28px;position:relative}
+.cta .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative}
+.next{display:grid;grid-template-columns:1fr 1fr;border-top:2px solid var(--ink)}
+.next a{padding:34px var(--gut);display:flex;flex-direction:column;gap:6px;transition:background .2s ease, color .2s ease}
+.next a:last-child{text-align:right;border-left:2px solid var(--ink);padding:34px var(--gutr) 34px 20px}
+.next a:hover{background:var(--ink);color:var(--paper)}
+.next b{font-family:var(--display);font-weight:400;font-size:clamp(28px,4.4vw,64px);text-transform:uppercase;line-height:.95}
+.soon{margin-top:26px;font-size:14px;opacity:.75}
+
+.gal figure.sk{grid-column:span 3;aspect-ratio:3/4;background:var(--paper2)}.gal figure.sk img{object-fit:contain;padding:8% 8% 16%}
+@media(max-width:860px){.gal figure.sk{grid-column:span 6}}
+
+@media(max-width:860px){.feat{grid-template-columns:1fr!important}}
+</style></head><body><header class="nav"><div class="wrap"><div class="in">
+  <a class="star" href="index.html" aria-label="NFC Summit 2027, home">✦</a>
+  <nav><a href="index.html#worlds">Six worlds</a><a href="index.html#days">Three days</a><a class="pill" style="background:var(--onred);color:var(--red)" href="index.html#join">Get your ticket</a></nav>
+</div></div></header>
+<section class="sh" style="--sb:var(--red);--sf:var(--onred)"><div class="sky mask"></div><div class="wrap">
+  <div class="card"><h3 class="display">Art Factory</h3><img src="img/artfactory.webp" alt=""><small>04 / 06</small></div>
+  <div><a class="back" href="index.html#worlds">← Back to the six worlds</a><h1 class="display">Art Factory</h1><p class="serif">The museum of NFC.</p><p class="lead">Four floors of a former flour mill, the Fábrica de Moagem, in the heart of Unicorn Factory. The milling machines are still in place. For three days, digital art lives between them.</p>
+  <div class="when"><span>27–29 May</span><span>Four floors</span><span>Fábrica de Moagem</span></div><a class="pill" href="index.html#join">Become a sponsor</a></div>
+</div></section>
+<div class="parade" id="parade1" aria-hidden="true"></div>
+<section class="blk"><div class="wrap"><h2 class="display rv">A museum for <em>three days</em></h2><div class="feat"><div class="rv d0"><b>Four floors</b><p>From the basement to the top floor, each level has its own atmosphere and its own curation.</p></div><div class="rv d1"><b>Curated</b><p>Exhibitions put together by curators, galleries and collections, with guided tours.</p></div><div class="rv d2"><b>Made for the building</b><p>Installations, screens and immersive rooms designed for the mill and its machines.</p></div></div></div></section>
+<section class="blk"><div class="wrap"><h2 class="display rv">Last year in the <em>factory</em></h2><div class="gal"><figure class="w rv"><video src="vid/factory.mp4" muted loop playsinline autoplay preload="metadata"></video><figcaption>2026 · Walk through</figcaption></figure><figure class=" rv"><img src="img/p067.webp" alt="Two silhouettes inside an immersive light room" loading="lazy"><figcaption>2026</figcaption></figure><figure class=" rv"><img src="img/p045.webp" alt="Three artworks on a mesh wall" loading="lazy"><figcaption>2026</figcaption></figure><figure class=" rv"><img src="img/p064.webp" alt="A visitor among the old milling machines" loading="lazy"><figcaption>2026</figcaption></figure><figure class=" rv"><img src="img/p065.webp" alt="A large LED artwork between the machines" loading="lazy"><figcaption>2026</figcaption></figure><figure class="w rv"><video src="vid/art.mp4" muted loop playsinline autoplay preload="metadata"></video><figcaption>Art at NFC Summit 2026</figcaption></figure></div></div></section>
+<section class="blk dark"><div class="wrap"><h2 class="display rv">In 2026, <em>floor by floor</em></h2><div class="feat" style="color:var(--ink);grid-template-columns:repeat(4,minmax(0,1fr))"><div class="rv"><b>Top floor</b><p>SYSTEMS, the Arab Bank Switzerland collection show curated by Nina Roehrs.</p></div><div class="rv d1"><b>Art floor</b><p>Solo shows and art lounges.</p></div><div class="rv d2"><b>Grand hall</b><p>Site-specific installations among the machines, with Vhils and BOLDTRON among others.</p></div><div class="rv d3"><b>Basement</b><p>The AI Cave: immersive experiences.</p></div></div><p class="soon rv" style="color:var(--paper)">The 2027 programme is to be announced.</p></div></section>
+<section class="cta" id="join"><div class="wrap"><h2 class="display">Come inside</h2><p class="serif">27–29 May 2027 · Lisbon</p><div class="btns"><a class="pill dark" href="index.html#join">Get your ticket</a><a class="pill white" href="index.html#join">Become a sponsor</a></div></div></section>
+<nav class="next" aria-label="Other worlds"><a href="conference.html"><span class="label">← Previous world</span><b>Conference</b></a><a href="hackathon.html"><span class="label">Next world →</span><b>Hackathon · AI Day</b></a></nav>
+<footer><div class="wrap"><span>✦ NFC Summit 2027 · The Digital Pop Culture Festival</span><a href="https://onthewall.nfcsummit.com" target="_blank" rel="noopener" style="text-decoration:underline;text-underline-offset:4px">The Wall: onthewall.nfcsummit.com ↗</a><span>27–29 May 2027 · Unicorn Factory · Beato · Lisbon</span></div></footer>
+<a class="tix" href="index.html#join" aria-label="Get your ticket">
+  <div class="c"><div class="f fr"><small><span>NFC 2027</span><span>✦</span></small><img src="img/artfactory.webp" alt=""><strong>Art Factory</strong></div><div class="f bk"><i>✦</i><b>Get your ticket</b></div></div>
+  <span class="go">Get your ticket →</span>
+</a><script>var NFC = (function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var COLS = 10, TOTAL = 82;
+  var NAMES = ["SHILLS", "JOHNKARP.ETH", "KATYATSOY", "ROSENBAYER", "TWEETIOUS", "K4NCUN0", "NISSLA", "LAMPWRECKED", "CHRINGO", "PAUSER", "ZADKIELL", "AMMAR", "PARADIGMSTORIES", "ADAMTASTIC", "SEIZERPUNK", "MANING", "PIV", "GT", "TRUSTAMUNDO", "TANIAMARQUESNFT", "REBAS", "0XBRAIN", "ZZ666", "COOPS", "ZUMBAH", "TULIPANI", "ENDER", "IVANA", "VECTRIS", "SHORTCUT", "JUDITHESSS", "FRANKNFT", "IRISHNFTGAL", "DITAI", "COCKTAIL", "FRISKY", "KARP", "RAY", "CRYTOLLIE", "NYGILIA", "EFDOT", "SUPERRAREJOHN", "RACHELSTWOOD", "AMBI", "MEEGS4LIFE", "RAINERHOSCH", "KTORN", "BULLAUGE", "ISMA", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""];
+  function frame(el, idx, dir, f){ var col = idx % COLS, row = Math.floor(idx / COLS); el.style.backgroundPosition = ((col*4+f)/39*100).toFixed(3) + '% ' + ((row*4+dir)/35*100).toFixed(3) + '%'; }
+  function pick(n){ var a = []; for (var i = 0; i < TOTAL; i++) a.push(i); for (var j = a.length - 1; j > 0; j--){ var k = Math.floor(Math.random()*(j+1)), t = a[j]; a[j] = a[k]; a[k] = t; } return a.slice(0, n); }
+
+  // reveal on scroll
+  function reveal(){
+    var els = [].slice.call(document.querySelectorAll('.rv'));
+    if ('IntersectionObserver' in window && !reduce){
+      var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, {threshold:.12});
+      els.forEach(function(e){ io.observe(e); });
+    } else els.forEach(function(e){ e.classList.add('in'); });
+  }
+
+  // a line of People of the Wall walking across a band
+  function parade(host, n, withNames){
+    if (!host) return;
+    var lane = document.createElement('div'); lane.className = 'lane'; host.appendChild(lane);
+    var ids = pick(n), ws = [];
+    ids.forEach(function(id, i){
+      var w = document.createElement('div'); w.className = 'who';
+      var nm = NAMES[id];
+      w.innerHTML = (withNames && nm ? '<b>' + nm + '</b>' : '') + '<div class="sp"></div>';
+      lane.appendChild(w);
+      var dir = Math.random() < .5 ? 1 : -1;
+      ws.push({el:w, sp:w.lastChild, id:id, x:Math.random(), v:(.018 + Math.random()*.02) * dir, ph:Math.random()*4});
+    });
+    var vis = true, t0 = performance.now();
+    if ('IntersectionObserver' in window) new IntersectionObserver(function(es){ vis = es[0].isIntersecting; }).observe(host);
+    function step(now){
+      var dt = Math.min((now - t0) / 1000, .1); t0 = now;
+      if (vis){ var W = lane.clientWidth; ws.forEach(function(w){
+        if (!reduce) w.x += w.v * dt * (900 / Math.max(W, 500));
+        if (w.x > 1.08) w.x = -.08; if (w.x < -.08) w.x = 1.08;
+        w.el.style.transform = 'translateX(' + (w.x * W - 36).toFixed(1) + 'px)';
+        frame(w.sp, w.id, w.v > 0 ? 1 : 3, reduce ? 0 : Math.floor(now/160 + w.ph) % 4);
+      }); }
+      requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  // the card that follows you: sticky ticket
+  function ticket(faces){
+    var t = document.querySelector('.tix'); if (!t) return;
+    var c = t.querySelector('.c'), img = t.querySelector('.fr img'), name = t.querySelector('.fr strong');
+    var turns = 0, cur = '';
+    function set(key){
+      if (key === cur || !faces[key]) return; cur = key; turns += 1;
+      c.style.setProperty('--ty', (turns * 360) + 'deg');
+      setTimeout(function(){ img.src = 'img/' + faces[key][0] + '.webp'; name.textContent = faces[key][1]; }, 240);
+    }
+    var last = window.scrollY;
+    window.addEventListener('scroll', function(){
+      var y = window.scrollY, d = Math.max(-1, Math.min(1, (y - last) / 40)); last = y;
+      c.style.setProperty('--tz', (4 + d * 9).toFixed(1) + 'deg');
+      t.classList.toggle('off', y < 200);
+      var join = document.getElementById('join');
+      if (join){ var r = join.getBoundingClientRect(); if (r.top < window.innerHeight * .55) t.classList.add('off'); }
+    }, {passive:true});
+    t.classList.add('off');
+    return set;
+  }
+  function menu(home){
+    var nav = document.querySelector('.nav nav'); if (!nav) return;
+    var b = document.createElement('button'); b.className = 'burger'; b.type = 'button'; b.setAttribute('aria-label', 'Open the menu'); b.setAttribute('aria-expanded', 'false'); b.innerHTML = '<i></i><i></i>';
+    nav.appendChild(b);
+    var W = [['Art Fun Fair','fair.html'],['Kawaii Summit','kawaii.html'],['Conference','conference.html'],['Art Factory','art-factory.html'],['Hackathon · AI Day','hackathon.html'],['Parties','parties.html']];
+    var h = home ? '' : 'index.html';
+    var m = document.createElement('div'); m.className = 'menu'; m.setAttribute('role', 'dialog'); m.setAttribute('aria-label', 'Menu');
+    m.innerHTML = '<div class="top"><a class="star" href="' + (home ? '#top' : 'index.html') + '" style="font-size:40px;line-height:1">✦</a><button class="x" type="button">Close</button></div><ol>' +
+      W.map(function(w, i){ return '<li><a href="' + w[1] + '"><small>0' + (i + 1) + '</small>' + w[0] + '</a></li>'; }).join('') + '</ol>' +
+      '<div class="more"><a href="' + h + '#film">2026, the film</a><a href="' + h + '#days">Three days</a><a href="' + h + '#sponsors">Sponsors</a><a href="https://onthewall.nfcsummit.com" target="_blank" rel="noopener">The Wall ↗</a><a class="pill red" href="' + h + '#join">Get your ticket</a></div>';
+    document.body.appendChild(m);
+    function set(on){ m.classList.toggle('on', on); b.setAttribute('aria-expanded', String(on)); document.documentElement.style.overflow = on ? 'hidden' : ''; if (on) m.querySelector('.x').focus(); else b.focus(); }
+    b.addEventListener('click', function(){ set(true); });
+    m.querySelector('.x').addEventListener('click', function(){ set(false); });
+    m.addEventListener('click', function(e){ if (e.target.closest('a')) { m.classList.remove('on'); document.documentElement.style.overflow = ''; b.setAttribute('aria-expanded', 'false'); } });
+    document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && m.classList.contains('on')) set(false); });
+  }
+  function countdown(){
+    var target = Date.parse('2027-05-27T09:00:00+01:00'), d = document.getElementById('cd'); if (!d) return;
+    function cd(){ var m = Math.floor(Math.max(0, target - Date.now()) / 60000);
+      d.textContent = Math.floor(m / 1440); document.getElementById('ch').textContent = Math.floor(m % 1440 / 60); document.getElementById('cm').textContent = m % 60; }
+    cd(); setInterval(cd, 30000);
+  }
+  return {menu:menu, reduce:reduce, frame:frame, pick:pick, reveal:reveal, parade:parade, ticket:ticket, countdown:countdown, NAMES:NAMES};
+})();
+NFC.menu(false);NFC.reveal();NFC.parade(document.getElementById('parade1'),7,true);NFC.ticket({});</script></body></html>
