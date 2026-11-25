@@ -1,34 +1,17 @@
-import type { Metadata, Viewport } from 'next'
-import { Anton, IBM_Plex_Mono, Inter } from 'next/font/google'
-import { SITE } from '@/lib/site'
-import './globals.css'
+import type { Metadata } from 'next'
 
-const anton = Anton({ subsets: ['latin'], weight: '400', variable: '--font-anton' })
-const plexMono = IBM_Plex_Mono({ subsets: ['latin'], weight: ['400', '500'], variable: '--font-plex-mono' })
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
-
+/**
+ * The site's pages are static HTML (see `site/`), so this layout only wraps
+ * what the app itself renders: today, the 404 page.
+ */
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE.url),
-  title: SITE.title,
-  description: SITE.description,
-  alternates: { canonical: '/' },
-  openGraph: {
-    type: 'website',
-    url: SITE.url,
-    siteName: 'NFC Summit',
-    title: SITE.title,
-    description: '27 · 28 · 29 May 2027 — Unicorn Factory, Lisbon.',
-  },
-}
-
-export const viewport: Viewport = {
-  themeColor: '#0B0B0B',
+  icons: { icon: '/favicon.svg' },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${anton.variable} ${plexMono.variable} ${inter.variable}`}>
-      <body>{children}</body>
+    <html lang="en">
+      <body style={{ margin: 0 }}>{children}</body>
     </html>
   )
 }

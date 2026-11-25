@@ -2,9 +2,12 @@
   "name": "nfcsummit-coming-soon",
   "version": "0.1.0",
   "private": true,
-  "description": "nfcsummit.com provisional page — coming soon + live SPONSORS 2027 from the ON THE WALL positions.",
+  "description": "www.nfcsummit.com: the NFC Summit 2027 site (static pages in site/) and the /api/sponsors relay.",
   "scripts": {
+    "site": "node scripts/build-site.mjs",
+    "predev": "node scripts/build-site.mjs",
     "dev": "next dev",
+    "prebuild": "node scripts/build-site.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
