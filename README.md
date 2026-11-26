@@ -26,6 +26,7 @@ The site of **NFC Summit 2027** (27–29 May 2027, Unicorn Factory, Lisbon), and
 | `app/not-found.tsx` | The 404 page (status 404, link to the home page). |
 | `app/robots.ts`, `app/sitemap.ts` | `/robots.txt` and `/sitemap.xml`. |
 | `public/og.jpg` | The 1200 × 630 share image, made from the home page hero. |
+| `public/google350079851e7e5df8.html` | Google Search Console's proof of ownership for `https://www.nfcsummit.com/`. Never remove it: the property would lose its verification. |
 
 ## Addresses
 
