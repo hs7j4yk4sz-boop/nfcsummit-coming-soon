@@ -43,6 +43,15 @@ No `.html`, no trailing slash (`/parties/` answers `308` to `/parties`). Every o
 real `404`. To add a page: put the file in `site/`, add a line to `lib/pages.ts`, and give it its
 title, description, canonical and sharing tags like the others.
 
+## Ticketing
+
+Every "Get your ticket" button (menu, page buttons, the floating ticket card) opens the
+Eventbrite event in a new tab:
+`https://www.eventbrite.com/e/nfc-summit-2027-tickets-2001761025112?aff=nfcsummitsite`
+(`aff` lets Eventbrite report the sales that come from this site). The same address, without
+`aff`, is the `offers.url` of the Event data on the home page. The link is written in each page of
+`site/`: to change it, replace it in all seven files.
+
 ## Caching
 
 - **Images and videos** are copied to `public/a/<hash>/`, where `<hash>` comes from their content.
