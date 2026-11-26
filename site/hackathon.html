@@ -161,7 +161,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 @media(max-width:860px){.gal figure.sk{grid-column:span 6}}
 
 @media(max-width:860px){.feat{grid-template-columns:1fr!important}}
-</style></head><body><header class="nav"><div class="wrap"><div class="in">
+/* phones: keep the hero button clear of the people walking along its bottom edge */
+@media(max-width:860px){.sh{padding-bottom:118px}}
+footer .fl{flex-basis:100%;display:flex;gap:8px 22px;flex-wrap:wrap;font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase}footer .fl a:hover{text-decoration:underline;text-underline-offset:4px}
+</style></head><body><header class="nav" style="--sf:#fff"><div class="wrap"><div class="in">
   <a class="star" href="/" aria-label="NFC Summit 2027, home">✦</a>
   <nav><a href="/#worlds">Six worlds</a><a href="/#days">Three days</a><a class="pill" style="background:#fff;color:var(--blue)" href="https://www.eventbrite.com/e/nfc-summit-2027-tickets-2001761025112?aff=nfcsummitsite" target="_blank" rel="noopener">Get your ticket</a></nav>
 </div></div></header>
@@ -176,7 +179,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 <section class="blk dark"><div class="wrap"><h2 class="display rv">We did it <em>last year</em></h2><div class="feat" style="color:var(--ink)"><div class="rv"><b>Vibe-a-thon</b><p>In 2026, a collaborative hackathon ran during the summit, with COLAB Lisbon.</p></div><div class="rv d1"><b>Mentors</b><p>Teams were coached by mentors from the tools they were building with.</p></div><div class="rv d2"><b>AI workshops</b><p>Hands-on AI creative sessions for kids and for professional artists, with AI Art Magazine.</p></div></div></div></section>
 <section class="cta" id="join"><div class="wrap"><h2 class="display">Ship something</h2><p class="serif">Registration opens soon.</p><div class="btns"><a class="pill dark" href="/#join">Join the hackathon</a><a class="pill white" href="https://www.eventbrite.com/e/nfc-summit-2027-tickets-2001761025112?aff=nfcsummitsite" target="_blank" rel="noopener">Get your ticket</a></div></div></section>
 <nav class="next" aria-label="Other worlds"><a href="/art-factory"><span class="label">← Previous world</span><b>Art Factory</b></a><a href="/parties"><span class="label">Next world →</span><b>Parties</b></a></nav>
-<footer><div class="wrap"><span>✦ NFC Summit 2027 · The Digital Pop Culture Festival</span><a href="https://onthewall.nfcsummit.com" target="_blank" rel="noopener" style="text-decoration:underline;text-underline-offset:4px">The Wall: onthewall.nfcsummit.com ↗</a><span>27–29 May 2027 · Unicorn Factory · Beato · Lisbon</span></div></footer>
+<footer><div class="wrap"><span>✦ NFC Summit 2027 · The Digital Pop Culture Festival</span><a href="https://onthewall.nfcsummit.com" target="_blank" rel="noopener" style="text-decoration:underline;text-underline-offset:4px">The Wall: onthewall.nfcsummit.com ↗</a><span>27–29 May 2027 · Unicorn Factory · Beato · Lisbon</span><nav class="fl" aria-label="Practical information"><a href="/tickets">Tickets</a><a href="/venue">Venue</a><a href="/partners">Partners</a><a href="/about">About</a><a href="/faq">FAQ</a><a href="/archive">Archive</a></nav></div></footer>
 <a class="tix" href="https://www.eventbrite.com/e/nfc-summit-2027-tickets-2001761025112?aff=nfcsummitsite" target="_blank" rel="noopener" aria-label="Get your ticket">
   <div class="c"><div class="f fr"><small><span>NFC 2027</span><span>✦</span></small><img src="img/hack.webp" alt="" style="aspect-ratio:auto 881/900"><strong>Hackathon</strong></div><div class="f bk"><i>✦</i><b>Get your ticket</b></div></div>
   <span class="go">Get your ticket →</span>

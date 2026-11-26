@@ -17,9 +17,9 @@ The site of **NFC Summit 2027** (27–29 May 2027, Unicorn Factory, Lisbon), and
 
 | Path | What it is |
 |---|---|
-| `site/` | **The site.** Seven static HTML pages and their images and videos, from the design made with John (handoff of 25 November 2026). Edit the pages here. |
+| `site/` | **The site.** Thirteen static HTML pages and their images and videos: the home page and the six worlds, from the design made with John (handoff of 25 November 2026), and six practical pages on the same template (tickets, venue, partners, about, FAQ, archive). Edit the pages here. |
 | `scripts/build-site.mjs` | Copies `site/` into `public/` before every `dev` and `build` (see below). |
-| `lib/pages.ts` | The seven addresses and their files. Used by `next.config.ts` and the sitemap. |
+| `lib/pages.ts` | The addresses and their files. Used by `next.config.ts` and the sitemap. |
 | `next.config.ts` | Clean addresses, redirects, cache headers. |
 | `app/api/sponsors` | The ON THE WALL sponsor feed, relayed with CORS. Read by the nonfungibleconference.com home page. Keep it answering. |
 | `app/api/wall-debug` | Says why the sponsor feed does or does not read, from inside a deployment. `noindex`. |
@@ -38,6 +38,12 @@ The site of **NFC Summit 2027** (27–29 May 2027, Unicorn Factory, Lisbon), and
 | `/art-factory` | `site/art-factory.html` |
 | `/hackathon` | `site/hackathon.html` |
 | `/parties` | `site/parties.html` |
+| `/tickets` | `site/tickets.html` |
+| `/venue` | `site/venue.html` |
+| `/partners` | `site/partners.html` |
+| `/about` | `site/about.html` |
+| `/faq` | `site/faq.html` |
+| `/archive` | `site/archive.html` |
 
 No `.html`, no trailing slash (`/parties/` answers `308` to `/parties`). Every other address is a
 real `404`. To add a page: put the file in `site/`, add a line to `lib/pages.ts`, and give it its
@@ -50,7 +56,7 @@ Eventbrite event in a new tab:
 `https://www.eventbrite.com/e/nfc-summit-2027-tickets-2001761025112?aff=nfcsummitsite`
 (`aff` lets Eventbrite report the sales that come from this site). The same address, without
 `aff`, is the `offers.url` of the Event data on the home page. The link is written in each page of
-`site/`: to change it, replace it in all seven files.
+`site/`: to change it, replace it in every file.
 
 ## Caching
 
